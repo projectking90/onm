@@ -18,9 +18,15 @@
 		김다현 테스트
 =======
 		조혜민테스트
+<<<<<<< HEAD
 >>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
 =======
 		유원영테스트
 >>>>>>> branch 'b_ywy' of https://github.com/projectking90/onm
+=======
+>>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
+
+		손지은테스트
+>>>>>>> branch 'b_sje' of https://github.com/projectking90/onm
 	</body>
 </html>
