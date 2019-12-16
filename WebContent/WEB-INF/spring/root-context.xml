@@ -52,7 +52,7 @@
 	</bean>		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="log4jdbcProxyDataSource"/>
-		<property name="mapperLocations" value="classpath:com/naver/erp/*.xml"/>		
+		<property name="mapperLocations" value="classpath:system/onm/xml/*.xml"/>		
 	</bean> 
 			 
 	<!--**********************************************************************************************-->
@@ -75,7 +75,7 @@
 	<!--**********************************************************************************************-->
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	    <property name="basePackage" value="com.naver.erp.dao" />
+	    <property name="basePackage" value="system.onm.dao.dao" />
 	</bean> 	
 </beans>
 		
