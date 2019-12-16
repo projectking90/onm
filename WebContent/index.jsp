@@ -20,5 +20,7 @@
 >>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
 
 		이정수 테스트
+		
+	    codingKingTest 2
 	</body>
 </html>
