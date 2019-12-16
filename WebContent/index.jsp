@@ -19,6 +19,7 @@
 =======
 		조혜민테스트
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
 =======
 		유원영테스트
@@ -28,5 +29,12 @@
 
 		손지은테스트
 >>>>>>> branch 'b_sje' of https://github.com/projectking90/onm
+=======
+>>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
+
+		이정수 테스트
+		
+	    codingKingTest 2
+>>>>>>> branch 'b_ljs' of https://github.com/projectking90/onm
 	</body>
 </html>
