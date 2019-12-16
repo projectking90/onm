@@ -13,6 +13,10 @@
 	<body>
 		환영
 		projectking Test
+<<<<<<< HEAD
 		김다현 테스트
+=======
+		조혜민테스트
+>>>>>>> branch 'b_chm' of https://github.com/projectking90/onm
 	</body>
 </html>
