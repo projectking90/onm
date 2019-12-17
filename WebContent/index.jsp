@@ -36,7 +36,6 @@
 		
 	    codingKingTest 2
 >>>>>>> branch 'b_ljs' of https://github.com/projectking90/onm
-
 		오윤진테스트
 	</body>
 </html>
