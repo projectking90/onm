@@ -1,0 +1,22 @@
+Xml 패키지
+
+mapper_account
+계정 메뉴 관련 DB 연동 Query
+
+mapper_all
+모든 메뉴 관련 DB 연동 Query
+
+mapper_datawarehouse
+발주 메뉴 관련 DB 연동 Query
+
+mapper_order
+주문 메뉴 관련 DB 연동 Query
+
+mapper_point
+포인트 메뉴 관련 DB 연동 Query
+
+mapper_stock
+재고 메뉴 관련 DB 연동 Query
+
+mapper_store
+가게 메뉴 관련 DB 연동 Query
