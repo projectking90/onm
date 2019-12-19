@@ -1,0 +1,28 @@
+Xml 패키지
+
+mapper_account Xml
+계정 메뉴와 관련된 Query
+로그인, 회원가입, 개인정보 변경
+
+mapper_all Xml
+모든 메뉴와 관련된 Query
+
+mapper_datawarehouse Xml
+발주 메뉴와 관련된 Query
+인근 매장 발주, 인근 매장 발주 - 등록, 인근 매장 발주 관리 - 거래완료, 수정, 삭제
+
+mapper_order Xml
+주문 메뉴와 관련된 Query
+주문하기, 주문 확인, 주문 취소, 추천 주문, 주문 확인 - 접수대기 처리 중, 완료, 주문 확정, 주문 거부, 주문 기록, 판매 기록
+
+mapper_point Xml
+포인트 메뉴와 관련된 Query
+카드를 통한 충전, 포인트 기록, 포인트 선물, 현금으로 전환
+
+mapper_stock Xml
+재고 메뉴와 관련된 Query
+재고관리 - 검색, 추가, 수정, 삭제
+
+mapper_store Xml
+가게 메뉴와 관련된 Query
+메뉴 - 등록, 수정, 삭제, 식자재 - 등록, 수정, 삭제, 가게 정보 - 등록, 수정

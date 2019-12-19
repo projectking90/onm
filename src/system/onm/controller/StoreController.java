@@ -20,7 +20,7 @@ public class StoreController {
 	 * 속성변수 선언
 	 */
 	@Autowired
-	private StoreService tore_service;	// StoreService 인터페이스를 구현받은 객체를 생성해서 저장
+	private StoreService store_service;	// StoreService 인터페이스를 구현받은 객체를 생성해서 저장
 
 	/**
 	 * 메소드 선언
