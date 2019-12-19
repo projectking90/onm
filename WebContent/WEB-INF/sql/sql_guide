@@ -1,0 +1,6 @@
+Oracle SQL Query 폴더
+
+Project 관련 모든 Query는 이곳에 저장
+
+DDL의 경우 Query를 파일로 만들어 저장
+DML의 경우 xml 파일로 저장하여 추가할 것

@@ -1,0 +1,52 @@
+DTO 패키지
+
+AccountDTO 클래스
+계정을 추가, 수정, 삭제할 때 사용할 DTO
+
+CustomerInfoDTO 클래스
+고객 정보를 검색할 때 사용할 DTO
+
+DatawarehouseDTO 클래스
+발주를 추가, 수정, 삭제할 때 사용할 DTO
+
+DatawarehouseSearchDTO 클래스
+발주 검색할 때 사용할 DTO
+
+IngredientDTO 클래스
+식자재를 추가, 수정, 삭제할 때 사용할 DTO
+
+IngredientSearchDTO 클래스
+식자재 검색할 때 사용할 DTO
+
+MenuDTO 클래스
+메뉴를 추가, 수정, 삭제할 때 사용할 DTO
+
+MenuSearchDTO 클래스
+메뉴 검색할 때 사용할 DTO
+
+OrderRecordDTO 클래스
+주문 기록을 검색할 때 사용할 DTO
+
+PayDTO 클래스
+결제 정보를 검색할 때 사용할 DTO
+
+PointDTO 클래스
+포인트를 충전, 선물, 전환할 때 사용할 DTO
+
+PointSearchDTO 클래스
+포인트 검색할 때 사용할 DTO
+
+SellingRecordDTO 클래스
+판매 기록을 검색할 때 사용할 DTO
+
+StockDTO 클래스
+재고를 추가, 수정, 삭제할 때 사용할 DTO
+
+StockSearchDTO 클래스
+재고 검색할 때 사용할 DTO
+
+StoreDTO 클래스
+가게를 추가, 수정할 때 사용할 DTO
+
+StoreSearchDTO 클래스
+가게 검색할 때 사용할 DTO

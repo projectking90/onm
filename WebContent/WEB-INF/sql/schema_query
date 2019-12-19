@@ -1,0 +1,2 @@
+create user onm identified by onm0213;
+grant connect, resource, dba to onm;

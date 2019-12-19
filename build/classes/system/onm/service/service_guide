@@ -1,0 +1,25 @@
+Service 패키지
+
+AccountService 클래스
+계정 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+로그인, 회원가입, 개인정보 변경
+
+DatawarehouseService 클래스
+발주 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+인근 매장 발주, 인근 매장 발주 - 등록, 인근 매장 발주 관리 - 거래완료, 수정, 삭제
+
+OrderService 클래스
+주문 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+주문하기, 주문 확인, 주문 취소, 추천 주문, 주문 확인 - 접수대기 처리 중, 완료, 주문 확정, 주문 거부, 주문 기록, 판매 기록
+
+PointService 클래스
+포인트 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+카드를 통한 충전, 포인트 기록, 포인트 선물, 현금으로 전환
+
+StockService 클래스
+재고 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+재고관리 - 검색, 추가, 수정, 삭제
+
+StoreService 클래스
+가게 메뉴에 관련된 Query에 Transaction을 걸어 DAO에 전달하는 서비스 클래스
+메뉴 - 등록, 수정, 삭제, 식자재 - 등록, 수정, 삭제, 가게 정보 - 등록, 수정
