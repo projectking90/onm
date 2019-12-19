@@ -1,0 +1,16 @@
+create table store(
+	s_no	number(8)
+	, s_id	varchar2(50)	not null unique
+	, pwd	varchar2(256)	not null
+	, s_name	varchr2(50)	not null
+	, s_reg_num	varchar2(20)	not null
+	, email	varchar2(100)
+	, s_phone	varchar2(20)
+	, s_reg_date	date	default sysdate
+	, primary key(s_no)
+);
+	
+select
+	*
+from
+	store;
