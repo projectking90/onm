@@ -1,0 +1,10 @@
+create table code_ingredient_alpha(
+	ia_code	number(8)
+	, ia_name	varchar2(50)	not null unique
+	, primary key(ia_code)
+);
+	
+select
+	*
+from
+	code_ingredient_alpha;

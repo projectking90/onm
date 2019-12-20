@@ -1,0 +1,10 @@
+create table code_ingredient_origin(
+	io_code	number(8)
+	, io_name	varchar2(50)	not null unique
+	, primary key(io_code)
+);
+	
+select
+	*
+from
+	code_ingredient_origin;

@@ -1,0 +1,10 @@
+create table code_ingredient_beta(
+	ib_code	number(8)
+	, ib_name	varchar2(50)	not null unique
+	, primary key(ib_code)
+);
+	
+select
+	*
+from
+	code_ingredient_beta;

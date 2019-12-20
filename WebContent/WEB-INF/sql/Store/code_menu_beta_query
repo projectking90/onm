@@ -1,0 +1,10 @@
+create table code_menu_beta(
+	mb_code	number(8)
+	, mb_name	varchar2(50)	not null unique
+	, primary key(mb_code)
+);
+	
+select
+	*
+from
+	code_menu_beta;
