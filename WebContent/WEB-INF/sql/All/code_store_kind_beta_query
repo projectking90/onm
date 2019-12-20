@@ -1,9 +1,9 @@
-create table code_addr(
-	addr_code	number(8)
-	, city_name	varchar2(100)	not null
-	, gu_name	varchar2(100)	not null
-	, dong_name	varchar2(100)	not null
-	, primary key(skb_code)
+create table code_addr(	-- 주소
+	addr_code	number(8)	-- 주소번호
+	, city_name	varchar2(100)	not null	-- 시
+	, gu_name	varchar2(100)	not null	-- 구
+	, dong_name	varchar2(100)	not null	-- 동
+	, primary key(addr_code)
 );
 	
 select

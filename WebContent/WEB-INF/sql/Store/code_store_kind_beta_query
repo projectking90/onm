@@ -1,6 +1,6 @@
-create table code_store_kind_beta(
-	skb_code	number(8)
-	, skb_name	varchar2(50)	not null unique
+create table code_store_kind_beta(	-- 업종 소분류
+	skb_code	number(8)	-- 소분류 코드
+	, skb_name	varchar2(50)	not null unique	-- 소분류 명
 	, primary key(skb_code)
 );
 	

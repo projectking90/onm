@@ -1,13 +1,13 @@
-create table menu(
-	m_no	number(8)
-	, ma_code	number(8)
-	, mb_code	number(8)
-	, s_no	number(8)
-	, name	varchar2(100)	not null
-	, price	number(10)	not null
-	, comment	varchar2(1000)
-	, reg_date	date	default sysdate
-	, is_del	varchar2(1)	default 'F'
+create table menu(	-- 메뉴
+	m_no	number(8)	-- 메뉴번호
+	, ma_code	number(8)	-- 대분류 코드
+	, mb_code	number(8)	-- 소분류 코드
+	, s_no	number(8)	-- 가게 번호
+	, m_name	varchar2(100)	not null	-- 메뉴 이름
+	, price	number(10)	not null	-- 가격
+	, m_comment	varchar2(1000)	-- 설명
+	, reg_date	date	default sysdate	-- 등록일
+	, is_del	varchar2(1)	default 'F'	-- 삭제여부
 	, primary key(m_no)
 	, foreign key(ma_code) references code_menu_alpha(ma_code)
 	, foreign key(mb_code) references code_menu_beta(mb_code)

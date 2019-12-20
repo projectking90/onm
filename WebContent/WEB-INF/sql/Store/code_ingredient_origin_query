@@ -1,6 +1,6 @@
-create table code_ingredient_origin(
-	io_code	number(8)
-	, io_name	varchar2(50)	not null unique
+create table code_ingredient_origin(	-- 원산지
+	io_code	number(8)	-- 원산지 코드
+	, io_name	varchar2(50)	not null unique	-- 원산지 명
 	, primary key(io_code)
 );
 	

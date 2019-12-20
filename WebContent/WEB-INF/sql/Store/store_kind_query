@@ -1,14 +1,14 @@
-create table store_kind(
-	sk_no	number(8)
-	, ska_code	number(8)
-	, skb_code	number(8)
-	, s_no	number(8)
-	, sk_name	varchar2(100)	not null
-	, addr_code	number(8)
-	, location	varchar2(100)	not null
-	, sk_phone	varchar2(20)	not null
-	, sk_reg_date	date	default sysdate
-	, is_del	varchar2(1)	default 'F'
+create table store_kind(	-- 업종
+	sk_no	number(8)	-- 업종 번호
+	, ska_code	number(8)	-- 대분류 코드
+	, skb_code	number(8)	-- 소분류 코드
+	, s_no	number(8)	-- 가게번호
+	, sk_name	varchar2(100)	not null	-- 매장명
+	, addr_code	number(8)	-- 주소 코드
+	, location	varchar2(100)	not null	-- 상세주소
+	, sk_phone	varchar2(20)	not null	-- 매장전화번호
+	, sk_reg_date	date	default sysdate	-- 등록일
+	, is_del	varchar2(1)	default 'F'	-- 삭제여부
 	, primary key(sk_no)
 	, foreign key(ska_code) references code_store_kind_alpha(ska_code)
 	, foreign key(skb_code) references code_store_kind_beta(skb_code)

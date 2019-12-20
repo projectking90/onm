@@ -1,6 +1,6 @@
-create table code_ingredient_beta(
-	ib_code	number(8)
-	, ib_name	varchar2(50)	not null unique
+create table code_ingredient_beta(	-- 식자재 소분류
+	ib_code	number(8)	-- 소분류 코드
+	, ib_name	varchar2(50)	not null unique	-- 소분류 명
 	, primary key(ib_code)
 );
 	
