@@ -1,0 +1,10 @@
+create table code_store_kind_alpha(
+	ska_code	number(8)
+	, ska_name	varchar2(50)	not null unique
+	, primary key(ska_code)
+);
+	
+select
+	*
+from
+	code_store_kind_alpha;

@@ -1,0 +1,24 @@
+create table ingredient(
+	i_no	number(8)
+	, ia_code	number(8)
+	, ib_code	number(8)
+	, io_code	number(8)
+	, s_no	number(8)
+	, num	varchar2(10)	not null
+	, name	varchar2(100)	not null
+	, size	varchar2(50)	not null
+	, price	number(10)	not null
+	, comment	varchar2(1000)
+	, reg_date	date	default sysdate
+	, is_del	varchar2(1)	default 'F'
+	, primary key(i_no)
+	, foreign key(ia_code) references code_ingredient_alpha(ia_code)
+	, foreign key(ib_code) references code_ingredient_beta(ib_code)
+	, foreign key(io_code) references code_ingredient_origin(io_code)
+	, foreign key(s_no) references store(s_no)
+);
+	
+select
+	*
+from
+	ingredient;

@@ -1,0 +1,22 @@
+create table store_kind(
+	sk_no	number(8)
+	, ska_code	number(8)
+	, skb_code	number(8)
+	, s_no	number(8)
+	, sk_name	varchar2(100)	not null
+	, addr_code	number(8)
+	, location	varchar2(100)	not null
+	, sk_phone	varchar2(20)	not null
+	, sk_reg_date	date	default sysdate
+	, is_del	varchar2(1)	default 'F'
+	, primary key(sk_no)
+	, foreign key(ska_code) references code_store_kind_alpha(ska_code)
+	, foreign key(skb_code) references code_store_kind_beta(skb_code)
+	, foreign key(addr_code) references code_addr(addr_code)
+	, foreign key(s_no) references store(s_no)
+);
+	
+select
+	*
+from
+	store_kind;

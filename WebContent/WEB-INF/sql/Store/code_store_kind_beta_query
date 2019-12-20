@@ -1,0 +1,10 @@
+create table code_store_kind_beta(
+	skb_code	number(8)
+	, skb_name	varchar2(50)	not null unique
+	, primary key(skb_code)
+);
+	
+select
+	*
+from
+	code_store_kind_beta;

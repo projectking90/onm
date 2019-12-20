@@ -1,0 +1,20 @@
+create table menu(
+	m_no	number(8)
+	, ma_code	number(8)
+	, mb_code	number(8)
+	, s_no	number(8)
+	, name	varchar2(100)	not null
+	, price	number(10)	not null
+	, comment	varchar2(1000)
+	, reg_date	date	default sysdate
+	, is_del	varchar2(1)	default 'F'
+	, primary key(m_no)
+	, foreign key(ma_code) references code_menu_alpha(ma_code)
+	, foreign key(mb_code) references code_menu_beta(mb_code)
+	, foreign key(s_no) references store(s_no)
+);
+	
+select
+	*
+from
+	menu;
