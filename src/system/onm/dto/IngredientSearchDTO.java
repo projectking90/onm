@@ -21,4 +21,6 @@ public class IngredientSearchDTO {
 	/**
 	 * 접근자, 설정자 선언
 	 */
+
+	
 }

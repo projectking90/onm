@@ -4,11 +4,15 @@
  */
 package system.onm.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
@@ -277,4 +281,74 @@ public class StoreController {
 		
 		return update_result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	// =================================================================	
+	@RequestMapping(value="/ingredientListForm.do")
+	public ModelAndView ingredientForm() {
+		// -----------------------------
+		// [ModelAndView 객체] 생성하기
+		// [ModelAndView 객체] 에 [호출할 JSP 페이지명]을 저장하기
+		// [ModelAndView 객체] 리턴하기
+		// -----------------------------
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Store/ingredientListForm.jsp");
+		return mav;
+	}
+	
+	
+	// =================================================================
+/*	
+	// ingredientRegProc.do 로 접근하면 호출되는 메소드 선언
+	@RequestMapping(value="/ingredientRegForm.do")
+		public ModelAndView ingredientRegForm() {
+		// -----------------------------
+		// [ModelAndView 객체] 생성하기
+		// [ModelAndView 객체] 에 [호출할 JSP 페이지명]을 저장하기
+		// [ModelAndView 객체] 리턴하기
+		// -----------------------------
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Store/ingredientRegForm.jsp");
+		return mav;
+	}
+*/
+
+
+	// ingredientRegProc.do 로 접근하면 호출되는 메소드 선언
+	
+	@RequestMapping(
+			value="/ingredientRegProc.do"					// 접속하는 클의 URL 주소 설정
+			, method=RequestMethod.POST						// 접속하는 클의 파값 전송 방법
+			, produces="application/json;charset=UTF-8"		// 응답할 데이터 종류는 json 설정
+	)
+	@ResponseBody
+	public int insertIngredient(
+		IngredientDTO ingredientDTO
+	) {
+		//[게시판 입력 적용행의 개수] 저장할 변수 선언
+		int ingredientRegCnt=0;
+		try {
+				ingredientRegCnt = this.store_service.insertStoreIngredient(ingredientDTO);
+			
+		}catch(Exception e) {
+			System.out.println("<insert 에러발생>");
+			System.out.println(e.getMessage());
+			ingredientRegCnt=-1;
+		}
+		return ingredientRegCnt;
+	}
+
+	
+	
+
+	
+
+	
+	
 }

@@ -11,6 +11,10 @@
 		<title>O&M Index</title>
 	</head>
 	<body>
-		O&M Project
+		
+	<script>
+		location.replace("/onm/ingredientListForm.do")
+	</script>
+	
 	</body>
 </html>

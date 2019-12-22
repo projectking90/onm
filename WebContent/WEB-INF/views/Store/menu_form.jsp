@@ -176,14 +176,14 @@
           </div>
         </div>
 
-      </div>
+	</div>
       <!-- /.row -->
 
     </div>
-  </section>
+	</section>
 
-  <!-- 상세 Section -->
-  <section class="page-section bg-primary text-white mb-0" id="about">
+	<!-- 상세 Section -->
+	<section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
 
       <!-- 상세 Section Heading -->
@@ -199,17 +199,18 @@
       </div>
 
 
-<center>
+	<center>
       <!-- 상세 Section Content -->
       <div class="row">
         <div class="col-lg-4 ml-auto">
           <p class="lead">이러이러 합니다</p>
         </div>
+        
         <div class="col-lg-4 mr-auto">
           <p class="lead">저러저러 합니다</p>
         </div>
       </div>
-</center>
+	</center>
 
 
     </div>
@@ -246,6 +247,7 @@
             </div>
 
             <br>
+            
             <div id="success"></div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
@@ -506,6 +508,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -525,3 +528,4 @@
 		
 	</body>
 </html>
+
