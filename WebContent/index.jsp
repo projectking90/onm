@@ -12,5 +12,9 @@
 	</head>
 	<body>
 		O&M Project
+ 		<script>
+			location.replace("/onm/store_menu.onm");
+		</script>
+
 	</body>
 </html>

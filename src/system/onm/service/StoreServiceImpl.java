@@ -42,11 +42,16 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO) {
-		List<MenuDTO> menu_list = null;
+		List<MenuDTO> menu_list = this.storeDAO.getMenuList(menu_searchDTO);
 		
 		return menu_list;
 	}
+	@Override
+	public MenuDTO getMenuDTO(int m_no) {
 
+		MenuDTO menuDTO = this.storeDAO.getMenuDTO(m_no);
+		return menuDTO;
+	}
 	/**
 	 * 가게 메뉴 추가
 	 * @param menuDTO : 메뉴 추가를 위해 사용하는 DTO
@@ -67,7 +72,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int updateStoreMenu(MenuDTO menuDTO) {
 		int update_result = 0;
-		
+		update_result = this.storeDAO.updateStoreMenu(menuDTO);
 		return update_result;
 	}
 
@@ -79,7 +84,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int deleteStoreMenu(MenuDTO menuDTO) {
 		int delete_result = 0;
-		
+		delete_result = this.storeDAO.deleteStoreMenu(menuDTO);
 		return delete_result;
 	}
 

@@ -5,6 +5,7 @@
 package system.onm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,21 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO) {
-		List<MenuDTO> menu_list = null;
-		
+		List<MenuDTO> menu_list = this.sqlSession.selectList(
+				"system.onm.dao.StoreDAO.getMenuList"	// 실행할 SQL 구문의 위치 지정
+				,menu_searchDTO				
+	);	
 		return menu_list;
+	}
+
+	@Override
+	public MenuDTO getMenuDTO(int m_no) {
+
+		MenuDTO menuDTO = this.sqlSession.selectOne(
+				"system.onm.dao.StoreDAO.getMenuDTO"
+				,m_no
+		);
+		return menuDTO;
 	}
 
 	/**
@@ -65,7 +78,10 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int updateStoreMenu(MenuDTO menuDTO) {
 		int update_result = 0;
-		
+		update_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.updateStoreMenu"
+				,menuDTO
+		);
 		return update_result;
 	}
 
@@ -77,6 +93,11 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int deleteStoreMenu(MenuDTO menuDTO) {
 		int delete_result = 0;
+		delete_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.deleteStoreMenu"
+				,menuDTO
+				
+		);
 		
 		return delete_result;
 	}
