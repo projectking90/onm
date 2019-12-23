@@ -87,7 +87,7 @@ public class StoreDAOImpl implements StoreDAO {
 	 * @return ingredient_list : 검색된 식자재 정보
 	 */
 	@Override
-	public List<IngredientDTO> getMenuList(IngredientSearchDTO ingredient_searchDTO) {
+	public List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO) {
 		List<IngredientDTO> ingredient_list = null;
 		
 		return ingredient_list;
@@ -135,7 +135,7 @@ public class StoreDAOImpl implements StoreDAO {
 	 * @return store_kind_list : 검색된 업종 정보
 	 */
 	@Override
-	public List<StoreKindDTO> getMenuList(StoreKindSearchDTO store_kind_searchDTO) {
+	public List<StoreKindDTO> getStoreKindList(StoreKindSearchDTO store_kind_searchDTO) {
 		List<StoreKindDTO> store_kind_list = null;
 		
 		return store_kind_list;

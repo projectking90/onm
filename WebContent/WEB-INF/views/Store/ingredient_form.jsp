@@ -6,18 +6,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSP 기술의 한 종류인 Include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입 -->
 <%@ include file="/WEB-INF/views/All/common.jsp" %>
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>식자재 리스트 페이지</title>
-		<!-- CSS파일 수입 -->
-		<link href="${cr}/resources/Store/ingredient_form.css" rel="stylesheet" type="text/css">
-		<!-- JQuery 라이브러리 파일 수입 -->
-		<script src="${cr}/resources/Store/ingredient_form.js" type="text/javascript"></script>
-		<!-- 식자재 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
-	</head>
-	<body>
-		
-	</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>식자재 리스트 페이지</title>
+      <!-- CSS파일 수입 -->
+      <link href="${cr}/resources/Store/ingredient_form.css" rel="stylesheet" type="text/css">
+      <!-- JQuery 라이브러리 파일 수입 -->
+      <script src="${cr}/resources/Store/ingredient_form.js" type="text/javascript"></script>
+      <!-- 식자재 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
+   </head>
+   
+   <body><center><br><br><br>
+   
+   
+   
+   
+   <form name="ingredient_form" method="post" action="/onm/store_ingredient_form.onm">
+      <div style="width:800">
+
+         [검색] : <input type="text" name="keyword1" class="keyword1">
+         
+         <input type="button" value="   검색   " class="contactSearch" onClick="goSearch();">
+         <input type="button" value="식자재 등록" onClick="location.replace('/onm/store_ingredient_insert_form.onm')">
+         <input type="button" value="식자재 수정/삭제" onClick="location.replace('/onm/store_ingredient_updel_form.onm')">
+<!-- 
+         <a href="javascript:goingredient_insert_form();">[식자재 등록]</a>
+ -->
+         <input type="hidden" name="selectPageNo">
+         
+      </div><br>
+   </form>
+   
+   <div>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+   
+   <table><tr height=10><td></table>
+   
+   <table class="ingredientTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
+      <tr><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
+   </table><br>
+   
+   <c:if test="#">
+      검색 결과가 없습니다
+   </c:if>
+
+
+
+
+</body>
+</html>
+      
+   </body>
 </html>

@@ -18,6 +18,70 @@
 		<!-- 식자재 수정/삭제 기능 선택 시 보여줄 페이지, 식자재 수정, 삭제 기능 구현 -->
 	</head>
 	<body>
+		하이
 		
+		
+		<!-- ---------------------------------------------------------------------------------------------- -->
+		<!-- Spring Form 태그를 사용하여 html 의 form 태그와 입력양식 관련 태그를 출력한다.                 -->
+		<!-- 이때 DTO 객체나 Map 객체 등과 연결하면 이 객체 안의 데이터가 자동으로 입력양식에 삽입된다.     -->
+		<!-- ------------------------------------------------------------------------------------------------->
+	<c:if test="${!empty IngredientDTO}">
+		<form:form name="boardUpDelForm" method="post" commandName="IngredientDTO"
+			action="${ctRoot}/#.do">
+		
+		<!-- ---------------------------------------------------------------------------------------------- -->
+		<!-- 위 스프링 폼태그는 아래처럼 변환되어 실행된다 -->
+		<!--<form id="boardDTO" name="boardUpDelForm" action="${ctRoot}/boardUpDelProc.do" method="post"> -->
+		<!-- ---------------------------------------------------------------------------------------------- -->
+			<table class="tbcss1" border=1 bordercolor=gray cellspacing=0
+				cellpadding=5 align=center>
+				<tr>
+					<th bgcolor="gray">대분류
+					<td><form:select path="ia_code" className="ia_code" /> 
+						<!-- --------------------------------------------------------------------------- -->
+						<!--  위 스프링 폼 태그는 아래처럼 변화된다.                                     -->
+						<%-- <input type=text name="writer" class="writer" value="${boardDTO.wirter}" > --%>
+						<!-- --------------------------------------------------------------------------- -->
+				<tr>
+					<th bgcolor="gray">소분류
+					<td><form:input path="ib_code" className="ib_code" /> <!-- --------------------------------------------------------------------------- -->
+						<!--  위 스프링 폼 태그는 아래처럼 변화된다.                                     -->
+						<%-- <input type=text name="subject" class="subject" value="${boardDTO.subject}" > --%>
+						<!-- --------------------------------------------------------------------------- -->
+				<tr>
+					<th bgcolor="gray">
+					<td><form:input path="email" className="email" /> <!-- --------------------------------------------------------------------------- -->
+						<!--  위 스프링 폼 태그는 아래처럼 변화된다.                                     -->
+						<%-- <input type=text name="email" class="email" value="${boardDTO.email}" > --%>
+						<!-- --------------------------------------------------------------------------- -->
+				<tr>
+					<th bgcolor="gray">내 용
+					<td><form:textarea path="content" className="content"
+							rows="13" cols="40" /> <!-- --------------------------------------------------------------------------- -->
+						<!--  위 스프링 폼 태그는 아래처럼 변화된다.                                     -->
+						<%-- <textarea name="content" class="content" >${boardDTO.content}/</textarea>  --%>
+						<!-- --------------------------------------------------------------------------- -->
+				<tr>
+					<th bgcolor="gray">비밀번호
+					<td><form:password path="pwd" className="pwd" /> <!-- --------------------------------------------------------------------------- -->
+						<!--  위 스프링 폼 태그는 아래처럼 변화된다.                                     -->
+						<%-- <input type=text name="pwd" class="pwd" value="${boardDTO.pwd}" > --%>
+						<!-- --------------------------------------------------------------------------- -->
+			</table>
+			<!-- --------------------------------------------------------- -->
+			<table>
+				<tr height=4>
+					<td>
+			</table>
+			<!-- --------------------------------------------------------- -->
+			<input type="hidden" name="upDel" value="up">
+			<input type="hidden" name="b_no" value="${boardDTO.b_no}">
+			<!-- --------------------------------------------------------- -->
+			<input type="button" value="수정" onClick="checkBoardUpDelForm('up')">
+			<input type="button" value="삭제" onClick="checkBoardUpDelForm('del')">
+			<input type="button" value="목록보기"
+				onClick="document.boardListForm.submit();">
+		</form:form>
+	</c:if>
 	</body>
 </html>
