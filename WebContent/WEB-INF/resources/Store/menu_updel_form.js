@@ -6,17 +6,16 @@ $(document).ready(function(){
 
 function goMenuUpdateForm(){
 	$.ajax({
-		url : "/onm/store_menu_update_proc.onm"
+		url : "/onm/store_menu_update.onm"
 		, type : "post"
 		, data : $("[name=menuUpForm]").serialize()
 		, success : function(updateCnt){
-						alert(updateCnt);
 						if(updateCnt==1){
 							alert("수정성공");
-							location.replace("/onm/store_menu.onm");
+							location.replace("/onm/store_menu_form.onm");
 						}
 						else if(updateCnt==0){
-							alert("아이디,암호 존재하지 않습니다! 재입력바람");
+							alert("수정실패");
 						}
 						else{
 							alert("서버 오류 발생! 관리자에게 문의바람");
@@ -29,7 +28,7 @@ function goMenuUpdateForm(){
 	});
 }
 
-function goMenuDelForm(){
+function goMenuDeleteForm(){
 	if(confirm("정말 삭제하시겠습니까?")==false){return;}
 	document.menuDelForm.submit();
 }

@@ -74,29 +74,6 @@ public class StoreController {
 		
 		return mav;
 	}
-	
-	@RequestMapping(value="/store_menucontent.onm")
-	public ModelAndView goStoreMenuUpdelForm(
-			@RequestParam(value="m_no") int m_no
-			) {
-		/**
-		 * menu_form.jsp에 넘겨줄 데이터
-		 * menuList : 가게에 등록된 메뉴들
-		 * s_no : 가게 번호
-		 */
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Store/menu_content_form.jsp");
-		try {
-			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
-			mav.addObject("menuDTO", menuDTO);
-			
-		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
-			System.out.println("<goStoreMenuForm 에러발생>");
-			System.out.println(e.getMessage());
-		}
-		
-		return mav;
-	}
 
 	/**
 	 * 가게 메뉴 상세 보기시 보여줄 jsp를 보여주는 메소드
@@ -106,11 +83,14 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_detail_form.onm")
 	public ModelAndView goStoreMenuDetailForm(
-			MenuDTO menuDTO) {
+			/* MenuDTO menuDTO, */
+			@RequestParam(value="m_no") int m_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_detail_form");
 		
 		try {
+			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
+			mav.addObject("menuDTO", menuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -175,11 +155,14 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_updel_form.onm")
 	public ModelAndView goStoreMenuUpDelForm(
-			MenuDTO menuDTO) {
+			/* MenuDTO menuDTO, */
+			@RequestParam(value="m_no") int m_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_updel_form");
 		
 		try {
+			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
+			mav.addObject("menuDTO", menuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuUpDelForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -187,7 +170,6 @@ public class StoreController {
 		
 		return mav;
 	}
-
 	
 	
 	
@@ -197,34 +179,12 @@ public class StoreController {
 	 * @param menuDTO : 메뉴 수정을 위해 사용하는 DTO
 	 * @return update_result : 메뉴 수정 Query 실행 결과
 	 */
-	@RequestMapping(value="/store_menu_update.onm")
+	@RequestMapping(value="/store_menu_update.onm"
+					, method=RequestMethod.POST	
+					, produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public ModelAndView updateStoreMenu(
-			@RequestParam(value="m_no") int m_no
-	) {
-		// 데이터베이스에 Query 실행 후 결과를 저장
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Store/menu_update_form.jsp");
-		
-		try {
-			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
-			mav.addObject("menuDTO", menuDTO);
-			
-		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
-			System.out.println("<updateStoreMenu 에러발생>");
-			System.out.println(e.getMessage());
-		}
-		return mav;
-	}
-	
-	
-	@RequestMapping(
-				value="/store_menu_update_proc.onm"	
-				, method=RequestMethod.POST	
-				, produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public int updateStoreMenuProc(
-		MenuDTO menuDTO
+	public int updateStoreMenu(
+			MenuDTO menuDTO
 	) {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
@@ -240,10 +200,7 @@ public class StoreController {
 		
 		return update_result;
 	}
-
-
 	
-
 	/**
 	 * 가게 메뉴 삭제 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_menu_delete.onm로 접근하면 호출
@@ -267,14 +224,13 @@ public class StoreController {
 			System.out.println("<deleteStoreMenu 에러발생>");
 			System.out.println(e.getMessage());
 		}
-		mav.setViewName("/Store/menu_form.jsp");
+		mav.setViewName( path+"menu_form");
 
 		List<MenuDTO> menu_list = this.store_service.getMenuList(menu_searchDTO);
 		mav.addObject("menu_list", menu_list);
 		
 		return mav;
 	}
-	
 	
 	
 	/**

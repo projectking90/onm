@@ -49,12 +49,12 @@
 			<!------------------------------------------------>
 			<input type="button" value="수정" onClick="goMenuUpdateForm();">&nbsp;
 			<input type="button" value="삭제" onClick="goMenuDeleteForm();">&nbsp;		
-			<input type="button" value="목록보기" onClick="location.replace('/onm/store_menu.onm')">
+			<input type="button" value="목록보기" onClick="location.replace('/onm/store_menu_form.onm')">
 		</form:form>
 		
 		
 		<form name="menuDelForm" method="post" action="/onm/store_menu_delete.onm">
-			<input type="text" name="m_no" class="m_no" value="${param.m_no}">
+			<input type="hidden" name="m_no" class="m_no" value="${param.m_no}">
 		</form>
 	</center>
 	</body>

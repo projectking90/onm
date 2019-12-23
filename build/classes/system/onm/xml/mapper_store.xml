@@ -4,18 +4,18 @@
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StoreDAO">
 	<select id="getMenuList" parameterType="system.onm.dto.MenuSearchDTO" resultType="system.onm.dto.MenuDTO">
-			select
-				m_no||'' 		as "m_no"
-				,ma_code||''  		as "ma_code"
-				,mb_code||''  		as "mb_code"
-				,s_no||'' 		as "s_no" 
-				,m_name			 as "m_name"
-				,price||'' 		as "price"
-				,m_comment 			as "m_comment"
-				,to_char(reg_date,'YYYY-MM-DD') "reg_date"
-				,is_del			as "is_del"
-			from menu
-			where 1=1
+		select
+			m.m_no	"m_no"
+			,(select a.ma_name from code_menu_alpha a where a.ma_code=m.ma_code)	"ma_code"
+			,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)		"mb_code"
+			,(select s.s_name from store s where s.s_no=m.s_no)		"s_no"
+			,m.m_name	"m_name"
+			,m.price	"price"
+			,m.m_comment		"m_comment"
+			,to_char(m.reg_date,'YYYY-MM-DD') "reg_date"
+			,m.is_del			as "is_del"
+		from menu m
+		where 1=1
 	</select>
 	
 	<select id="getMenuDTO" parameterType="int" resultType="system.onm.dto.MenuDTO">
@@ -30,7 +30,7 @@
 			,to_char(m.reg_date,'YYYY-MM-DD') "reg_date"
 			,m.is_del			as "is_del"
 		from menu m
-		where m.m_no=#{m.m_no}
+		where m.m_no=#{m_no}
 	</select>
 	
 	<update id="updateStoreMenu" parameterType="system.onm.dto.MenuDTO">

@@ -24,7 +24,7 @@
 			location.replace("/onm/store_menu.onm");
 			</script>
 		</c:if>
-		<form method="post" name="MenuContentForm" class="MenuContentForm" action="">
+		<form method="post" name="MenuDetailForm" class="MenuDetailForm" action="">
 			<input type="hidden" name="m_no" value="${menuDTO.m_no}">
 			<c:if test="${menuDTO.is_del eq 'F'}">
 			<b>[메뉴 상세보기]</b>
@@ -56,14 +56,14 @@
 			<!------------------------------------------------------->
 			<input type="button" value="수정/삭제" onClick="goMenuUpDelForm();">&nbsp;
 	 		</c:if>
-			<input type="button" value="글 목록보기" onClick="location.replace('/onm/store_menu.onm')">
+			<input type="button" value="글 목록보기" onClick="location.replace('/onm/store_menu_form.onm')">
 		</form>
 		
 		
 		<!--***********************************************************  -->
 		<!-- 수정/삭제 화면으로 이동하기 위한 form 태그 선언 -->
 	 	<!--***********************************************************  -->
-		<form name="menuUpDelForm" method="post" action="/onm/store_menu_update.onm">
+		<form name="menuUpDelForm" method="post" action="/onm/store_menu_updel_form.onm">
 			<input type="hidden" name="m_no" class="m_no" value="${param.m_no}">
 		</form>
 		

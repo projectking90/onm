@@ -11,10 +11,10 @@
 		<title>O&M Index</title>
 	</head>
 	<body>
-<<<<<<< HEAD
 		O&M Project
  		<script>
-			location.replace("/onm/store_menu.onm");
+		location.replace("/onm/All/start.jsp");
+		location.replace("/onm/start.onm");
 		</script>
 	</body>
 </html>

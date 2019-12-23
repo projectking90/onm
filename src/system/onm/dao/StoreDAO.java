@@ -28,9 +28,12 @@ public interface StoreDAO {
 	 * 메소드 선언
 	 */
 	List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO);	// 가게에 등록된 메뉴를 가져옴
+	
+	MenuDTO getMenuDTO(int m_no);
+	// 가게 메뉴 상세보기
 	int insertStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 추가
 	int updateStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 수정
-	int deleteStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 삭제
+	int deleteStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 
 	List<IngredientDTO> getMenuList(IngredientSearchDTO ingredient_searchDTO);	// 가게에 등록된 식자재를 가져옴
 	int insertStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 추가
 	int updateStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 수정
@@ -41,5 +44,4 @@ public interface StoreDAO {
 	
 	
 
-	MenuDTO getMenuDTO(int m_no);
 }
