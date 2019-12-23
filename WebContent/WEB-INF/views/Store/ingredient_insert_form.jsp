@@ -51,14 +51,14 @@
 				, type : "post"
 				
 				// 서버로 보낼 파라미터명과 파라미터값
-				, data : $("[name=insertStoreIngredient]").serialize()
+				, data : $("[name=ingredient_insert]").serialize()
 				
 				// 서버의 응답을 성공적으로 받았을 경우 실행할 익명함수 설정
 				// 매개변수 boardRegCnt 에는 입력 행의 개수가 들어온다.
-				, success : function(insert_result){											
+				, success : function(ingredientCnt){											
 					
-						if($("[name=insertStoreIngredient] [name=i_no]").val()>0){
-							if(insert_result==1){
+						if($("[name=ingredient_insert] [name=i_no]").val()>0){
+							if(ingredientCnt==1){
 								alert("등록 성공!");
 								location.replace("/onm/store_ingredient_form.onm");
 							}
@@ -98,7 +98,7 @@
 	
 	
 	
-	<form method="post" name="insertStoreIngredient" action="/onm/store_ingredient_insert.onm">
+	<form method="post" name="ingredient_insert" action="/onm/store_ingredient_insert.onm">
 	
 		<input type="hidden" name="i_no" value="${(empty param.i_no)?0:param.i_no}">
 		<c:if test="${empty param.i_no}">

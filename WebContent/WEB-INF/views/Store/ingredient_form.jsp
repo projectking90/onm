@@ -54,7 +54,7 @@
 	<table><tr height=10><td></table>
 	
 	<table class="ingredientTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
-		<tr><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
+		<tr bgcolor="${headerColor}"><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
 	</table><br>
 	
 	<c:if test="${empty boardList}">

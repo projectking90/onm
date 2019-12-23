@@ -18,7 +18,6 @@ import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
 import system.onm.dto.StoreKindDTO;
-import system.onm.dto.StoreKindSearchDTO;
 import system.onm.service.StoreService;
 
 /**
