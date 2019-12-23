@@ -4,8 +4,8 @@
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StoreDAO">
 
-	<select id="getIngredientList" parameterType="system.onm.dto.IngredientDTO" resultType="java.util.HashMap">
-		select * from ingredient(
+	<select id="getIngredientList" parameterType="system.onm.dto.IngredientSearchDTO" resultType="system.onm.dto.IngredientDTO">
+
 			select
 				i_no||'' 		as "i_no"
 				,ia_code 		as "ia_code"
@@ -20,7 +20,7 @@
 				,to_char(reg_date,'YYYY-MM-DD') "reg_date" 
 				,is_del			as "is_del"
 			from ingredient
-		) 
+
 	</select>
 
 	<insert id='insertIngredient' parameterType="system.onm.dto.IngredientDTO">

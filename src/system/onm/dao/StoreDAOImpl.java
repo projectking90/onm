@@ -88,8 +88,10 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO) {
-		List<IngredientDTO> ingredient_list = null;
-		
+		List<IngredientDTO> ingredient_list = this.sqlSession.selectList(
+				"system.onm.dao.StoreDAO.getIngredientList"				// 실행할 SQL 구문의 위치 지정
+				,ingredient_searchDTO												// 실행할 SQL 구문에서 사용할 데이터 지정
+		);
 		return ingredient_list;
 	}
 

@@ -54,18 +54,47 @@
 	<table><tr height=10><td></table>
 	
 	<table class="ingredientTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
-		<tr bgcolor="${headerColor}"><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
-	</table><br>
+		<tr><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
+		
+		
+		
+		<c:forEach items="${ingredient_list}" var="ingredient" varStatus="loopTagStatus">
 	
-	<c:if test="${empty boardList}">
-		검색 결과가 없습니다
-	</c:if>
+			<tr style="cursor:pointer"
+					bgcolor="${loopTagStatus.index%2==0?'white':'#F8FFEE'}"
+					 onClick="goBoardContentForm(${ingredient.i_no});">
 
+					 <!-- b_no를 ccc로 고쳤을 때도 코드가 작동되게 하려면 어디를 고쳐야 하는가 -->
+					 <!-- select id="getBoardList" 쿼리문의 b_no의 alias "b_no"를 "ccc"로 -->
+				<td align=center>${ingredient.i_no}
+				
+				<!-- ----------------------------------------------- -->
+				<!-- 게시판 검색 목록 중에 각 행의 역순 일련번호 출력-->
+				<!-- ----------------------------------------------- -->
+				
+				<%--
+				정순 번호 출력 시 아래 코드로 대체 할 것
+				${boardSearchDTO.selectPageNo*boardSearchDTO.rowCntPerPage-boardSearchDTO.rowCntPerPage+1+loopTagStatus.index} 
+				--%>
+
+					<td align=center>${ingredient.ia_code}
+					<td align=center>${ingredient.ib_code}
+					<td align=center>${ingredient.s_no}
+					<td align=center>${ingredient.num}
+					<td align=center>${ingredient.i_name}
+					<td align=center>${ingredient.i_size}
+					<td align=center>${ingredient.price}
+					<td align=center>${ingredient.i_comment}
+					<td align=center>${ingredient.reg_date}
+					<td align=center>${ingredient.io_code}
+					
+		</c:forEach>
+		
+		
+		
+	</table><br>
 
 
 
 </body>
-</html>
-		
-	</body>
 </html>

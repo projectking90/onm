@@ -31,12 +31,6 @@
 		<script>
 		// [식자재 등록 화면] 유효성 체크 함수
 		function checkIngredientInsertForm(){
-
-			if(is_empty("[name=i_no]")){
-				alert("식자재 번호를 입력해주세요.");
-				$("[name=i_no]").focus();
-				return;
-			}
 			
 			// -------------------------------- 
 			if(confirm("정말 저장하시겠습니까?")==false){return;}

@@ -4,6 +4,8 @@
  */
 package system.onm.controller;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,6 @@ public class StoreController {
 	private final String path = "Store/";	// jsp 경로
 	@Autowired
 	private StoreService store_service;	// StoreService 인터페이스를 구현받은 객체를 생성해서 저장
-	private Object boardService;
 
 	/**
 	 * 메소드 선언
@@ -203,6 +204,8 @@ public class StoreController {
 		mav.setViewName(path + "ingredient_form");
 		
 		try {
+			List<IngredientDTO> ingredient_list = this.store_service.getIngredientList(ingredient_searchDTO);
+			mav.addObject("ingredient_list",ingredient_list);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
 			System.out.println(e.getMessage());
