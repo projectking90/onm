@@ -16,6 +16,81 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/ingredient_insert_form.js" type="text/javascript"></script>
 		<!-- 식자재 추가 기능 선택 시 보여줄 페이지, 메뉴 추가 기능 구현 -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script>
+		// [식자재 등록 화면] 유효성 체크 함수
+		function checkIngredientInsertForm(){
+
+			if(is_empty("[name=i_no]")){
+				alert("식자재 번호를 입력해주세요.");
+				$("[name=i_no]").focus();
+				return;
+			}
+			
+			// -------------------------------- 
+			if(confirm("정말 저장하시겠습니까?")==false){return;}
+			
+			// 현재 화면에서 페이지 이동 없이 서버쪽 /z_spring/boardRegProc.do 을 호출하여
+			// 게시판 글을 입력하고 [게시판 입력 행 적용 개수]를 받기
+ 			$.ajax({
+				// 접속할 서버쪽 URL 주소
+				url : "/onm/store_ingredient_insert.onm"
+				
+				// 전송 방법
+				, type : "post"
+				
+				// 서버로 보낼 파라미터명과 파라미터값
+				, data : $("[name=insertStoreIngredient]").serialize()
+				
+				// 서버의 응답을 성공적으로 받았을 경우 실행할 익명함수 설정
+				// 매개변수 boardRegCnt 에는 입력 행의 개수가 들어온다.
+				, success : function(insert_result){											
+					
+						if($("[name=insertStoreIngredient] [name=i_no]").val()>0){
+							if(insert_result==1){
+								alert("등록 성공!");
+								location.replace("/onm/store_ingredient_form.onm");
+							}
+							
+							// [게시판 새 글 입력 행 적용 개수]가 1개가 아니면 경고하기
+							else{ alert("등록 실패! 관리자에게 문의 바람."); }
+						}
+				}
+						
+				// 서버의 응답을 못 받았을 경우 실행할 익명함수 설정
+				, error : function(){ alert("서버 접속 실패"); }
+			});
+		}
+		
+		
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</head>
 	<body><center><br><br><br>
 	
@@ -23,14 +98,20 @@
 	
 	
 	
-	<form method="post" name="ingredient_insert_form" action="/onm/ingredient_insert_form.do">
-
+	<form method="post" name="insertStoreIngredient" action="/onm/store_ingredient_insert.onm">
+	
+		<input type="hidden" name="i_no" value="${(empty param.i_no)?0:param.i_no}">
+		<c:if test="${empty param.i_no}">
+			<b>[식자재 등록]</b>
+		</c:if>
  
 		<br><br>
 		<table class="tbcss1" boarder=1 bordercolor=gray cellspacing=0 cellpadding=5 align=center>
+<!-- 
 			<tr>
 				<th>등록일
-				<td><input type="text" size="10" maxlength="10" name="">
+				<td><input type="text" size="10" maxlength="10" name="reg_date">
+-->	
 			<tr>
 				<th>식자재 번호
 				<td><input type="text" size="10" maxlength="10" name="i_no">
@@ -63,9 +144,9 @@
 				<td><input type="text" size="10" maxlength="10" name="io_code">
 		</table><br>
 		
-		<input type="button" value="저장" onClick="ingredient_insert_form()">
+		<input type="button" value="저장" onClick="checkIngredientInsertForm()">
 		<input type="reset" value="다시작성">
-		<input type="button" value="목록보기" onClick="location.replace('/onm/ingredient_form.do')">
+		<input type="button" value="목록보기" onClick="location.replace('/onm/store_ingredient_form.onm')">
 	</form>
 	
 

@@ -3,4 +3,39 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StoreDAO">
+
+
+
+	<insert id='insertIngredient' parameterType="system.onm.dto.IngredientDTO">
+		insert into ingredient( 
+			 i_no        <!-- 식자재 번호 -->
+		    ,ia_code     <!-- 대분류 코드 -->
+		    ,ib_code     <!-- 소분류 코드 -->
+		    ,io_code     <!-- 원산지 코드 -->
+		    ,s_no        <!-- 가게 번호 -->
+		    ,num         <!-- 상품코드 -->
+		    ,i_name      <!-- 상품명 -->
+		    ,i_size      <!-- 규격 -->
+		    ,price       <!-- 매입가격 -->
+		    ,i_comment   <!-- 설명 -->
+		    ,reg_date    <!-- 등록일 -->
+		    ,is_del      <!-- 삭제여부 -->
+		)values (
+			(select nvl(max(i_no),0)+1 from ingredient)
+			,#{ia_code}
+			,#{ib_code}
+			,#{io_code}
+			,#{s_no}
+			,#{num}
+			,#{i_name}
+			,#{i_size}
+			,#{price}
+			,#{i_comment}
+			,#{reg_date}
+			,#{is_del}
+		)
+	</insert>
+
+
+
 </mapper>

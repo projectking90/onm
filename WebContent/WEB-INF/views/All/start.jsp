@@ -11,7 +11,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Example Start</title>
+		<!-- CSS파일 수입 -->
+		<link href="${cr}/resources/All/start.css" rel="stylesheet" type="text/css">
+		<!-- JQuery 라이브러리 파일 수입 -->
+		<script src="${cr}/resources/All/start.js" type="text/javascript"></script>
+		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
 	</head>
-	<body>
+	<body><center><br><br><br>
+		<form name="user_form">
+			<input type="button" class="cusmoter" value="고객">
+			<input type="button" class="company" value="기업"><br><br><br>
+			당신의 brunch를 입력하세요 : <input type="text" name="brunch">
+		</form>
 	</body>
 </html>

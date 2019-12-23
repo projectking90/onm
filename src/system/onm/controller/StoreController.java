@@ -40,24 +40,62 @@ public class StoreController {
 	 * 메소드 선언
 	 */
 	/**
-	 * 가게 메뉴 화면 클릭 시 보여줄 jsp와 가게에 등록된 메뉴를 보여주는 메소드
-	 * 가상주소 /store_menu.onm로 접근하면 호출
+	 * 가게 메뉴 클릭 시 보여줄 jsp와 가게에 등록된 메뉴를 보여주는 메소드
+	 * 가상주소 /store_menu_form.onm로 접근하면 호출
 	 * @param menu_searchDTO : 메뉴 검색을 위해 사용하는 DTO
-	 * @return mav : /store_menu.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 * @return mav : /store_menu_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
 	 */
-	@RequestMapping(value="/store_menu.onm")
+	@RequestMapping(value="/store_menu_form.onm")
 	public ModelAndView goStoreMenuForm(
 			MenuSearchDTO menu_searchDTO) {
-		/**
-		 * menu_form.jsp에 넘겨줄 데이터
-		 * menuList : 가게에 등록된 메뉴들
-		 * s_no : 가게 번호
-		 */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(path + "menu_detail_form.jsp");
+		mav.setViewName(path + "menu_form");
+		
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+
+	/**
+	 * 가게 메뉴 상세 보기시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_menu_detail_form.onm로 접근하면 호출
+	 * @param menuDTO : 메뉴 상세 보기를 위해 사용하는 DTO
+	 * @return mav : /store_menu_detail_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_menu_detail_form.onm")
+	public ModelAndView goStoreMenuDetailForm(
+			MenuDTO menuDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "menu_detail_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreMenuDetailForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 가게 메뉴 추가 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_menu_insert_form.onm로 접근하면 호출
+	 * @param menuDTO : 메뉴 추가를 위해 사용하는 DTO
+	 * @return mav : /store_menu_insert_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_menu_insert_form.onm")
+	public ModelAndView goStoreMenuInsertForm(
+			MenuDTO menuDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "menu_insert_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreMenuInsertForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
@@ -83,6 +121,27 @@ public class StoreController {
 		}
 		
 		return insert_result;
+	}
+	
+	/**
+	 * 가게 메뉴 수정/삭제 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_menu_updel_form.onm로 접근하면 호출
+	 * @param menuDTO : 메뉴 수정/삭제를 위해 사용하는 DTO
+	 * @return mav : /store_menu_updel_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_menu_updel_form.onm")
+	public ModelAndView goStoreMenuUpDelForm(
+			MenuDTO menuDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "menu_updel_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreMenuUpDelForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
 	}
 
 	/**
@@ -127,25 +186,68 @@ public class StoreController {
 		return delete_result;
 	}
 	
+	
+	
+	
+	
+	// =================================================================	
 	/**
-	 * 가게 식자재 화면 클릭 시 보여줄 jsp와 가게에 등록된 식자재를 보여주는 메소드
-	 * 가상주소 /store_ingredient.onm로 접근하면 호출
+	 * 식자재 메뉴 클릭 시 보여줄 jsp와 가게에 등록된 식자재를 보여주는 메소드
+	 * 가상주소 /store_ingredient_form.onm로 접근하면 호출
 	 * @param ingredient_searchDTO : 식자재 검색을 위해 사용하는 DTO
-	 * @return mav : /store_ingredient.onm에 맵핑되는 jsp 파일과 가게 식자재 리스트
+	 * @return mav : /store_ingredient_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
 	 */
-	@RequestMapping(value="/store_ingredient.onm")
+	@RequestMapping(value="/store_ingredient_form.onm")
 	public ModelAndView goStoreIngredientForm(
 			IngredientSearchDTO ingredient_searchDTO) {
-		/**
-		 * ingredient_form.jsp에 넘겨줄 데이터
-		 * ingredientList : 가게에 등록된 메뉴들
-		 * s_no : 가게 번호
-		 */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(path + "ingredient_form.jsp");
+		mav.setViewName(path + "ingredient_form");
+		
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+
+	/**
+	 * 가게 식자재 상세 보기시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_ingredient_detail_form.onm로 접근하면 호출
+	 * @param ingredientDTO : 식자재 상세 보기를 위해 사용하는 DTO
+	 * @return mav : /store_ingredient_detail_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_ingredient_detail_form.onm")
+	public ModelAndView goStoreIngredientDetailForm(
+			IngredientDTO ingredientDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "ingredient_detail_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreIngredientDetailForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+
+	/**
+	 * 가게 식자재 추가 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_ingredient_insert_form.onm로 접근하면 호출
+	 * @param ingredientDTO : 식자재 추가를 위해 사용하는 DTO
+	 * @return mav : /store_ingredient_insert_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_ingredient_insert_form.onm")
+	public ModelAndView goStoreIngredientInsertForm(
+			IngredientDTO ingredientDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "ingredient_insert_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreIngredientInsertForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
@@ -171,6 +273,27 @@ public class StoreController {
 		}
 		
 		return insert_result;
+	}
+	
+	/**
+	 * 가게 식자재 수정/삭제 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_ingredient_updel_form.onm로 접근하면 호출
+	 * @param ingredientDTO : 식자재 수정/삭제를 위해 사용하는 DTO
+	 * @return mav : /store_ingredient_updel_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
+	 */
+	@RequestMapping(value="/store_ingredient_updel_form.onm")
+	public ModelAndView goStoreIngredientUpDelForm(
+			IngredientDTO ingredientDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "ingredient_updel_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreIngredientUpDelForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
 	}
 
 	/**
@@ -214,33 +337,54 @@ public class StoreController {
 		
 		return delete_result;
 	}
+	// =================================================================	
+	
+	
+	
+	
 	
 	/**
-	 * 가게 업종 화면 클릭 시 보여줄 jsp와 등록된 가게 업종을 보여주는 메소드
-	 * 가상주소 /store_kind.onm로 접근하면 호출
-	 * @param store_kind_searchDTO : 가게 업종 검색을 위해 사용하는 DTO
-	 * @return mav : /store_kind.onm에 맵핑되는 jsp 파일과 가게 업종 정보
+	 * 가게 업종 메뉴 클릭 시 보여줄 jsp와 가게 등록된 업종 정보를 보여주는 메소드
+	 * 가상주소 /store_kind_form.onm로 접근하면 호출
+	 * @param store_kindDTO : 업종 정보 보기를 위해 사용하는 DTO
+	 * @return mav : /store_kind_form.onm에 맵핑되는 jsp 파일과 업종 정보
 	 */
-	@RequestMapping(value="/store_kind.onm")
-	@ResponseBody
-	public ModelAndView goStoreKindForm(
-			StoreKindSearchDTO store_kind_searchDTO) {
-		/**
-		 * store_kind_form.jsp에 넘겨줄 데이터
-		 * store_kind_list : 가게에 등록된 업종 정보
-		 * s_no : 가게 번호
-		 */
+	@RequestMapping(value="/store_kind_form.onm")
+	public ModelAndView goStoreMenuKindForm(
+			StoreKindDTO store_kindDTO) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(path + "store_kind_form.jsp");
+		mav.setViewName(path + "store_kind_form");
+		
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
-			System.out.println("<goStoreKindForm 에러발생>");
+			System.out.println("<goStoreMenuKindForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
 		return mav;
 	}
-
+	
+	/**
+	 * 가게 업종 추가 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_kind_insert_form.onm로 접근하면 호출
+	 * @param store_kindDTO : 업종 추가를 위해 사용하는 DTO
+	 * @return mav : /store_kind_insert_form.onm에 맵핑되는 jsp 파일
+	 */
+	@RequestMapping(value="/store_kind_insert_form.onm")
+	public ModelAndView goStoreKindInsertForm(
+			StoreKindDTO store_kindDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "store_kind_insert_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreKindInsertForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
 	/**
 	 * 가게 업종 추가 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_kind_insert.onm로 접근하면 호출
@@ -261,7 +405,28 @@ public class StoreController {
 		
 		return insert_result;
 	}
-
+	
+	/**
+	 * 가게 업종 수정 클릭 시 보여줄 jsp를 보여주는 메소드
+	 * 가상주소 /store_kind_up_form.onm로 접근하면 호출
+	 * @param store_kindDTO : 업종 수정을 위해 사용하는 DTO
+	 * @return mav : /store_kind_up_form.onm에 맵핑되는 jsp 파일
+	 */
+	@RequestMapping(value="/store_kind_up_form.onm")
+	public ModelAndView goStoreKindUpForm(
+			StoreKindDTO store_kindDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "store_kind_up_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreKindUpForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
 	/**
 	 * 가게 업종 수정 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_kind_update.onm로 접근하면 호출
@@ -282,40 +447,6 @@ public class StoreController {
 		
 		return update_result;
 	}
-	
-	
-	
-	
-	
-	// =================================================================	
-	@RequestMapping(value="/ingredient_form.do")
-	public ModelAndView ingredient_form() {
-		// -----------------------------
-		// [ModelAndView 객체] 생성하기
-		// [ModelAndView 객체] 에 [호출할 JSP 페이지명]을 저장하기
-		// [ModelAndView 객체] 리턴하기
-		// -----------------------------
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Store/ingredient_form.jsp");
-		return mav;
-	}
-	
-	
-	// =================================================================
-
-	@RequestMapping(value="/ingredient_insert_form.do")
-		public ModelAndView ingredient_insert_form() {
-		// -----------------------------
-		// [ModelAndView 객체] 생성하기
-		// [ModelAndView 객체] 에 [호출할 JSP 페이지명]을 저장하기
-		// [ModelAndView 객체] 리턴하기
-		// -----------------------------
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Store/ingredient_insert_form.jsp");
-		return mav;
-	}
-
-
 	
 	
 }

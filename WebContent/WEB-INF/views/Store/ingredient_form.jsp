@@ -17,6 +17,15 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/ingredient_form.js" type="text/javascript"></script>
 		<!-- 식자재 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
+		
+		<script>
+			// [식자재 등록] 이동함수 
+			function goIngredientInsertForm(){
+				location.replace("/onm/store_ingredient_insert_form.onm");
+			}
+		</script>
+		
+		
 	</head>
 	
 	<body><center><br><br><br>
@@ -24,16 +33,17 @@
 	
 	
 	
-	<form name="ingredient_form" method="post" action="/onm/ingredient_form.do">
+	<form name="ingredient_form" method="post" action="/onm/store_ingredient_form.onm">
 		<div style="width:800">
 
 			[검색] : <input type="text" name="keyword1" class="keyword1">
 			
-			<input type="button" value="   검색   " class="contactSearch" onClick="goSearch();">
-			<input type="button" value="식자재 등록" onClick="location.replace('/onm/ingredient_insert_form.do')">
-<!-- 
-			<a href="javascript:goingredient_insert_form();">[식자재 등록]</a>
- -->
+			<input type="button" value="   검색   " class="Search" onClick="goSearch();">
+<!-- 			
+			<a href="javascript:goIngredientInsertForm();">[식자재 등록]</a>
+-->
+			<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
+
 			<input type="hidden" name="selectPageNo">
 			
 		</div><br>
