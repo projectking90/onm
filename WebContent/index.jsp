@@ -12,5 +12,8 @@
 	</head>
 	<body>
 		O&M Project
+		<script>
+			location.replace("/onm/All/start.jsp");
+		</script>
 	</body>
 </html>
