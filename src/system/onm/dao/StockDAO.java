@@ -13,8 +13,7 @@ public interface StockDAO {
 	/**
 	 * 속성변수 선언
 	 */
-	String sqlSessionPathAll = "system.onm.dto.All.";
-	String sqlSessionPath = "system.onm.dto.StockDAO.";
+	String sqlSessionPath = "system.onm.dao.StockDAO.";
 
 	/**
 	 * 메소드 선언

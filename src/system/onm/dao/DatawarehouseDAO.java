@@ -13,8 +13,7 @@ public interface DatawarehouseDAO {
 	/**
 	 * 속성변수 선언
 	 */
-	String sqlSessionPathAll = "system.onm.dto.All.";
-	String sqlSessionPath = "system.onm.dto.DatawarehouseDAO.";
+	String sqlSessionPath = "system.onm.dao.DatawarehouseDAO.";
 
 	/**
 	 * 메소드 선언

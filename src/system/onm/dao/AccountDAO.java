@@ -13,8 +13,7 @@ public interface AccountDAO {
 	/**
 	 * 속성변수 선언
 	 */
-	String sqlSessionPathAll = "system.onm.dto.All.";
-	String sqlSessionPath = "system.onm.dto.AccountDAO.";
+	String sqlSessionPath = "system.onm.dao.AccountDAO.";
 
 	/**
 	 * 메소드 선언

@@ -11,10 +11,17 @@
 		<title>O&M Index</title>
 	</head>
 	<body>
+<<<<<<< HEAD
 		
 	<script>
-		location.replace("/onm/ingredientListForm.do")
+		location.replace("/onm/ingredient_form.do")
 	</script>
 	
+=======
+		O&M Project
+		<script>
+			location.replace("/onm/All/start.jsp");
+		</script>
+>>>>>>> branch 'master' of https://github.com/projectking90/onm
 	</body>
 </html>
