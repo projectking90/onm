@@ -13,8 +13,7 @@ public interface PointDAO {
 	/**
 	 * 속성변수 선언
 	 */
-	String sqlSessionPathAll = "system.onm.dto.All.";
-	String sqlSessionPath = "system.onm.dto.PointDAO.";
+	String sqlSessionPath = "system.onm.dao.PointDAO.";
 
 	/**
 	 * 메소드 선언

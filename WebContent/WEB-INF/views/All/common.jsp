@@ -10,13 +10,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 
-<c:set var="cr" value="/ErrorReport"/>
+<c:set var="cr" value="/onm"/>
 
 <!-- CSS파일 수입 -->
-<link href="${cr}/resources/common.css" rel="stylesheet" type="text/css">
+<link href="${cr}/resources/All/common.css" rel="stylesheet" type="text/css">
 <!-- JQuery 라이브러리 파일 수입 -->
-<script src="${cr}/resources/jquery-1.11.0.min.js" type="text/javascript"></script>
-<script src="${cr}/resources/common.js?ran=<%= Math.random() %>" type="text/javascript"></script>
+<script src="${cr}/resources/All/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="${cr}/resources/All/common.js" type="text/javascript"></script>
 <%@ page import="org.apache.log4j.*" %>
 
 <!-- JSTL의 C코어 태그를 사용하여 변수들을 선언 -->
@@ -40,10 +40,12 @@
 
 <script>
 	$(document).ready(function(){
+		/* 
 		if(location.href.indexOf("loginForm.do")<0){
 			$("body").prepend("<center><input type=button value='로그아웃' onclick='location.replace(\"${cr}/loginForm.do\");'></center>");
 		}
 		
 		$("body").attr("bgcolor", "${bodyBgColor1}");
+		*/
 	});
 </script>

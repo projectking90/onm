@@ -5,7 +5,6 @@
 <!-- UTF-8 인코딩 방식은 한글을 포함 전 세계 모든 문자열을 부호화할 수 있는 방법이다.-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/All/common.jsp" %>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +14,13 @@
 			location.replace("/onm/store_menucontent.onm?"+str );
 		}
 	</script>
-	
+		<meta charset="UTF-8">
+		<title>메뉴 리스트 페이지</title>
+		<!-- CSS파일 수입 -->
+		<link href="${cr}/resources/Store/menu_form.css" rel="stylesheet" type="text/css">
+		<!-- JQuery 라이브러리 파일 수입 -->
+		<script src="${cr}/resources/Store/menu_form.js" type="text/javascript"></script>
+		<!-- 메뉴 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
 	</head>
 <body><center>
 	<form name="menuListForm" method="get" action="/onm/store_menucontent.onm">
@@ -45,5 +50,5 @@
 
 		</table><br>
 	</form>
-	</center></body>
+</center></body>
 </html>

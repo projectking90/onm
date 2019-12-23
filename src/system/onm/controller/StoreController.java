@@ -37,6 +37,7 @@ public class StoreController {
 	/**
 	 * 속성변수 선언
 	 */
+	private final String path = "/Store/";	// jsp 경로
 	@Autowired
 	private StoreService store_service;	// StoreService 인터페이스를 구현받은 객체를 생성해서 저장
 
@@ -59,6 +60,7 @@ public class StoreController {
 		 */
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Store/menu_form.jsp");
+		/* mav.setViewName(path + "menu_detail_form.jsp"); */
 		try {
 			
 			List<MenuDTO> menu_list = this.store_service.getMenuList(menu_searchDTO);
@@ -226,7 +228,7 @@ public class StoreController {
 		 * s_no : 가게 번호
 		 */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("ingredient_form.jsp");
+		mav.setViewName(path + "ingredient_form.jsp");
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
@@ -315,7 +317,7 @@ public class StoreController {
 		 * s_no : 가게 번호
 		 */
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("store_kind_form.jsp");
+		mav.setViewName(path + "store_kind_form.jsp");
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreKindForm 에러발생>");

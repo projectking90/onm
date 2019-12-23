@@ -37,6 +37,11 @@
 				}
 			});
 		}
+
+		function goMenuDelForm(){
+			if(confirm("정말 삭제하시겠습니까?")==false){return;}
+			document.menuDelForm.submit();
+		}
 	</script>
 </head>
 <body><center><br><br><br>	
@@ -51,7 +56,7 @@
 				<th bgcolor="${headerColor}">메뉴이름
 				<td bgcolor="${oddTrColor}"><form:input path="m_name" className="m_name"/>
 			<tr>
-				<th bgcolor="${headerColor}">제  목
+				<th bgcolor="${headerColor}">대분류
 				<td bgcolor="${oddTrColor}"><form:input path="ma_code" className="ma_code"/>
 			<tr>
 				<th bgcolor="${headerColor}">소분류
@@ -69,8 +74,14 @@
 		<input type="hidden" name="m_no" value="${menuDTO.m_no}">
 		<!------------------------------------------------>
 		<input type="button" value="수정완료" onClick="goMenuUpdateForm();">&nbsp;	
+		<input type="button" value="삭제" onClick="goMenuDelForm();">&nbsp;	
 		<input type="button" value="목록보기" onClick="location.replace('/onm/store_menu.onm')">
 	</form:form>
+	
+	
+		<form name="menuDelForm" method="post" action="/onm/store_menu_delete.onm">
+			<input type="text" name="m_no" class="m_no" value="${param.m_no}">
+		</form>
 	</center>
 </body>
 </html>

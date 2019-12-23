@@ -1,8 +1,10 @@
 create table code_addr(	-- 주소
 	addr_code	number(8)	-- 주소번호
+	, post_num	varchar2(10)	not null	-- 우편번호
 	, city_name	varchar2(100)	not null	-- 시
 	, gu_name	varchar2(100)	not null	-- 구
-	, dong_name	varchar2(100)	not null	-- 동
+	, dong_name	varchar2(100)	-- 동
+	, road_name varchar2(100)	not null	-- 도로명
 	, primary key(addr_code)
 );
 	
