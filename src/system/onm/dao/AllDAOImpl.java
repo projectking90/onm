@@ -4,9 +4,15 @@
  */
 package system.onm.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import system.onm.dto.AddrCityDTO;
+import system.onm.dto.AddrDongDTO;
+import system.onm.dto.AddrGuDTO;
 
 /**
  * AllDAOImpl 클래스
@@ -24,4 +30,46 @@ public class AllDAOImpl implements AllDAO {
 	/**
 	 * 메소드 선언
 	 */
+	/**
+	 * 시의 목록을 가져오는 메소드
+	 * @return addr_city : 시의 목록
+	 */
+	@Override
+	public List<AddrCityDTO> getAddrCity() {
+		List<AddrCityDTO> addr_city = this.sqlSession.selectList(
+					sqlSessionPath + "getAddrCity"
+				);
+		
+		return addr_city;
+	}
+
+	/**
+	 * 구의 목록을 가져오는 메소드
+	 * @param city : 선택한 시
+	 * @return addr_gu : 데이터베이스에서 가져온 구
+	 */
+	@Override
+	public List<AddrGuDTO> getAddrGu(String city) {
+		List<AddrGuDTO> addr_gu = this.sqlSession.selectList(
+				sqlSessionPath + "getAddrGu"
+				, city
+			);
+	
+		return addr_gu;
+	}
+
+	/**
+	 * 동의 목록을 가져오는 메소드
+	 * @param gu : 선택한 구
+	 * @return addr_dong : 데이터베이스에서 가져온 동
+	 */
+	@Override
+	public List<AddrDongDTO> getAddrDong(String gu) {
+		List<AddrDongDTO> addr_dong = this.sqlSession.selectList(
+				sqlSessionPath + "getAddrDong"
+				, gu
+			);
+		
+		return addr_dong;
+	}
 }
