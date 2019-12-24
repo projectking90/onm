@@ -29,6 +29,22 @@
 		
 		
 		<script>
+		
+		
+		$(document).ready(function(){
+			
+			$('[name=ia_code]').val("1");
+			$('[name=ib_code]').val("1");
+			$('[name=s_no]').val("1");
+			$('[name=num]').val("1");
+			$('[name=i_name]').val("1");
+			$('[name=i_size]').val("1");
+			$('[name=price]').val("1");
+			$('[name=io_code]').val("1");
+			
+		});
+		
+		
 		// [식자재 등록 화면] 유효성 체크 함수
 		function checkIngredientInsertForm(){
 			
@@ -48,10 +64,9 @@
 				, data : $("[name=ingredient_insert]").serialize()
 				
 				// 서버의 응답을 성공적으로 받았을 경우 실행할 익명함수 설정
-				// 매개변수 boardRegCnt 에는 입력 행의 개수가 들어온다.
 				, success : function(ingredientCnt){											
 					
-						if($("[name=ingredient_insert] [name=i_no]").val()>0){
+						if($("[name=ingredient_insert] [name=i_no]")){
 							if(ingredientCnt==1){
 								alert("등록 성공!");
 								location.replace("/onm/store_ingredient_form.onm");
@@ -101,14 +116,11 @@
  
 		<br><br>
 		<table class="tbcss1" boarder=1 bordercolor=gray cellspacing=0 cellpadding=5 align=center>
-<!-- 
-			<tr>
-				<th>등록일
-				<td><input type="text" size="10" maxlength="10" name="reg_date">
--->	
-			<tr>
+
+<!-- 			<tr>
 				<th>식자재 번호
-				<td><input type="text" size="10" maxlength="10" name="i_no">
+				<td><input type="text" size="10" maxlength="10" name="i_no"> 
+-->
 			<tr>
 				<th>대분류
 				<td><input type="text" size="10" maxlength="10" name="ia_code">
@@ -132,7 +144,11 @@
 				<td><input type="text" size="10" maxlength="10" name="price">
 			<tr>
 				<th>설명
-				<td><textarea name="content" rows="13" cols="30" maxlength="500" style="resize:none;"></textarea>
+				<td><textarea name="i_comment" rows="13" cols="30" maxlength="500" style="resize:none;"></textarea>
+<!-- 		<tr>
+				<th>등록일
+				<td><input type="text" size="10" maxlength="10" name="reg_date"> 
+-->
 			<tr>
 				<th>원산지
 				<td><input type="text" size="10" maxlength="10" name="io_code">

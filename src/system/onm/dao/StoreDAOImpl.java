@@ -102,8 +102,11 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public int insertStoreIngredient(IngredientDTO ingredientDTO) {
-		int insert_result = 0;
-		
+		int insert_result = this.sqlSession.insert(
+				"system.onm.dao.StoreDAO.insertStoreIngredient"
+				,ingredientDTO
+		);
+		System.out.println("insertStoreIngredient 메소드로 DB 연동 성공 끝");
 		return insert_result;
 	}
 

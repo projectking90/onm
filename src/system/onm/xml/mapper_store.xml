@@ -23,7 +23,7 @@
 
 	</select>
 
-	<insert id='insertIngredient' parameterType="system.onm.dto.IngredientDTO">
+	<insert id='insertStoreIngredient' parameterType="system.onm.dto.IngredientDTO">
 		insert into ingredient( 
 			 i_no        <!-- 식자재 번호 -->
 		    ,ia_code     <!-- 대분류 코드 -->
@@ -35,8 +35,8 @@
 		    ,i_size      <!-- 규격 -->
 		    ,price       <!-- 매입가격 -->
 		    ,i_comment   <!-- 설명 -->
-		    ,reg_date    <!-- 등록일 -->
-		    ,is_del      <!-- 삭제여부 -->
+		  <!--   ,reg_date    등록일 -->
+		  <!--   ,is_del      삭제여부 -->
 		)values (
 			(select nvl(max(i_no),0)+1 from ingredient)
 			,#{ia_code}
@@ -48,8 +48,8 @@
 			,#{i_size}
 			,#{price}
 			,#{i_comment}
-			,#{reg_date}
-			,#{is_del}
+			<!-- ,sysdate -->
+			<!-- ,#{is_del} -->
 		)
 	</insert>
 

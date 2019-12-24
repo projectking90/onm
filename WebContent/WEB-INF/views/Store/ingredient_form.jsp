@@ -39,10 +39,10 @@
 			[검색] : <input type="text" name="keyword1" class="keyword1">
 			
 			<input type="button" value="   검색   " class="Search" onClick="goSearch();">
-<!-- 			
+<!--  			
 			<a href="javascript:goIngredientInsertForm();">[식자재 등록]</a>
--->
-			<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
+ -->			
+ 			<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
 
 			<input type="hidden" name="selectPageNo">
 			

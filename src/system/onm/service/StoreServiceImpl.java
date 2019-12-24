@@ -101,8 +101,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int insertStoreIngredient(IngredientDTO ingredientDTO) {
-		int insert_result = 0;
-		
+		int insert_result = this.storeDAO.insertStoreIngredient(ingredientDTO);
 		return insert_result;
 	}
 

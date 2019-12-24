@@ -234,6 +234,14 @@ public class StoreController {
 		
 		return mav;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * 가게 식자재 추가 클릭 시 보여줄 jsp를 보여주는 메소드
@@ -269,6 +277,8 @@ public class StoreController {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			insert_result = this.store_service.insertStoreIngredient(ingredientDTO);
+			/* mav.addObject("insert_result",insert_result); */
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());
