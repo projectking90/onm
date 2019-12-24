@@ -4,11 +4,16 @@
  */
 package system.onm.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import system.onm.dao.AllDAO;
+import system.onm.dto.AddrCityDTO;
+import system.onm.dto.AddrDongDTO;
+import system.onm.dto.AddrGuDTO;
 
 /**
  * AllServiceImpl 클래스
@@ -28,4 +33,38 @@ public class AllServiceImpl implements AllService {
 	/**
 	 * 메소드 선언
 	 */
+	/**
+	 * 시의 목록을 가져오는 메소드
+	 * @return addr_city : 시의 목록
+	 */
+	@Override
+	public List<AddrCityDTO> getAddrCity() {
+		List<AddrCityDTO> addr_city = this.allDAO.getAddrCity();
+		
+		return addr_city;
+	}
+
+	/**
+	 * 구의 목록을 가져오는 메소드
+	 * @param city : 선택한 시
+	 * @return addr_gu : 데이터베이스에서 가져온 구
+	 */
+	@Override
+	public List<AddrGuDTO> getAddrGu(String city) {
+		List<AddrGuDTO> addr_gu = this.allDAO.getAddrGu(city);
+		
+		return addr_gu;
+	}
+
+	/**
+	 * 동의 목록을 가져오는 메소드
+	 * @param gu : 선택한 구
+	 * @return addr_dong : 데이터베이스에서 가져온 동
+	 */
+	@Override
+	public List<AddrDongDTO> getAddrDong(String gu) {
+		List<AddrDongDTO> addr_dong = this.allDAO.getAddrDong(gu);
+		
+		return addr_dong;
+	}
 }

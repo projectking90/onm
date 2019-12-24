@@ -4,14 +4,21 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import system.onm.dto.AddrCityDTO;
+import system.onm.dto.AddrDTO;
+import system.onm.dto.AddrDongDTO;
+import system.onm.dto.AddrGuDTO;
 import system.onm.dto.MenuSearchDTO;
 import system.onm.service.AllService;
 
@@ -41,13 +48,62 @@ public class AllController {
 	public ModelAndView goStartForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "start");
+		
 		try {
+			AddrDTO addr = new AddrDTO();
+			addr.setCityList(this.all_service.getAddrCity());
+			
+			mav.addObject("addr", addr);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStartForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
 		return mav;
+	}
+	
+	/**
+	 * 시 선택시 해당하는 시의 구를 가져올 메소드
+	 * @param city : 선택한 시
+	 * @return gu : 선택한 시의 구
+	 */
+	@RequestMapping(value="/get_gu.onm")
+	@ResponseBody
+	public List<AddrGuDTO> getGu(
+			@RequestParam(value="city") String city) {
+		List<AddrGuDTO> gu = null;
+		
+		try {
+			gu = this.all_service.getAddrGu(city);
+			
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<getGu 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return gu;
+	}
+	
+	/**
+	 * 구 선택시 해당하는 구의 동을 가져올 메소드
+	 * @param gu : 선택한 구
+	 * @return dong : 선택한 구의 동
+	 */
+	@RequestMapping(value="/get_dong.onm")
+	@ResponseBody
+	public List<AddrDongDTO> getDong(
+			@RequestParam(value="gu") String gu) {
+		List<AddrDongDTO> dong = null;
+		
+		try {
+			dong = this.all_service.getAddrDong(gu);
+			
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<getDong 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return dong;
 	}
 
 	/**
