@@ -14,11 +14,44 @@ public class IngredientSearchDTO {
 	 * 속성변수 선언
 	 */
 
-	/**
-	 * 생성자 선언
-	 */
+	
+	private String keyword1;        // 키워드
+	private int selectPageNo=1;    // 선택 페이지                      (DB 연동시 필수)
+	private int rowCntPerPage=10;  // 한 화면에 보여줄 행 개수            (DB 연동시 필수)
+	public String getKeyword1() {
+		return keyword1;
+		
+		
+	}
+	public int getSelectPageNo() {
+		return selectPageNo;
+	}
+	public void setSelectPageNo(int selectPageNo) {
+		this.selectPageNo = selectPageNo;
+	}
+	public int getRowCntPerPage() {
+		return rowCntPerPage;
+	}
+	public void setRowCntPerPage(int rowCntPerPage) {
+		this.rowCntPerPage = rowCntPerPage;
+	}
+	public void setKeyword1(String keyword1) {
+		this.keyword1 = keyword1;
+	}
+	
+	
+	
+
 
 	/**
 	 * 접근자, 설정자 선언
 	 */
+	
+	
+	/**
+	 * 생성자 선언
+	 */
+	
+	
+	
 }

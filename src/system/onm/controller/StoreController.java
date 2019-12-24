@@ -4,6 +4,9 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +18,6 @@ import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
 import system.onm.dto.StoreKindDTO;
-import system.onm.dto.StoreKindSearchDTO;
 import system.onm.service.StoreService;
 
 /**
@@ -195,6 +197,26 @@ public class StoreController {
 		mav.setViewName(path + "ingredient_form");
 		
 		try {
+			
+			//-------------------------------------------
+			// [게시판 검색 목록] 얻기
+			//-------------------------------------------
+			List<IngredientDTO> ingredient_list = this.store_service.getIngredientList(ingredient_searchDTO);
+			//System.out.println("boardList.size() =>" + boardList.size());
+			
+			
+			//---------------------------------------------
+			// ModelAndView 객체에 검색 개수, 게시판 검색 목록 저장하기
+			// ModelAndView 객체에 저장된 DB 연동 결과물은 JSP 페이지에서 EL 문법으로 아래처럼 꺼낼수 있다.
+			// ${저장키값명} 
+			// ModelAndView 객체에 addObject로 저장하는 이유는 JSP페이지에서 꺼내기 위함이다. 
+			// 거꾸로 JSP에서 꺼내볼 데이터는 모드 ModelAndView 객체에 addObject에 저장한다.
+			// addObject로 저장된 데이터 중 list나 배열 같은 경우는 JSP 페이지에서 c:foreach 태그를 써서 꺼내야 한다. 
+			//---------------------------------------------
+			mav.addObject("ingredient_list",ingredient_list);
+			mav.addObject("ingredient_searchDTO",ingredient_searchDTO);
+			
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
 			System.out.println(e.getMessage());

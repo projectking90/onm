@@ -31,7 +31,7 @@
          
          <input type="button" value="   검색   " class="contactSearch" onClick="goSearch();">
          <input type="button" value="식자재 등록" onClick="location.replace('/onm/store_ingredient_insert_form.onm')">
-         <input type="button" value="식자재 수정/삭제" onClick="location.replace('/onm/store_ingredient_updel_form.onm')">
+        <!-- <input type="button" value="식자재 수정/삭제" onClick="location.replace('/onm/store_ingredient_updel_form.onm')"> --> 
 <!-- 
          <a href="javascript:goingredient_insert_form();">[식자재 등록]</a>
  -->
@@ -44,10 +44,42 @@
    
    <table><tr height=10><td></table>
    
-   <table class="ingredientTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
-      <tr><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
-   </table><br>
    
+   
+   		<!----------------------------------------------------------------->
+		<!--  게시판 검색목록 출력하기 -->
+		<!----------------------------------------------------------------->
+		<table class="boardTable" tbcss2" border=0 cellspacing=0 cellpadding=5 width=700>
+				<tr bgcolor="${headerColor}"><th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지<th>삭제여부
+
+			<!---------------------------------------------------------------------->
+			<!-- 사용자 정의 태그인 JSTL C코어 태그중 <forEach> 태그를 사용하여   -->
+			<!-- ModelAndView 객체에 "boardList"라는 키값으로 저장된              -->
+			<!-- List<Map<String,String> 객체안의 데이터를 출력하기               -->
+			<!---------------------------------------------------------------------->
+			<%-- <c:forEach> 태그 속성 설명 --%>
+			<!--  items : ModelAndView 객체에 저장한 객체키값명, EL문법 사용 , 주로 List객체의 키값명이 들어감      -->
+			<!--  var   : for 문 안에서 사용할 지역변수 (items 속성에 설정한 List 객체 안의 i번째 데이터가 저장됨)  -->
+			<!--  varStatus :  -->
+			
+			<c:forEach items="${requestScope.ingredient_list}" var="board" varStatus="loopTagStatus">
+				<tr style="cursor:pointer" onClick="#(${board.i_no});">
+					<td align=center>${board.i_no}
+					<td align=center>${board.ia_code}
+					<td align=center>${board.ib_code}
+					<td align=center>${board.io_code}
+					<td align=center>${board.s_no}
+					<td align=center>${board.i_name}
+					<td align=center>${board.i_size}
+					<td align=center>${board.price}
+					<td align=center>${board.reg_date}
+					<td align=center>${board.i_comment}
+					<td align=center>${board.is_del}	
+			</c:forEach>
+
+
+			
+		</table><br>
    <c:if test="#">
       검색 결과가 없습니다
    </c:if>

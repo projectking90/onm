@@ -88,7 +88,11 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO) {
-		List<IngredientDTO> ingredient_list = null;
+		List<IngredientDTO> ingredient_list = this.sqlSession.selectList(
+			"system.onm.dao.StoreDAO.getIngredientList"               // 실행할 SQL 구문의 위치 지정
+			,ingredient_searchDTO                                     // 실행할 SQL 구문에서 사용할 데이터 지정
+			
+		);
 		
 		return ingredient_list;
 	}
@@ -147,7 +151,7 @@ public class StoreDAOImpl implements StoreDAO {
 	 * @return insert_result : 업종 추가 적용 개수
 	 */
 	@Override
-	public int insertStoreMenu(StoreKindDTO store_kindDTO) {
+	public int insertStoreKind(StoreKindDTO store_kindDTO) {
 		int insert_result = 0;
 		
 		return insert_result;
@@ -159,7 +163,7 @@ public class StoreDAOImpl implements StoreDAO {
 	 * @return update_result : 업종 수정 적용 개수
 	 */
 	@Override
-	public int updateStoreMenu(StoreKindDTO store_kindDTO) {
+	public int updateStoreKind(StoreKindDTO store_kindDTO) {
 		int update_result = 0;
 		
 		return update_result;
