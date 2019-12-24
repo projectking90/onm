@@ -1,0 +1,61 @@
+create login(	-- 로그인
+	l_flag	varchar2(1)	-- 유저구분
+	, l_id	varchar2(50)	-- 아이디
+	, pwd	varchar2(256)	not null	-- 암호
+	, is_del	varchar2(1)	default 'F'	-- 삭제여부
+	, primary key(l_flag, l_id)
+);
+
+select
+	*
+from
+	login;
+
+create view login_cus	-- 로그인_고객
+as (select
+		rownum	as	"LC_NO"	-- 로그인 번호
+		, l_id	as	"C_ID"	-- 고객 아이디
+		, pwd	as	"PWD"	-- 암호
+		, is_del	as	"IS_DEL"	-- 삭제여부
+	from
+		login
+	where
+		l_flag = 'c')
+with read only;
+
+select
+	*
+from
+	login_cus;
+
+create view login_store	-- 로그인_가게
+as (select
+		rownum	as	"LS_NO"	-- 로그인 번호
+		, l_id	as	"S_ID"	-- 가게 아이디
+		, pwd	as	"PWD"	-- 암호
+		, is_del	as	"IS_DEL"	-- 삭제여부
+	from
+		login
+	where
+		l_flag = 's')
+with read only;
+
+select
+	*
+from
+	login_store;
+	
+create table login_log(	-- 로그인_로그
+	ll_no	number(8)	-- 로그인 로그 번호
+	, l_flag	varchar2(1)	-- 유저구분
+	, l_id	varchar2(50)	-- 아이디
+	, ip	varchar2(50)	-- 아이피
+	, ll_reg_date	date	default sysdate	-- 등록일
+	, primary key(ll_no)
+	, foreign key(l_flag, l_id) references login(l_flag, l_id)
+);
+
+select
+	*
+from
+	login_log;

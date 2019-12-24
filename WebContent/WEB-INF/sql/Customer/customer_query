@@ -1,0 +1,17 @@
+create table customer(	-- 고객정보_고객
+	c_no	number(8)	-- 고객번호
+	, c_id	varchar2(50)	not null unique-- 아이디
+	, c_name	varchar2(50)	not null	-- 이름
+	, birthday	varchar2(10)	not null	-- 생년월일
+	, gender	varchar2(1)	not null	-- 성별
+	, email	varchar2(100)	-- 이메일
+	, c_phone	varchar2(20)	-- 핸드폰
+	, c_reg_date	date	default sysdate	-- 등록일
+	, recommend_id	varchar2(50)	-- 추천인 아이디
+	, primary key(c_no)
+);
+
+select
+	*
+from
+	customer;

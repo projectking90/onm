@@ -1,0 +1,17 @@
+create table stock(	-- 재고
+	st_no	number(8)	-- 재고번호
+	, i_no	number(8)	-- 식자재번호
+	, quantity	number(10)	default 0	-- 수량
+	, st_state	varchar2(1)	not null	-- 재고상태
+	, sr_state	varchar2(1)	not null	-- 입출고 상태
+	, price	number(10)	default 0	-- 가격
+	, st_reg_date	date	default sysdate	-- 등록일
+	, is_del	varchar2(1)	default 'F'	-- 삭제여부
+	, primary key(st_no)
+	, foreign key(i_no) references ingredient(i_no)
+);
+
+select
+	*
+from
+	stock;
