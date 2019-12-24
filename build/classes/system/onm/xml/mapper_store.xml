@@ -4,6 +4,25 @@
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StoreDAO">
 
+
+
+<!-- 
+	<sql id="ingredientWhere">
+	
+		<if test="keyword1!=null and keyword1.length()>0" >
+			(
+				upper(i_name) like upper('%${keyword1}%')
+				or upper(i_size) like upper('%${keyword1}%')
+				or upper(price) like upper('%${keyword1}%')
+				or upper(to_char(reg_date,'YYYY-MM-DD AM HH:MI:SS')) like upper('%${keyword1}%')
+				or upper(i_comment) like upper('%${keyword1}%')	
+			)
+		</if>
+	
+	</sql>
+
+ -->
+
 	<select id="getIngredientList" parameterType="system.onm.dto.IngredientSearchDTO" resultType="system.onm.dto.IngredientDTO">
 
 			select
