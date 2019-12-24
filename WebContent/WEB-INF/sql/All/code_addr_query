@@ -12,3 +12,39 @@ select
 	*
 from
 	code_addr;
+
+create view code_city_name
+as	(select
+		city_name
+	from
+		code_addr)
+with read only;
+	
+select
+	*
+from
+	code_city_name;
+
+create view code_gu_name
+as	(select
+		city_name, gu_name
+	from
+		code_addr)
+with read only;
+	
+select
+	*
+from
+	code_gu_name;
+
+create view code_dong_name
+as	(select
+		gu_name, dong_name
+	from
+		code_addr)
+with read only;
+	
+select
+	*
+from
+	code_dong_name;
