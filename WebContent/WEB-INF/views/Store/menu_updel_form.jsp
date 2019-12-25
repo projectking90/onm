@@ -29,12 +29,24 @@
 				<tr>
 					<th bgcolor="${headerColor}">메뉴이름
 					<td bgcolor="${oddTrColor}"><form:input path="m_name" className="m_name"/>
+			
+			
+				<form:form name="MenuCodeForm" commandName="codemenuDTO">
 				<tr>
 					<th bgcolor="${headerColor}">대분류
-					<td bgcolor="${oddTrColor}"><form:input path="ma_code" className="ma_code"/>
+					<td bgcolor="${oddTrColor}"> <form:select path="ma_code">
+													<form:options items="${codemenuDTO.ma_nameList}" itemLabel="ma_name" itemValue="ma_name"></form:options>
+												</form:select>
+												<%-- <form:input path="ma_code" className="ma_code"/> --%>
 				<tr>
 					<th bgcolor="${headerColor}">소분류
-					<td bgcolor="${oddTrColor}"><form:input path="mb_code" className="mb_code"/>
+					<td bgcolor="${oddTrColor}"> <form:select path="mb_code">
+													<form:options items="${codemenuDTO.mb_nameList}" itemLabel="mb_name" itemValue="mb_name"></form:options>
+												</form:select>
+												<%-- <form:input path="mb_code" className="mb_code"/> --%>
+				</form:form>
+				
+				
 				<tr>
 					<th bgcolor="${headerColor}">설명
 					<td bgcolor="${oddTrColor}"><form:textarea path="m_comment" className="m_comment" rows="13" cols="40" style="resize:none;"/>

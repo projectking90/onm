@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import system.onm.dao.StoreDAO;
+import system.onm.dto.CodeMenuAlphaDTO;
+import system.onm.dto.CodeMenuBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -122,6 +124,18 @@ public class StoreServiceImpl implements StoreService {
 		int update_result = 0;
 		
 		return update_result;
+	}
+	
+	
+	public List<CodeMenuAlphaDTO> getCodeMenuAlpha(){
+		List<CodeMenuAlphaDTO> ma_nameList = this.storeDAO.getCodeMenuAlpha();
+		
+		return ma_nameList;
+	}
+	
+	public List<CodeMenuBetaDTO> getCodeMenuBeta(){
+		List<CodeMenuBetaDTO> mb_nameList = this.storeDAO.getCodeMenuBeta();
+		return mb_nameList;
 	}
 
 	/**

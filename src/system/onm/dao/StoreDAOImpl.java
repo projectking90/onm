@@ -11,6 +11,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import system.onm.dto.CodeMenuAlphaDTO;
+import system.onm.dto.CodeMenuBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -52,7 +54,7 @@ public class StoreDAOImpl implements StoreDAO {
 	public MenuDTO getMenuDTO(int m_no) {
 
 		MenuDTO menuDTO = this.sqlSession.selectOne(
-				"system.onm.dao.StoreDAO.getMenuDTO"
+				sqlSessionPath + "getMenuDTO"
 				,m_no
 		);
 		return menuDTO;
@@ -84,6 +86,23 @@ public class StoreDAOImpl implements StoreDAO {
 		);
 		return update_result;
 	}
+	
+	@Override
+	public List<CodeMenuAlphaDTO> getCodeMenuAlpha(){
+		List<CodeMenuAlphaDTO> ma_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeMenuAlpha"		
+		);
+		return ma_nameList;
+	}
+	
+	@Override
+	public List<CodeMenuBetaDTO> getCodeMenuBeta(){
+		List<CodeMenuBetaDTO> mb_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeMenuBeta"		
+		);
+		return mb_nameList;
+	}
+
 
 	/**
 	 * 가게 메뉴 삭제

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import system.onm.dto.CodeMenuDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -162,6 +163,12 @@ public class StoreController {
 		try {
 			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
 			mav.addObject("menuDTO", menuDTO);
+			CodeMenuDTO codemenuDTO = new CodeMenuDTO();
+			codemenuDTO.setMa_nameList(this.store_service.getCodeMenuAlpha());
+			codemenuDTO.setMb_nameList(this.store_service.getCodeMenuBeta());
+			System.out.println(this.store_service.getCodeMenuAlpha());
+			System.out.println(this.store_service.getCodeMenuBeta());
+			mav.addObject("codemenuDTO", codemenuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuUpDelForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -199,6 +206,8 @@ public class StoreController {
 		
 		return update_result;
 	}
+	
+	
 	
 	/**
 	 * 가게 메뉴 삭제 기능 실행 시 데이터베이스와 연동 처리할 메소드
@@ -245,6 +254,9 @@ public class StoreController {
 		mav.setViewName(path + "ingredient_form");
 		
 		try {
+			List<IngredientDTO> ingredient_list = this.store_service.getIngredientList(ingredient_searchDTO);
+			mav.addObject("ingredient_list", ingredient_list);
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
 			System.out.println(e.getMessage());
