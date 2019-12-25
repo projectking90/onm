@@ -2,5 +2,70 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper 태그 선언 -->
-<mapper namespace="system.onm.dao.StoreDAO">
+<mapper namespace="system.onm.dao.StoreDAO">	
+	<sql id="menuWhere">
+		<if test="keyword!=null and keyword.length()>0">
+				and (
+					upper(m_no) like upper('%${keyword}%')
+					<!-- 서브쿼리로 인해 띄우는 것들 먹게 하는 방법 -->
+					or upper(ma_code) like upper('%${keyword}%')
+					or upper(mb_code) like upper('%${keyword}%')
+					or upper(s_name) like upper('%${keyword}%')
+					<!-- ============================= -->
+					or upper(m_name) like upper('%${keyword}%')
+					or upper(price) like upper('%${keyword}%')
+					or upper(m_comment) like upper('%${keyword}%')
+					or upper(reg_date) like upper('%${keyword}%')	
+				)
+		</if>
+	</sql>
+	
+	<select id="getMenuList" parameterType="system.onm.dto.MenuSearchDTO" resultType="system.onm.dto.MenuDTO">	
+		select * from(
+			select zzz.*, rownum RNUM from(
+				select 	
+					m.m_no "m_no"
+					,(select a.ma_name from code_menu_alpha a where a.ma_code=m.ma_code)   "ma_code"
+        			,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)   "mb_code"
+					,(select s_name from store where s_id=#{s_id}) "s_name"
+					,m.m_name "m_name"
+					,m.price "price"
+					,m.m_comment "m_comment"
+					,to_char(m.reg_date, 'YYYY-MM-DD(dy)') "reg_date"	
+				from menu m
+				where m.is_del='F'
+				<include refid="menuWhere"/>) zzz) where 
+					<![CDATA[
+						RNUM>=${select_page_no*row_cnt_per_page-row_cnt_per_page+1} 
+						and RNUM<=${select_page_no*row_cnt_per_page}
+					]]> 
+	</select>
+	
+		
+	<select id="getMenuListAllCnt" parameterType="system.onm.dto.MenuSearchDTO" resultType="int">
+		select 
+			count(*) 
+		from menu		
+		where is_del='F' 	
+		<include refid="menuWhere"/>
+	</select>
+	<insert id='insertStoreMenu' parameterType="system.onm.dto.MenuDTO">
+		insert into menu(
+			m_no,
+			ma_code,
+			mb_code,
+			s_no,
+			m_name,
+			price,
+			m_comment
+		)values(
+			(select nvl(max(m_no),0)+1 from menu)
+			,#{ma_code}
+			,#{mb_code}
+			,(select s_no from store where s_id=#{s_id})
+			,#{m_name}
+			,#{price}
+			,#{m_comment}
+		)
+	</insert>
 </mapper>

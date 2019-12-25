@@ -4,6 +4,10 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,7 @@ import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
 import system.onm.dto.StoreKindDTO;
+import system.onm.dto.StoreKindSearchDTO;
 import system.onm.service.StoreService;
 
 /**
@@ -42,11 +47,51 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_form.onm")
 	public ModelAndView goStoreMenuForm(
-			MenuSearchDTO menu_searchDTO) {
+			MenuSearchDTO menu_searchDTO
+			,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_form");
 		
+		/**
+		 * menu_form.jsp에 넘겨줄 데이터
+		 * menuList : 가게에 등록된 메뉴들
+		 * s_no : 가게 번호
+		 */
+
+		String s_id = (String)session.getAttribute("s_id");
 		try {
+			menu_searchDTO.setS_id(s_id);
+			
+			String uri=(String) session.getAttribute("uri");
+			
+			if(uri==null || uri.equals("store_menu_form.onm")) {
+				session.setAttribute("menu_searchDTO", menu_searchDTO);
+			}else {
+				menu_searchDTO=(MenuSearchDTO)session.getAttribute("menu_searchDTO");
+			}
+			session.setAttribute("uri", "store_menu_form.onm");
+			
+			int menu_list_all_cnt=this.store_service.getMenuListAllCnt(menu_searchDTO);
+			
+			if(menu_list_all_cnt>0) {
+				int select_page_no = menu_searchDTO.getSelect_page_no();
+				// 한 화면에 보여지는 행의 개수 구하기
+				int row_cnt_per_page = menu_searchDTO.getRow_cnt_per_page();
+				// 검색할 시작행 번호 구하기
+				int begin_row_no = select_page_no*row_cnt_per_page-row_cnt_per_page+1;
+				// 만약 검색한 총 개수가 검색할 시작행 번호보다 작으면
+				// 선택한 페이지 번호를 1로 초기화하기
+				if(menu_list_all_cnt < begin_row_no) {
+					menu_searchDTO.setSelect_page_no(1);
+				}
+			}
+			//System.out.println("menu_searchDTO.getRow_cnt_per_page() "+menu_searchDTO.getRow_cnt_per_page());
+			//System.out.println("menu_searchDTO.getSelect_page_no() "+menu_searchDTO.getSelect_page_no());
+			List<MenuDTO> menu_list = this.store_service.getMenuList(menu_searchDTO);
+			mav.addObject("menu_list", menu_list);
+			mav.addObject("menu_list_all_cnt", menu_list_all_cnt);
+			mav.addObject("menu_searchDTO", menu_searchDTO); 
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -66,7 +111,7 @@ public class StoreController {
 			MenuDTO menuDTO) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_detail_form");
-		
+		System.out.println(menuDTO.getM_no());
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuDetailForm 에러발생>");
@@ -84,9 +129,13 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_insert_form.onm")
 	public ModelAndView goStoreMenuInsertForm(
-			MenuDTO menuDTO) {
+			MenuDTO menuDTO
+			,HttpSession session
+	) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_insert_form");
+		String s_id = (String)session.getAttribute("s_id");
+		mav.addObject("s_id", s_id);
 		
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
@@ -106,13 +155,15 @@ public class StoreController {
 	@RequestMapping(value="/store_menu_insert.onm")
 	@ResponseBody
 	public int insertStoreMenu(
-			MenuDTO menuDTO) {
+			MenuDTO menuDTO
+	) {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
-
 		try {
+			insert_result=this.store_service.insertStoreMenu(menuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStoreMenu 에러발생>");
 			System.out.println(e.getMessage());
+			insert_result = -1;
 		}
 		
 		return insert_result;

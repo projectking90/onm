@@ -42,9 +42,19 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO) {
-		List<MenuDTO> menu_list = null;
-		
+		List<MenuDTO> menu_list = this.storeDAO.getMenuList(menu_searchDTO);
 		return menu_list;
+	}
+	
+	// 메뉴 개수 count
+	@Override
+	public int getMenuListAllCnt(MenuSearchDTO menu_searchDTO) {
+		// TODO Auto-generated method stub
+
+		int menu_list_all_cnt = this.storeDAO.getMenuListAllCnt(menu_searchDTO);
+		
+		// 검색한 게시판 목록 총 개수를 리턴
+		return menu_list_all_cnt;
 	}
 
 	/**
@@ -54,8 +64,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int insertStoreMenu(MenuDTO menuDTO) {
-		int insert_result = 0;
-		
+		int insert_result = this.storeDAO.insertStoreMenu(menuDTO);
 		return insert_result;
 	}
 

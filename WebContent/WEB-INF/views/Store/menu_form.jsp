@@ -16,8 +16,99 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/menu_form.js" type="text/javascript"></script>
 		<!-- 메뉴 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
+		
+		<script>
+		$(document).ready(function(){
+			$('[name=row_cnt_per_page]').change(function(){
+				goSearch();
+			});		
+				
+			$(".pagingNumber").html(
+					getPagingNumber(
+						"${menu_list_all_cnt}"					// 검색결과 총 행 개수
+						,"${menu_searchDTO.select_page_no}"		// 선택된 현재 페이지 번호
+						,"${menu_searchDTO.row_cnt_per_page}"	// 페이지 당 출력행의 개수
+						,"10"									// 페이지 당 보여줄 페이지 번호 개수
+						,"goSearch();"							// 페이지 번호 클릭 후 실행할 자스 코드	
+				)
+			);
+		
+			$('[name=row_cnt_per_page]').val("${menu_searchDTO.row_cnt_per_page}");
+			$('[name=select_page_no]').val("${menu_searchDTO.select_page_no}");
+			$('[name=keyword]').val("${menu_searchDTO.keyword}");	
+		});
+
+		function goSearch(){
+			if(is_empty("[name=menu_form] [name=keyword]")){
+				 $("[name=menu_form] [name=keyword]").val("");
+			}			
+
+			var keyword=$("[name=menu_form] [name=keyword]").val();
+			keyword=$.trim(keyword);
+			
+			$("[name=menu_form] [name=keyword]").val(keyword);
+			
+			document.menu_form.submit();
+		}
+		
+		function goSearchAll(){
+			document.menu_form.reset();
+	
+			$("[name=select_page_no]").val("1");
+			$("[name=row_cnt_per_page]").val("10");
+			goSearch();
+		}
+		</script>
 	</head>
 	<body>
-		
+		<form name="menu_form" method="post" action="/onm/store_menu_form.onm">
+			<table class="menuSearch">
+				<tr>
+					<td>[검  색] : <input type="text" name="keyword" class="keyword">
+								<input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;검색&nbsp;&nbsp;&nbsp;&nbsp;" class="contactSearch" onClick="goSearch();">&nbsp;
+								<input type="button" value=" 모두&nbsp;검색 " onClick="goSearchAll();">&nbsp;
+								<input type="hidden" name="select_page_no">
+								
+					</td>
+					<td>
+						<select name="row_cnt_per_page">
+							<option value="10">10
+							<option value="20">20
+							<option value="30">30
+							<option value="40">40
+							<option value="50">50
+						</select>&nbsp;&nbsp;개의 상품 보기
+					</td>
+				</tr>
+			</table>
+			<table border=0 cellspacing=0 cellpadding=5 width=700 >
+				<tr bgcolor="#EFEFEF">
+					<th>메뉴 번호
+					<th>대분류
+					<th>소분류
+					<th>가게 이름
+					<th>메뉴
+					<th>가격
+					<th>메뉴 설명
+					<th>등록일
+				
+				<c:forEach items="${menu_list}" var="menu" varStatus="loopTagStatus">
+					<tr style="cursor:pointer" onClick="goBoardContentForm();">
+						<td align=center>${menu.m_no}
+						<td align=center>${menu.ma_code}
+						<td align=center>${menu.mb_code}
+						<td align=center>${menu.s_name}
+						<td align=center>${menu.m_name}
+						<td align=center>${menu.price}
+						<td align=center>${menu.m_comment}
+						<td align=center>${menu.reg_date}
+				</c:forEach>
+				
+				<!-- <input type="hidden" name="s_no" class="s_no"> -->
+			</table>
+			<table><tr><td align=right><div>상품의 총 개수 : ${menu_list_all_cnt}&nbsp;&nbsp;&nbsp;</div></table>
+			<table><tr><td align=center><div>&nbsp;<span class="pagingNumber"></span>&nbsp;</div></table>
+			<br><br>
+		</form>
 	</body>
 </html>
