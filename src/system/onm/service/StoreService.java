@@ -28,6 +28,7 @@ public interface StoreService {
 	int deleteStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 삭제
 	List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO);	// 가게에 등록된 식자재를 가져옴
 	int insertStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 추가
+	IngredientDTO getIngredientDetail(int i_no);			// 가게 식자재 상세정보
 	int updateStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 수정
 	int deleteStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 삭제
 	List<StoreKindDTO> getStoreKindList(StoreKindSearchDTO store_kind_searchDTO);	// 가게 업종 정보를 가져옴

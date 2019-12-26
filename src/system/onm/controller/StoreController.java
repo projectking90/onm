@@ -7,9 +7,12 @@ package system.onm.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -233,11 +236,14 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_ingredient_detail_form.onm")
 	public ModelAndView goStoreIngredientDetailForm(
-			IngredientDTO ingredientDTO) {
+			@RequestParam(value="i_no") int i_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "ingredient_detail_form");
 		
 		try {
+			
+			IngredientDTO getIngredientDetail = this.store_service.getIngredientDetail(i_no);
+			mav.addObject("getIngredientDetail", getIngredientDetail);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -296,17 +302,21 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_ingredient_updel_form.onm")
 	public ModelAndView goStoreIngredientUpDelForm(
-			IngredientDTO ingredientDTO) {
+			@RequestParam(value="i_no") int i_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "ingredient_updel_form");
 		
 		try {
+			IngredientDTO ingredientDTO = this.store_service.getIngredientDetail(i_no);
+			
+			mav.addObject("ingredientDTO",ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientUpDelForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
 		return mav;
+		
 	}
 
 	/**
@@ -318,15 +328,19 @@ public class StoreController {
 	@RequestMapping(value="/store_ingredient_update.onm")
 	@ResponseBody
 	public int updateStoreIngredient(
+			
 			IngredientDTO ingredientDTO) {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
+		System.out.println(ingredientDTO.getIa_code());
 
 		try {
+			update_result = this.store_service.updateStoreIngredient(ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<updateStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
+
 		return update_result;
 	}
 
@@ -343,6 +357,7 @@ public class StoreController {
 		int delete_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			delete_result = this.store_service.deleteStoreIngredient(ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<deleteStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());

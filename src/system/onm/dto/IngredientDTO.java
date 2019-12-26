@@ -108,6 +108,7 @@ public class IngredientDTO {
 		this.is_del = is_del;
 	}
 
+
 	/**
 	 * 생성자 선언
 	 */

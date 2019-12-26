@@ -7,6 +7,7 @@ package system.onm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ import system.onm.dto.StoreKindSearchDTO;
  * 서비스 클래스
  * @author Jo
  */
+@Repository
 @Service
 @Transactional
 public class StoreServiceImpl implements StoreService {
@@ -95,6 +97,21 @@ public class StoreServiceImpl implements StoreService {
 		//System.out.println(ingredient_searchDTO.getSelectPageNo());
 		return ingredient_list;
 	}
+	
+
+	/*
+	 * 가게에 등록된 식자재의 상제정보 페이지
+	 * @param : ingredient
+	 */
+
+	@Override
+	public IngredientDTO getIngredientDetail(int i_no) {
+		IngredientDTO ingredientDetail_list = this.storeDAO.getIngredientDetail(i_no);
+		return ingredientDetail_list;
+	}
+
+
+
 
 	/**
 	 * 가게 식자재 추가
@@ -115,8 +132,8 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int updateStoreIngredient(IngredientDTO ingredientDTO) {
-		int update_result = 0;
-		
+		int update_result = this.storeDAO.updateStoreIngredient(ingredientDTO);
+		System.out.println(update_result);
 		return update_result;
 	}
 
@@ -127,8 +144,8 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int deleteStoreIngredient(IngredientDTO ingredientDTO) {
-		int delete_result = 0;
-		
+		int delete_result = this.storeDAO.deleteStoreIngredient(ingredientDTO);
+		System.out.println(delete_result);
 		return delete_result;
 	}
 
@@ -167,4 +184,7 @@ public class StoreServiceImpl implements StoreService {
 		
 		return update_result;
 	}
+
+
+
 }

@@ -97,6 +97,19 @@ public class StoreDAOImpl implements StoreDAO {
 		return ingredient_list;
 	}
 
+	
+/*
+ * 가게에 등록된 식자재의 상세정보
+ */
+	@Override
+	public IngredientDTO getIngredientDetail(int i_no) {
+		IngredientDTO ingredientDetail_list = this.sqlSession.selectOne(
+			"system.onm.dao.StoreDAO.getIngredientDetail"
+			,i_no
+		);
+		return ingredientDetail_list;
+	}
+	
 	/**
 	 * 가게 식자재 추가
 	 * @param ingredientDTO : 식자재 추가를 위해 사용하는 DTO
@@ -116,10 +129,12 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public int updateStoreIngredient(IngredientDTO ingredientDTO) {
-		int update_result = 0;
-		
+		int update_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.updateStoreIngredient"
+				,ingredientDTO
+				);
 		return update_result;
-	}
+	} 
 
 	/**
 	 * 가게 식자재 삭제
@@ -128,8 +143,11 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public int deleteStoreIngredient(IngredientDTO ingredientDTO) {
-		int delete_result = 0;
-		
+		int delete_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.deleteStoreIngredient"
+				,ingredientDTO
+				
+				);
 		return delete_result;
 	}
 
@@ -168,4 +186,5 @@ public class StoreDAOImpl implements StoreDAO {
 		
 		return update_result;
 	}
+
 }

@@ -15,9 +15,77 @@
 		<link href="${cr}/resources/Store/ingredient_detail_form.css" rel="stylesheet" type="text/css">
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/ingredient_detail_form.js" type="text/javascript"></script>
+		
+		<!-- 부트스트랩 -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
 	</head>
-	<body>
+	<body><center><br>
+		<article>
+			<div class="container" role="main">
+			<h2>content page</h2>
+				<div class="bg-white rounded shadow-sm">
 		
+		<!--  상세보기 화면을 보여주는 폼태그 -->
+		<form class="ingredient_detail_form" name="ingredient_detail_form" method="post" action="/onm/store_ingredient_updel_form.onm">
+
+			<input type=hidden name=i_no value="${getIngredientDetail.i_no}">
+			<b>[식자재 상세정보]</b><br>
+			<table class="table table" width="500" border=1 bordercolor="#DDDDDD"  cellpadding=5 align=center>
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test1
+					<td width=150> ${getIngredientDetail.i_no}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test2
+					<td width=150> ${getIngredientDetail.ia_code}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test3
+					<td width=150> ${getIngredientDetail.ib_code}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test4
+					<td width=150> ${getIngredientDetail.io_code}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test5
+					<td width=150> ${getIngredientDetail.s_no}
+				<tr align=center>
+					<th bgcolor="gray" width=60>test6
+					<td width=150> ${getIngredientDetail.num}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test7
+					<td width=150> ${getIngredientDetail.i_name}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test8
+					<td width=150> ${getIngredientDetail.i_size}
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test9
+					<td width=150> ${getIngredientDetail.price}
+				<tr align=center>
+					<th bgcolor="gray">test10
+					<td width=60 colspan=3>
+						<textarea name="content" rows="13" cols="45" style="border:0" readonly>${getIngredientDetail.i_comment}</textarea>
+				<tr align=center>	
+					<th bgcolor="gray" width=60>test11
+					<td width=150> ${getIngredientDetail.reg_date}
+				<tr align=center>
+					<th bgcolor="gray" width=60>test12
+					<td width=150 colspan=3> ${getIngredientDetail.is_del}
+
+			</table>
+	
+					<button type="button" class="btn btn-sm btn-primary" id="ingreUpdate" onClick="document.ingredient_detail_form.submit()">수정</button>
+					<button type="button" class="btn btn-sm btn-primary" id="ingreDelete" onClick="checkIngDeleteForm()">삭제</button>
+					<button type="button" class="btn btn-sm btn-primary" id="returnList" onClick="location.replace('/onm/store_ingredient_form.onm')">돌아가기</button>
+
+
+			
+			<input type="hidden" name="selectPageNo">
+		
+			
+		</form>
+	</div>
+			</div>
+			</article>
+	
+
 	</body>
 </html>
