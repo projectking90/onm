@@ -97,8 +97,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO) {
-		List<IngredientDTO> ingredient_list = null;
-		
+		List<IngredientDTO> ingredient_list = this.storeDAO.getIngredientList(ingredient_searchDTO);
 		return ingredient_list;
 	}
 
@@ -109,8 +108,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int insertStoreIngredient(IngredientDTO ingredientDTO) {
-		int insert_result = 0;
-		
+		int insert_result = this.storeDAO.insertStoreIngredient(ingredientDTO);
 		return insert_result;
 	}
 

@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSP 기술의 한 종류인 Include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입 -->
 <%@ include file="/WEB-INF/views/All/common.jsp" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,8 +17,84 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/ingredient_form.js" type="text/javascript"></script>
 		<!-- 식자재 기능 선택 시 보여줄 첫 페이지 전체 검색, 검색 조건에 의한 검색을 보여줄 페이지 -->
-	</head>
-	<body>
 		
-	</body>
+		<script>
+			// [식자재 등록] 이동함수 
+			function goIngredientInsertForm(){
+				location.replace("/onm/store_ingredient_insert_form.onm");
+			}
+		</script>
+		
+		
+	</head>
+	
+	<body><center><br><br><br>
+	
+	
+	
+	
+	<form name="ingredient_form" method="post" action="/onm/store_ingredient_form.onm">
+		<div style="width:800">
+
+			[검색] : <input type="text" name="keyword1" class="keyword1">
+			
+			<input type="button" value="   검색   " class="Search" onClick="goSearch();">
+<!--  			
+			<a href="javascript:goIngredientInsertForm();">[식자재 등록]</a>
+ -->			
+ 			<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
+
+			<input type="hidden" name="selectPageNo">
+			
+		</div><br>
+	</form>
+	
+	<div>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+	
+	<table><tr height=10><td></table>
+	
+	<table class="ingredientTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
+		<tr><th>번호<th>대분류<th>소분류<th>가게번호<th>상품코드<th>상품명<th>규격<th>매입가격<th>설명<th>등록일<th>원산지
+		
+		
+		
+		<c:forEach items="${ingredient_list}" var="ingredient" varStatus="loopTagStatus">
+	
+			<tr style="cursor:pointer"
+					bgcolor="${loopTagStatus.index%2==0?'white':'#F8FFEE'}"
+					 onClick="goBoardContentForm(${ingredient.i_no});">
+
+					 <!-- b_no를 ccc로 고쳤을 때도 코드가 작동되게 하려면 어디를 고쳐야 하는가 -->
+					 <!-- select id="getBoardList" 쿼리문의 b_no의 alias "b_no"를 "ccc"로 -->
+				<td align=center>${ingredient.i_no}
+				
+				<!-- ----------------------------------------------- -->
+				<!-- 게시판 검색 목록 중에 각 행의 역순 일련번호 출력-->
+				<!-- ----------------------------------------------- -->
+				
+				<%--
+				정순 번호 출력 시 아래 코드로 대체 할 것
+				${boardSearchDTO.selectPageNo*boardSearchDTO.rowCntPerPage-boardSearchDTO.rowCntPerPage+1+loopTagStatus.index} 
+				--%>
+
+					<td align=center>${ingredient.ia_code}
+					<td align=center>${ingredient.ib_code}
+					<td align=center>${ingredient.s_no}
+					<td align=center>${ingredient.num}
+					<td align=center>${ingredient.i_name}
+					<td align=center>${ingredient.i_size}
+					<td align=center>${ingredient.price}
+					<td align=center>${ingredient.i_comment}
+					<td align=center>${ingredient.reg_date}
+					<td align=center>${ingredient.io_code}
+					
+		</c:forEach>
+		
+		
+		
+	</table><br>
+
+
+
+</body>
 </html>

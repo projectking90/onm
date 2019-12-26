@@ -5,13 +5,11 @@
 package system.onm.controller;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -238,7 +236,6 @@ public class StoreController {
 		return mav;
 	}
 	
-	
 	/**
 	 * 식자재 메뉴 클릭 시 보여줄 jsp와 가게에 등록된 식자재를 보여주는 메소드
 	 * 가상주소 /store_ingredient_form.onm로 접근하면 호출
@@ -253,8 +250,8 @@ public class StoreController {
 		
 		try {
 			List<IngredientDTO> ingredient_list = this.store_service.getIngredientList(ingredient_searchDTO);
+
 			mav.addObject("ingredient_list", ingredient_list);
-			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -283,7 +280,7 @@ public class StoreController {
 		
 		return mav;
 	}
-	
+
 	/**
 	 * 가게 식자재 추가 클릭 시 보여줄 jsp를 보여주는 메소드
 	 * 가상주소 /store_ingredient_insert_form.onm로 접근하면 호출
@@ -318,6 +315,8 @@ public class StoreController {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			insert_result = this.store_service.insertStoreIngredient(ingredientDTO);
+			/* mav.addObject("insert_result",insert_result); */
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());
@@ -388,7 +387,7 @@ public class StoreController {
 		
 		return delete_result;
 	}
-
+	
 	/**
 	 * 가게 업종 메뉴 클릭 시 보여줄 jsp와 가게 등록된 업종 정보를 보여주는 메소드
 	 * 가상주소 /store_kind_form.onm로 접근하면 호출

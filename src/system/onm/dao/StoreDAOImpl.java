@@ -128,8 +128,10 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO) {
-		List<IngredientDTO> ingredient_list = null;
-		
+		List<IngredientDTO> ingredient_list = this.sqlSession.selectList(
+				"system.onm.dao.StoreDAO.getIngredientList"				// 실행할 SQL 구문의 위치 지정
+				,ingredient_searchDTO												// 실행할 SQL 구문에서 사용할 데이터 지정
+		);
 		return ingredient_list;
 	}
 
@@ -140,8 +142,11 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public int insertStoreIngredient(IngredientDTO ingredientDTO) {
-		int insert_result = 0;
-		
+		int insert_result = this.sqlSession.insert(
+				"system.onm.dao.StoreDAO.insertStoreIngredient"
+				,ingredientDTO
+		);
+		System.out.println("insertStoreIngredient 메소드로 DB 연동 성공 끝");
 		return insert_result;
 	}
 
