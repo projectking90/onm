@@ -13,7 +13,6 @@ public class MenuSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
-
 	private String keyword;
 	private int select_page_no=1;
 	private int row_cnt_per_page=10;

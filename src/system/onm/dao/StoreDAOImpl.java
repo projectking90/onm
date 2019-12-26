@@ -48,6 +48,7 @@ public class StoreDAOImpl implements StoreDAO {
 		return menu_list;
 	}
 	
+	// 메뉴 개수
 	@Override
 	public int getMenuListAllCnt(MenuSearchDTO menu_searchDTO) {
 		int menu_list_all_cnt = this.sqlSession.selectOne(

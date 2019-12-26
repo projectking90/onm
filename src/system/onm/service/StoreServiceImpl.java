@@ -46,7 +46,7 @@ public class StoreServiceImpl implements StoreService {
 		return menu_list;
 	}
 	
-	// 메뉴 개수 count
+	// 메뉴 개수 
 	@Override
 	public int getMenuListAllCnt(MenuSearchDTO menu_searchDTO) {
 		// TODO Auto-generated method stub

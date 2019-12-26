@@ -94,6 +94,7 @@
 	                 <td align=center><textarea rows="10" cols="50" name="m_comment"></textarea></td>
 	          </table>
 		</form>
+		
 		<table>
 			<tr>
 				<td align=right><input type="button" value="&nbsp;&nbsp;등&nbsp;록&nbsp;&nbsp;" onClick="go_menu_insert_form();">

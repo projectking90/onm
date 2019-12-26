@@ -106,6 +106,7 @@
 				
 				<!-- <input type="hidden" name="s_no" class="s_no"> -->
 			</table>
+			
 			<table><tr><td align=right><div>상품의 총 개수 : ${menu_list_all_cnt}&nbsp;&nbsp;&nbsp;</div></table>
 			<table><tr><td align=center><div>&nbsp;<span class="pagingNumber"></span>&nbsp;</div></table>
 			<br><br>

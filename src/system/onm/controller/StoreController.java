@@ -91,7 +91,6 @@ public class StoreController {
 			mav.addObject("menu_list", menu_list);
 			mav.addObject("menu_list_all_cnt", menu_list_all_cnt);
 			mav.addObject("menu_searchDTO", menu_searchDTO); 
-			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuForm 에러발생>");
 			System.out.println(e.getMessage());
