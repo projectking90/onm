@@ -23,8 +23,8 @@
 <!-- 변수 thColor1 선언하고, 문자열 #EAEAEA 저장 -->
 <c:set var="thColor1" value="#EAEAEA"/>
 <!-- 변수 headerColor 선언하고, 문자열 #CECECE 저장 -->
-<c:set var="headerColor" value="#CECECE"/>
 <c:set var="headerColor" value="#84FB84"/>
+<c:set var="headerColor" value="#CECECE"/>
 <!-- 변수 oddColor 선언하고, 문자열 white 저장 -->
 <c:set var="oddColor" value="white"/>
 <c:set var="oddColor" value="#F0FFF0"/>

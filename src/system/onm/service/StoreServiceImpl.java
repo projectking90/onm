@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import system.onm.dao.StoreDAO;
+import system.onm.dto.CodeMenuAlphaDTO;
+import system.onm.dto.CodeMenuBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -42,11 +44,16 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO) {
-		List<MenuDTO> menu_list = null;
+		List<MenuDTO> menu_list = this.storeDAO.getMenuList(menu_searchDTO);
 		
 		return menu_list;
 	}
+	@Override
+	public MenuDTO getMenuDTO(int m_no) {
 
+		MenuDTO menuDTO = this.storeDAO.getMenuDTO(m_no);
+		return menuDTO;
+	}
 	/**
 	 * 가게 메뉴 추가
 	 * @param menuDTO : 메뉴 추가를 위해 사용하는 DTO
@@ -67,7 +74,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int updateStoreMenu(MenuDTO menuDTO) {
 		int update_result = 0;
-		
+		update_result = this.storeDAO.updateStoreMenu(menuDTO);
 		return update_result;
 	}
 
@@ -79,7 +86,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public int deleteStoreMenu(MenuDTO menuDTO) {
 		int delete_result = 0;
-		
+		delete_result = this.storeDAO.deleteStoreMenu(menuDTO);
 		return delete_result;
 	}
 
@@ -117,6 +124,18 @@ public class StoreServiceImpl implements StoreService {
 		int update_result = 0;
 		
 		return update_result;
+	}
+	
+	
+	public List<CodeMenuAlphaDTO> getCodeMenuAlpha(){
+		List<CodeMenuAlphaDTO> ma_nameList = this.storeDAO.getCodeMenuAlpha();
+		
+		return ma_nameList;
+	}
+	
+	public List<CodeMenuBetaDTO> getCodeMenuBeta(){
+		List<CodeMenuBetaDTO> mb_nameList = this.storeDAO.getCodeMenuBeta();
+		return mb_nameList;
 	}
 
 	/**

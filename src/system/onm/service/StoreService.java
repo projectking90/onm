@@ -6,6 +6,8 @@ package system.onm.service;
 
 import java.util.List;
 
+import system.onm.dto.CodeMenuAlphaDTO;
+import system.onm.dto.CodeMenuBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -23,8 +25,11 @@ public interface StoreService {
 	 * 메소드 선언
 	 */
 	List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO);	// 가게에 등록된 메뉴를 가져옴
+	MenuDTO getMenuDTO(int m_no);			// 가게 메뉴 상세보기
 	int insertStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 추가
 	int updateStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 수정
+	List<CodeMenuAlphaDTO> getCodeMenuAlpha();	// 메뉴대분류의 목록을 가져오는 메소드
+	List<CodeMenuBetaDTO> getCodeMenuBeta();	// 메뉴대분류의 목록을 가져오는 메소드
 	int deleteStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 삭제
 	List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO);	// 가게에 등록된 식자재를 가져옴
 	int insertStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 추가

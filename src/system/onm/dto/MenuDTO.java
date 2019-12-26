@@ -13,12 +13,77 @@ public class MenuDTO {
 	/**
 	 * 속성변수 선언
 	 */
-
+	private int m_no;
+	private String ma_code;
+	private String mb_code;
+	private String s_no;
+	private String m_name;
+	private int price;
+	private String m_comment;
+	private String reg_date;
+	private String is_del;
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	public String getMa_code() {
+		return ma_code;
+	}
+	public void setMa_code(String ma_code) {
+		this.ma_code = ma_code;
+	}
+	public String getMb_code() {
+		return mb_code;
+	}
+	public void setMb_code(String mb_code) {
+		this.mb_code = mb_code;
+	}
+	public String getS_no() {
+		return s_no;
+	}
+	public void setS_no(String s_no) {
+		this.s_no = s_no;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getM_comment() {
+		return m_comment;
+	}
+	public void setM_comment(String m_comment) {
+		this.m_comment = m_comment;
+	}
+	public String getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
+	public String getIs_del() {
+		return is_del;
+	}
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+	
 	/**
 	 * 생성자 선언
 	 */
-
 	/**
 	 * 접근자, 설정자 선언
 	 */
+
+	
 }

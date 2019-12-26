@@ -4,12 +4,22 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import system.onm.dto.CodeMenuDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -27,7 +37,7 @@ public class StoreController {
 	/**
 	 * 속성변수 선언
 	 */
-	private final String path = "Store/";	// jsp 경로
+	private final String path = "/Store/";	// jsp 경로
 	@Autowired
 	private StoreService store_service;	// StoreService 인터페이스를 구현받은 객체를 생성해서 저장
 
@@ -43,10 +53,20 @@ public class StoreController {
 	@RequestMapping(value="/store_menu_form.onm")
 	public ModelAndView goStoreMenuForm(
 			MenuSearchDTO menu_searchDTO) {
+		/**
+		 * menu_form.jsp에 넘겨줄 데이터
+		 * menuList : 가게에 등록된 메뉴들
+		 * s_no : 가게 번호
+		 */
+		/* mav.setViewName(path + "menu_detail_form.jsp"); */
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_form");
 		
 		try {
+			
+			List<MenuDTO> menu_list = this.store_service.getMenuList(menu_searchDTO);
+			mav.addObject("menu_list", menu_list);
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -63,11 +83,14 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_detail_form.onm")
 	public ModelAndView goStoreMenuDetailForm(
-			MenuDTO menuDTO) {
+			/* MenuDTO menuDTO, */
+			@RequestParam(value="m_no") int m_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_detail_form");
 		
 		try {
+			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
+			mav.addObject("menuDTO", menuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -105,17 +128,23 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_insert.onm")
 	@ResponseBody
-	public int insertStoreMenu(
+	public ModelAndView insertStoreMenu(
 			MenuDTO menuDTO) {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Store/menu_form.jsp");
+		
 		try {
+			
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStoreMenu 에러발생>");
 			System.out.println(e.getMessage());
 		}
 		
-		return insert_result;
+		return mav;
 	}
 	
 	/**
@@ -126,11 +155,18 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_updel_form.onm")
 	public ModelAndView goStoreMenuUpDelForm(
-			MenuDTO menuDTO) {
+			/* MenuDTO menuDTO, */
+			@RequestParam(value="m_no") int m_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "menu_updel_form");
 		
 		try {
+			MenuDTO menuDTO = this.store_service.getMenuDTO(m_no);
+			mav.addObject("menuDTO", menuDTO);
+			CodeMenuDTO codemenuDTO = new CodeMenuDTO();
+			codemenuDTO.setMa_nameList(this.store_service.getCodeMenuAlpha());
+			codemenuDTO.setMb_nameList(this.store_service.getCodeMenuBeta());
+			mav.addObject("codemenuDTO", codemenuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuUpDelForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -138,28 +174,39 @@ public class StoreController {
 		
 		return mav;
 	}
-
+	
+	
+	
 	/**
 	 * 가게 메뉴 수정 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_menu_update.onm로 접근하면 호출
 	 * @param menuDTO : 메뉴 수정을 위해 사용하는 DTO
 	 * @return update_result : 메뉴 수정 Query 실행 결과
 	 */
-	@RequestMapping(value="/store_menu_update.onm")
+	@RequestMapping(value="/store_menu_update.onm"
+					, method=RequestMethod.POST	
+					, produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public int updateStoreMenu(
-			MenuDTO menuDTO) {
+			MenuDTO menuDTO
+	) {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
+		System.out.print("updatecheck");
 		try {
+			 update_result = this.store_service.updateStoreMenu(menuDTO); 
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<updateStoreMenu 에러발생>");
 			System.out.println(e.getMessage());
+			update_result=-1;
 		}
 		
 		return update_result;
 	}
-
+	
+	
+	
 	/**
 	 * 가게 메뉴 삭제 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_menu_delete.onm로 접근하면 호출
@@ -168,18 +215,29 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_menu_delete.onm")
 	@ResponseBody
-	public int deleteStoreMenu(
-			MenuDTO menuDTO) {
+	public ModelAndView deleteStoreMenu(
+			MenuDTO menuDTO
+			,MenuSearchDTO menu_searchDTO
+			,HttpServletResponse response) {
 		int delete_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
+		ModelAndView mav = new ModelAndView();
 		try {
+			delete_result = this.store_service.deleteStoreMenu(menuDTO);
+			System.out.print("del");
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<deleteStoreMenu 에러발생>");
 			System.out.println(e.getMessage());
 		}
+		mav.setViewName( path+"menu_form");
+
+		List<MenuDTO> menu_list = this.store_service.getMenuList(menu_searchDTO);
+		mav.addObject("menu_list", menu_list);
 		
-		return delete_result;
+		return mav;
 	}
+	
 	
 	/**
 	 * 식자재 메뉴 클릭 시 보여줄 jsp와 가게에 등록된 식자재를 보여주는 메소드
@@ -194,6 +252,9 @@ public class StoreController {
 		mav.setViewName(path + "ingredient_form");
 		
 		try {
+			List<IngredientDTO> ingredient_list = this.store_service.getIngredientList(ingredient_searchDTO);
+			mav.addObject("ingredient_list", ingredient_list);
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientForm 에러발생>");
 			System.out.println(e.getMessage());

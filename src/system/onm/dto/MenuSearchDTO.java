@@ -13,7 +13,10 @@ public class MenuSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
-
+	private String keyword;
+	private int selectPageNo=1;
+	private int rowCntPerPage=10;
+	
 	/**
 	 * 생성자 선언
 	 */
@@ -21,4 +24,23 @@ public class MenuSearchDTO {
 	/**
 	 * 접근자, 설정자 선언
 	 */
+
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public int getSelectPageNo() {
+		return selectPageNo;
+	}
+	public void setSelectPageNo(int selectPageNo) {
+		this.selectPageNo = selectPageNo;
+	}
+	public int getRowCntPerPage() {
+		return rowCntPerPage;
+	}
+	public void setRowCntPerPage(int rowCntPerPage) {
+		this.rowCntPerPage = rowCntPerPage;
+	}
 }

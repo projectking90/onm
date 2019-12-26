@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		O&M Project
-		<script>
+ 		<script>
 			location.replace("/onm/start.onm");
 		</script>
 	</body>

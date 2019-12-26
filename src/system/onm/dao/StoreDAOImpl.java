@@ -5,11 +5,14 @@
 package system.onm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import system.onm.dto.CodeMenuAlphaDTO;
+import system.onm.dto.CodeMenuBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -40,9 +43,21 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO) {
-		List<MenuDTO> menu_list = null;
-		
+		List<MenuDTO> menu_list = this.sqlSession.selectList(
+				"system.onm.dao.StoreDAO.getMenuList"	// 실행할 SQL 구문의 위치 지정
+				,menu_searchDTO				
+	);	
 		return menu_list;
+	}
+
+	@Override
+	public MenuDTO getMenuDTO(int m_no) {
+
+		MenuDTO menuDTO = this.sqlSession.selectOne(
+				sqlSessionPath + "getMenuDTO"
+				,m_no
+		);
+		return menuDTO;
 	}
 
 	/**
@@ -65,9 +80,29 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int updateStoreMenu(MenuDTO menuDTO) {
 		int update_result = 0;
-		
+		update_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.updateStoreMenu"
+				,menuDTO
+		);
 		return update_result;
 	}
+	
+	@Override
+	public List<CodeMenuAlphaDTO> getCodeMenuAlpha(){
+		List<CodeMenuAlphaDTO> ma_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeMenuAlpha"		
+		);
+		return ma_nameList;
+	}
+	
+	@Override
+	public List<CodeMenuBetaDTO> getCodeMenuBeta(){
+		List<CodeMenuBetaDTO> mb_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeMenuBeta"		
+		);
+		return mb_nameList;
+	}
+
 
 	/**
 	 * 가게 메뉴 삭제
@@ -77,6 +112,11 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int deleteStoreMenu(MenuDTO menuDTO) {
 		int delete_result = 0;
+		delete_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.deleteStoreMenu"
+				,menuDTO
+				
+		);
 		
 		return delete_result;
 	}

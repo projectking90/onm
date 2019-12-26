@@ -3,3 +3,7 @@
  */
 $(document).ready(function(){
 })
+
+function goMenuUpDelForm(){
+	document.menuUpDelForm.submit();
+}

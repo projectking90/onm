@@ -18,6 +18,56 @@
 		<!-- 메뉴 수정/삭제 기능 선택 시 보여줄 페이지, 메뉴 수정, 삭제 기능 구현 -->
 	</head>
 	<body>
+	<center><br><br><br>	
+		<table><tr height=4><td></table>
 		
+		<form:form  method="post" name="menuUpForm" commandName="menuDTO" action="/onm/store_menu_update_proc.onm">
+	
+			<b>[메뉴 수정/삭제]</b>
+			<!----------------------------------------------------------------------->
+			<table class="tbcss1" width="500" boarder=1 bordercolor="#DDDDDD" cellspacing=0 cellpadding="5" align="center">
+				<tr>
+					<th bgcolor="${headerColor}">메뉴이름
+					<td bgcolor="${oddTrColor}"><form:input path="m_name" className="m_name"/>
+			
+			
+				<form:form name="MenuCodeForm" commandName="codemenuDTO">
+				<tr>
+					<th bgcolor="${headerColor}">대분류
+					<td bgcolor="${oddTrColor}"> <form:select path="ma_code">
+													<form:options items="${codemenuDTO.ma_nameList}" itemLabel="ma_name" itemValue="ma_name"></form:options>
+												</form:select>
+												<%-- <form:input path="ma_code" className="ma_code"/> --%>
+				<tr>
+					<th bgcolor="${headerColor}">소분류
+					<td bgcolor="${oddTrColor}"> <form:select path="mb_code">
+													<form:options items="${codemenuDTO.mb_nameList}" itemLabel="mb_name" itemValue="mb_name"></form:options>
+												</form:select>
+												<%-- <form:input path="mb_code" className="mb_code"/> --%>
+				</form:form>
+				
+				
+				<tr>
+					<th bgcolor="${headerColor}">설명
+					<td bgcolor="${oddTrColor}"><form:textarea path="m_comment" className="m_comment" rows="13" cols="40" style="resize:none;"/>
+				<tr>
+					<th bgcolor="${headerColor}">가격
+					<td bgcolor="${oddTrColor}"><form:input path="price" className="price"/>	
+			</table>
+			<!------------------------------------------------>
+			<table><tr height=4><td></table>
+			<!------------------------------------------------>
+			<input type="hidden" name="m_no" value="${menuDTO.m_no}">
+			<!------------------------------------------------>
+			<input type="button" value="수정" onClick="goMenuUpdateForm();">&nbsp;
+			<input type="button" value="삭제" onClick="goMenuDeleteForm();">&nbsp;		
+			<input type="button" value="목록보기" onClick="location.replace('/onm/store_menu_form.onm')">
+		</form:form>
+		
+		
+		<form name="menuDelForm" method="post" action="/onm/store_menu_delete.onm">
+			<input type="hidden" name="m_no" class="m_no" value="${param.m_no}">
+		</form>
+	</center>
 	</body>
 </html>
