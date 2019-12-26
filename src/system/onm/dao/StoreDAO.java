@@ -23,7 +23,6 @@ public interface StoreDAO {
 	 * 속성변수 선언
 	 */
 	String sqlSessionPath = "system.onm.dao.StoreDAO.";
-
 	/**
 	 * 메소드 선언
 	 */
