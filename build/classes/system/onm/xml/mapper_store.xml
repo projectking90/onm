@@ -46,17 +46,17 @@
 		<!-- 메뉴대분류의 목록을 검색하는 select 태그 -->
 	<select id='getCodeMenuAlpha' resultType="system.onm.dto.CodeMenuAlphaDTO">
 		select
-			ma_name||''	"ma_name"
+			ma_name	"ma_name"
 		from
-			code_menu_alpha_name
+			code_menu_alpha
 	</select>
 	
 	<!-- 메뉴소분류의 목록을 검색하는 select 태그 -->
 	<select id='getCodeMenuBeta' resultType="system.onm.dto.CodeMenuBetaDTO">
 		select
-			mb_name||''	"mb_name"
+			mb_name	"mb_name"
 		from
-			code_menu_beta_name
+			code_menu_beta
 	</select>
 	
 	<update id="deleteStoreMenu" parameterType="system.onm.dto.MenuDTO">

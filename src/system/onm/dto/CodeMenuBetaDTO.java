@@ -13,14 +13,14 @@ public class CodeMenuBetaDTO {
 	/**
 	 * 속성변수 선언
 	 */
-	private String ma_name;
+	private String mb_name;
 	
-	public String getMa_name() {
-		return ma_name;
+	public String getMb_name() {
+		return mb_name;
 	}
 	
-	public void setMa_name(String ma_name) {
-		this.ma_name = ma_name;
+	public void setMb_name(String mb_name) {
+		this.mb_name = mb_name;
 	}
 	
 	/**

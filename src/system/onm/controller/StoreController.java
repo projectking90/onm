@@ -166,8 +166,6 @@ public class StoreController {
 			CodeMenuDTO codemenuDTO = new CodeMenuDTO();
 			codemenuDTO.setMa_nameList(this.store_service.getCodeMenuAlpha());
 			codemenuDTO.setMb_nameList(this.store_service.getCodeMenuBeta());
-			System.out.println(this.store_service.getCodeMenuAlpha());
-			System.out.println(this.store_service.getCodeMenuBeta());
 			mav.addObject("codemenuDTO", codemenuDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreMenuUpDelForm 에러발생>");

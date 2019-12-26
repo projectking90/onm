@@ -20,7 +20,7 @@ public class CodeMenuDTO {
 	private List<CodeMenuAlphaDTO> ma_nameList;	// 데이터베이스에서 가져온 ma_name 값
 	private String mb_code;
 	private String mb_name;
-	private List<CodeMenuBetaDTO> mb_nameList;	// 데이터베이스에서 가져온 ma_name 값
+	private List<CodeMenuBetaDTO> mb_nameList;	// 데이터베이스에서 가져온 mb_name 값
 	public String getMa_code() {
 		return ma_code;
 	}
