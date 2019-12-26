@@ -168,12 +168,12 @@ public class StoreServiceImpl implements StoreService {
 
 	/**
 	 * 가게 업종 정보를 가져옴
-	 * @param store_kind_searchDTO : 업종 정보 검색을 위해 사용하는 DTO
+	 * @param s_id : 아이디
 	 * @return store_kind_list : 검색된 업종 정보
 	 */
 	@Override
-	public List<StoreKindDTO> getStoreKindList(StoreKindSearchDTO store_kind_searchDTO) {
-		List<StoreKindDTO> store_kind_list = null;
+	public StoreKindDTO getStoreKindList(String s_id) {
+		StoreKindDTO store_kind_list = null;
 		
 		return store_kind_list;
 	}

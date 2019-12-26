@@ -5,9 +5,12 @@
 package system.onm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import system.onm.dto.MenuDTO;
 import system.onm.dto.OrderDTO;
+import system.onm.dto.OrderRecommendDTO;
+import system.onm.dto.OrderRecommendSearchDTO;
 import system.onm.dto.StoreDTO;
 import system.onm.dto.StoreSearchDTO;
 
@@ -26,4 +29,11 @@ public interface OrderService {
 	List<OrderDTO> getOrderList(int c_no);	// 고객의 주문 목록를 가져옴
 	OrderDTO getOrderDetail(int o_no);	// 주문정보를 가져옴
 	int deleteOrder(int o_no);	// 고객의 주문을 취소
+	List<OrderRecommendDTO> getOrderRecommendList(OrderRecommendSearchDTO order_recommend_searchDTO);	// 추천 주문 목록을 가져옴
+	List<OrderDTO> getOrderWaitList(int s_id);	// 가게의 접수대기 중인 주문 목록을 가져옴
+	OrderDTO getOrderStoreDetail(int o_no);	// 가게의 주문 상세정보를 가져옴
+	List<OrderDTO> getOrderProcList(int s_id);	// 가게의 처리 중인 주문 목록을 가져옴
+	List<OrderDTO> getOrderDoneList(int s_id);	// 가게의 완료된 주문 목록을 가져옴
+	int updateOrderProc(Map<String, String> o_no_flag);	// 주문 상태를 변경
+	int updateOrderReject(int o_no);	// 주문 취소 상태로 변경
 }

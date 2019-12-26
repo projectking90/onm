@@ -6,19 +6,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSP 기술의 한 종류인 Include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입 -->
 <%@ include file="/WEB-INF/views/All/common.jsp" %>
+<!-- CSS파일 수입 -->
+<%@ include file="/WEB-INF/resources/Order/order_cus_recommend_css.jsp" %>
+<!-- JQuery 라이브러리 파일 수입 -->
+<%@ include file="/WEB-INF/resources/Order/order_cus_recommend_js.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Cusmoter Main View</title>
-		<!-- CSS파일 수입 -->
-		<link href="${cr}/resources/All/start.css" rel="stylesheet" type="text/css">
-		<!-- JQuery 라이브러리 파일 수입 -->
-		<script src="${cr}/resources/All/start.js" type="text/javascript"></script>
-		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
+		<title>주문하기(고객) 추천주문 페이지</title>
+		<!-- 고객이 추천 주문하기 기능 선택 시 보여줄 페이지 -->
 	</head>
 	<body>
-		<input type="button" value="주문" onClick="location.replace('${cr}/order_cus_form.onm')">
-		<input type="button" value="추천주문" onClick="location.replace('${cr}/order_cus_recommend_form.onm')">
+		
 	</body>
 </html>

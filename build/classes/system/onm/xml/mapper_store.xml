@@ -200,4 +200,16 @@
 			<!-- ,#{is_del} -->
 		)
 	</insert>
+	
+	<!-- 가게 업종 정보를 가져오는 select 태그 -->
+	<select id="getStoreKindList" parameterType="string" resultType="system.onm.dto.StoreKindDTO">
+	</select>
+	
+	<!-- 가게 업종 추가 할 update 태그 -->
+	<update id="insertStoreKind" parameterType="system.onm.dto.StoreKindDTO">
+	</update>
+	
+	<!-- 가게 업종 수정 할 update 태그 -->
+	<update id="updateStoreKind" parameterType="system.onm.dto.StoreKindDTO">
+	</update>
 </mapper>

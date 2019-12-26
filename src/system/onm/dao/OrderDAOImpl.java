@@ -5,6 +5,7 @@
 package system.onm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import system.onm.dto.MenuDTO;
 import system.onm.dto.OrderDTO;
+import system.onm.dto.OrderRecommendDTO;
+import system.onm.dto.OrderRecommendSearchDTO;
 import system.onm.dto.StoreDTO;
 import system.onm.dto.StoreSearchDTO;
 
@@ -113,5 +116,93 @@ public class OrderDAOImpl implements OrderDAO {
 		String checkOrderState = "";
 		
 		return checkOrderState;
+	}
+
+	/**
+	 *  추천 주문 목록을 가져옴
+	 * @param order_recommend_searchDTO : 추천 주문을 검색하기 위해 사용하는 DTO
+	 * @return goOrderCustomRecommendForm : 추천 주문 목록
+	 */
+	@Override
+	public List<OrderRecommendDTO> getOrderRecommendList(OrderRecommendSearchDTO order_recommend_searchDTO) {
+		List<OrderRecommendDTO> getOrderRecommendList = null;
+		
+		return getOrderRecommendList;
+	}
+	
+	/**
+	 * 가게의 접수대기 중인 주문 목록을 가져옴
+	 * @param s_id : 가게 아이디
+	 * @return getOrderWaitList : 접수대기 중인 주문 목록
+	 */
+	@Override
+	public List<OrderDTO> getOrderWaitList(int s_id) {
+		List<OrderDTO> getOrderWaitList = null;
+		
+		return getOrderWaitList;
+	}
+
+	/**
+	 * 가게의 주문 상세정보를 가져옴
+	 * @param o_no : 주문 번호
+	 * @return getOrderStoreDetail : 주문 상세정보
+	 */
+	@Override
+	public OrderDTO getOrderStoreDetail(int o_no) {
+		OrderDTO getOrderStoreDetail = null;
+		
+		return getOrderStoreDetail;
+	}
+
+	/**
+	 * 가게의 처리 중인 주문 목록을 가져옴
+	 * @param s_id : 가게 아이디
+	 * @return getOrderProcList : 처리 중인 주문 목록
+	 */
+	@Override
+	public List<OrderDTO> getOrderProcList(int s_id) {
+		List<OrderDTO> getOrderProcList = null;
+		
+		return getOrderProcList;
+	}
+
+	/**
+	 * 가게의 완료된 주문 목록을 가져옴
+	 * @param s_id : 가게 아이디
+	 * @return getOrderDoneList : 완료된 주문 목록
+	 */
+	@Override
+	public List<OrderDTO> getOrderDoneList(int s_id) {
+		List<OrderDTO> getOrderDoneList = null;
+		
+		return getOrderDoneList;
+	}
+
+	/**
+	 * 주문 상태를 변경
+	 * @param o_no_flag : 주문번호, 변경할 상태
+	 * @return updateOrderProc : 주문 상태 변경 Query 실행 결과
+	 */
+	@Override
+	public int updateOrderProc(Map<String, String> o_no_flag) {
+		int updateOrderProc = 0;
+		
+		// DAO의 checkOrderState를 통해 주문 취소가 가능한지 확인할 것
+		
+		return updateOrderProc;
+	}
+
+	/**
+	 * 주문 취소 상태로 변경
+	 * @param o_no : 주문번호
+	 * @return updateOrderReject : 주문 취소 변경 Query 실행 결과
+	 */
+	@Override
+	public int updateOrderReject(int o_no) {
+		int updateOrderReject = 0;
+		
+		// DAO의 checkOrderState를 통해 주문 취소가 가능한지 확인할 것
+		
+		return updateOrderReject;
 	}
 }

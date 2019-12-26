@@ -30,4 +30,32 @@
 	<!-- 주문의 상태를 확인하는 select 태그 -->
 	<select id="checkOrderState" parameterType="int" resultType="string">
 	</select>
+	
+	<!-- 추천 주문 목록을 가져오는 select 태그 -->
+	<select id="getOrderRecommendList" parameterType="system.onm.dto.OrderRecommendSearchDTO" resultType="system.onm.dto.OrderRecommendDTO">
+	</select>
+	
+	<!-- 가게의 접수대기 중인 주문 목록을 가져오는 select 태그 -->
+	<select id="getOrderWaitList" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 가게의 주문 상세정보를 가져오는 select 태그 -->
+	<select id="getOrderStoreDetail" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 가게의 처리 중인 주문 목록를 가져오는 select 태그 -->
+	<select id="getOrderProcList" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 가게의 완료된 주문 목록를 가져오는 select 태그 -->
+	<select id="getOrderDoneList" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 가게의 완료된 주문 목록를 가져오는 select 태그 -->
+	<update id="updateOrderProc" parameterType="hashmap">
+	</update>
+	
+	<!-- 가게의 완료된 주문 목록를 가져오는 select 태그 -->
+	<update id="updateOrderReject" parameterType="int">
+	</update>
 </mapper>

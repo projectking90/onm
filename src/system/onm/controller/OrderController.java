@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import system.onm.dto.OrderDTO;
-import system.onm.dto.OrderSearchDTO;
+import system.onm.dto.OrderRecommendSearchDTO;
 import system.onm.dto.StoreSearchDTO;
 import system.onm.service.OrderService;
 
@@ -157,5 +157,177 @@ public class OrderController {
 		}
 		
 		return delete_result;
+	}
+	
+	/**
+	 * 고객이 추천 주문 클릭 시 보여줄 jsp와 추천 주문 정보를 보여주는 메소드
+	 * 가상주소 /order_cus_recommend_form.onm로 접근하면 호출
+	 * @param o_no : 주문번호
+	 * @return mav : /order_cus_recommend_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 목록
+	 */
+	@RequestMapping(value="/order_cus_recommend_form.onm")
+	public ModelAndView goOrderCustomRecommendForm(
+			OrderRecommendSearchDTO order_recommend_searchDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_cus_recommend_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderCustomRecommendForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 가게가 주문 확인 - 접수대기 클릭 시 보여줄 jsp와 가게에 들어온 주문 정보를 보여주는 메소드
+	 * 가상주소 /order_store_wait_form.onm로 접근하면 호출
+	 * @param s_id : 가게 아이디
+	 * @return mav : /order_store_wait_form.onm에 맵핑되는 jsp 파일과 가게 주문 목록
+	 */
+	@RequestMapping(value="/order_store_wait_form.onm")
+	public ModelAndView goOrderStoreWaitForm(
+			@RequestParam(value="s_id") String s_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_store_wait_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderStoreWaitForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 가게가 주문 확인에서 주문 선택 시 보여줄 jsp와 주문의 상세 정보를 보여주는 메소드
+	 * 가상주소 /order_store_detail_form.onm로 접근하면 호출
+	 * @param o_no : 주문 번호
+	 * @return mav : /order_store_detail_form.onm에 맵핑되는 jsp 파일과 주문 상세 정보
+	 */
+	@RequestMapping(value="/order_store_detail_form.onm")
+	public ModelAndView goOrderStoreDetailForm(
+			@RequestParam(value="o_no") int o_no) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_store_detail_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderStoreDetailForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 가게가 주문 확인 - 처리중 클릭 시 보여줄 jsp와 주문 중 처리중인 주문을 보여주는 메소드
+	 * 가상주소 /order_store_proc_form.onm로 접근하면 호출
+	 * @param s_id : 가게 아이디
+	 * @return mav : /order_store_proc_form.onm에 맵핑되는 jsp 파일과 처리 중인 주문 목록
+	 */
+	@RequestMapping(value="/order_store_proc_form.onm")
+	public ModelAndView goOrderStoreProcForm(
+			@RequestParam(value="s_id") String s_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_store_proc_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderStoreProcForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 가게가 주문 확인 - 완료 클릭 시 보여줄 jsp와 주문 중 완료된 주문을 보여주는 메소드
+	 * 가상주소 /order_store_done_form.onm로 접근하면 호출
+	 * @param s_id : 가게 아이디
+	 * @return mav : /order_store_done_form.onm에 맵핑되는 jsp 파일과 완료된 주문 목록
+	 */
+	@RequestMapping(value="/order_store_done_form.onm")
+	public ModelAndView goOrderStoreDoneForm(
+			@RequestParam(value="s_id") String s_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_store_done_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderStoreDoneForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
+	
+	/**
+	 * 주문의 상태를 변경 할 경우 변경 가능한 상태인지 확인
+	 * 가상주소 /order_check_state.onm로 접근하면 호출
+	 * @param o_no : 주문 번호
+	 * @return checkOrderState : 주문의 상태
+	 */
+	@RequestMapping(value="/order_check_state.onm")
+	@ResponseBody
+	public String checkOrderState(
+			@RequestParam(value="o_no") int o_no) {
+		String checkOrderState = "";
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<checkOrderState 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return checkOrderState;
+	}
+	
+	/**
+	 * 가게가 주문의 상태를 변경
+	 * 가상주소 /order_store_confirm.onm로 접근하면 호출
+	 * @param o_no : 주문 번호
+	 * @param flag : 처리 중을 뜻하는 flag값(p)
+	 * @return updateOrderProc : 주문 처리 중 Query 실행 후 결과
+	 */
+	@RequestMapping(value="/order_store_confirm.onm")
+	@ResponseBody
+	public int updateOrderProc(
+			@RequestParam(value="o_no") int o_no
+			, @RequestParam(value="flag") String flag) {
+		int updateOrderProc = 0;
+		/**
+		 * 매개변수 hashmap에 담아서 넘길것
+		 */
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<updateOrderProc 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return updateOrderProc;
+	}
+	
+	/**
+	 * 가게가 주문 확인 - 접수대기에서 거부 클릭 시 주문 취소로 변경
+	 * 가상주소 /order_store_reject.onm로 접근하면 호출
+	 * @param o_no : 주문 번호
+	 * @return updateOrderReject : 주문 거부 Query 실행 후 결과
+	 */
+	@RequestMapping(value="/order_store_reject.onm")
+	@ResponseBody
+	public int updateOrderReject(
+			@RequestParam(value="o_no") int o_no) {
+		int updateOrderReject = 0;
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<updateOrderReject 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return updateOrderReject;
 	}
 }
