@@ -68,6 +68,5 @@
 		<form name="menuDelForm" method="post" action="/onm/store_menu_delete.onm">
 			<input type="hidden" name="m_no" class="m_no" value="${param.m_no}">
 		</form>
-	</center>
 	</body>
 </html>

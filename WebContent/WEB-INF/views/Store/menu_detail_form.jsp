@@ -40,8 +40,6 @@
 					<th bgcolor="${headerColor}" width=100>소분류
 					<td width=150 bgcolor="${oddTrColor}">${menuDTO.mb_code}
 				<tr align=center>
-					<th bgcolor="${headerColor}" width=100>가게이름
-					<td width=150 bgcolor="${oddTrColor}">${menuDTO.s_no}
 					<th bgcolor="${headerColor}" width=100>메뉴이름
 					<td width=150 bgcolor="${oddTrColor}">${menuDTO.m_name}
 					<th bgcolor="${headerColor}" width=100>가격

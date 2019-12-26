@@ -3,27 +3,72 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StoreDAO">
+	<!-- 검색 조건에 의해 검색될 Query -->
+	<sql id="menuWhere">
+		<if test="keyword!=null and keyword.length()>0">
+				and (
+					upper(m_no) like upper('%${keyword}%')
+					<!-- 서브쿼리로 인해 띄우는 것들 먹게 하는 방법 -->
+					or upper(ma_code) like upper('%${keyword}%')
+					or upper(mb_code) like upper('%${keyword}%')
+					or upper(s_name) like upper('%${keyword}%')
+					<!-- ============================= -->
+					or upper(m_name) like upper('%${keyword}%')
+					or upper(price) like upper('%${keyword}%')
+					or upper(m_comment) like upper('%${keyword}%')
+					or upper(reg_date) like upper('%${keyword}%')	
+				)
+		</if>
+	</sql>
+	
+	<!-- 가게에 등록된 메뉴를 가져오는 select 태그 -->
 	<select id="getMenuList" parameterType="system.onm.dto.MenuSearchDTO" resultType="system.onm.dto.MenuDTO">
-		select
-			m.m_no	"m_no"
-			,(select a.ma_name from code_menu_alpha a where a.ma_code=m.ma_code)	"ma_code"
-			,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)		"mb_code"
-			,(select s.s_name from store s where s.s_no=m.s_no)		"s_no"
-			,m.m_name	"m_name"
-			,m.price	"price"
-			,m.m_comment		"m_comment"
-			,to_char(m.reg_date,'YYYY-MM-DD') "reg_date"
-			,m.is_del			as "is_del"
-		from menu m
-		where 1=1
+		select * from(
+			select zzz.*, rownum RNUM from(
+				select 	
+					m.m_no "m_no"
+					,(select a.ma_name from code_menu_alpha a where a.ma_code=m.ma_code)   "ma_code"
+					,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)   "mb_code"
+					,m.m_name "m_name"
+					,m.price "price"
+					,m.m_comment "m_comment"
+					,to_char(m.reg_date, 'YYYY-MM-DD(dy)') "reg_date"	
+				from menu m
+				where m.is_del='F'
+					and s_no = (select
+									s_no
+								from
+									store
+								where
+									s_id=#{s_id})
+				<include refid="menuWhere"/>) zzz) where 
+					<![CDATA[
+						RNUM>=${select_page_no*row_cnt_per_page-row_cnt_per_page+1} 
+						and RNUM<=${select_page_no*row_cnt_per_page}
+					]]>
 	</select>
 	
+	<!-- 가게에 등록된 메뉴의 총 개수를 가져오는 select 태그 -->
+	<select id="getMenuListAllCnt" parameterType="system.onm.dto.MenuSearchDTO" resultType="int">
+		select 
+			count(*) 
+		from menu		
+		where is_del='F'
+			and s_no = (select
+							s_no
+						from
+							store
+						where
+							s_id=#{s_id})
+		<include refid="menuWhere"/>
+	</select>
+	
+	<!-- 메뉴의 상세정보를 가져오는 select 태그 -->
 	<select id="getMenuDTO" parameterType="int" resultType="system.onm.dto.MenuDTO">
 		select
 			m.m_no	"m_no"
 			,(select a.ma_name from code_menu_alpha a where a.ma_code=m.ma_code)	"ma_code"
 			,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)		"mb_code"
-			,(select s.s_name from store s where s.s_no=m.s_no)		"s_no"
 			,m.m_name	"m_name"
 			,m.price	"price"
 			,m.m_comment		"m_comment"
@@ -33,6 +78,28 @@
 		where m.m_no=#{m_no}
 	</select>
 	
+	<!-- 가게 메뉴를 추가하는 insert 태그 -->
+	<insert id='insertStoreMenu' parameterType="system.onm.dto.MenuDTO">
+		insert into menu(
+			m_no,
+			ma_code,
+			mb_code,
+			s_no,
+			m_name,
+			price,
+			m_comment
+		)values(
+			(select nvl(max(m_no),0)+1 from menu)
+			,#{ma_code}
+			,#{mb_code}
+			,(select s_no from store where s_id=#{s_id})
+			,#{m_name}
+			,#{price}
+			,#{m_comment}
+		)
+	</insert>
+	
+	<!-- 가게 메뉴를 수정하는 update 태그 -->
 	<update id="updateStoreMenu" parameterType="system.onm.dto.MenuDTO">
 		update menu 
 		set 
@@ -43,7 +110,8 @@
 			,m_comment=#{m_comment}
 		where m_no=#{m_no}
 	</update>
-		<!-- 메뉴대분류의 목록을 검색하는 select 태그 -->
+	
+	<!-- 메뉴대분류의 목록을 검색하는 select 태그 -->
 	<select id='getCodeMenuAlpha' resultType="system.onm.dto.CodeMenuAlphaDTO">
 		select
 			ma_name	"ma_name"
@@ -59,6 +127,7 @@
 			code_menu_beta
 	</select>
 	
+	<!-- 가게 메뉴를 삭제하는 update 태그 -->
 	<update id="deleteStoreMenu" parameterType="system.onm.dto.MenuDTO">
 		update menu 
 		set 
@@ -83,8 +152,8 @@
 
  -->
 
+	<!-- 가게에 등록된 식자재 목록을 가져오는 select 태그 -->
 	<select id="getIngredientList" parameterType="system.onm.dto.IngredientSearchDTO" resultType="system.onm.dto.IngredientDTO">
-
 			select
 				i_no||'' 		as "i_no"
 				,ia_code 		as "ia_code"
@@ -99,9 +168,9 @@
 				,to_char(reg_date,'YYYY-MM-DD') "reg_date" 
 				,is_del			as "is_del"
 			from ingredient
-
 	</select>
 
+	<!-- 식자재를 추가하는 insert 태그 -->
 	<insert id='insertStoreIngredient' parameterType="system.onm.dto.IngredientDTO">
 		insert into ingredient( 
 			 i_no        <!-- 식자재 번호 -->

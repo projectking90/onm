@@ -25,6 +25,7 @@ public interface StoreService {
 	 * 메소드 선언
 	 */
 	List<MenuDTO> getMenuList(MenuSearchDTO menu_searchDTO);	// 가게에 등록된 메뉴를 가져옴
+	int getMenuListAllCnt(MenuSearchDTO menu_searchDTO); // 가게에 등록된 메뉴 총 개수를 가져옴
 	MenuDTO getMenuDTO(int m_no);			// 가게 메뉴 상세보기
 	int insertStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 추가
 	int updateStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 수정

@@ -17,12 +17,16 @@ public class MenuDTO {
 	private String ma_code;
 	private String mb_code;
 	private String s_no;
+	private String s_id;
 	private String m_name;
 	private int price;
 	private String m_comment;
 	private String reg_date;
 	private String is_del;
 	
+	/**
+	 * 접근자, 설정자 선언
+	 */
 	public int getM_no() {
 		return m_no;
 	}
@@ -77,13 +81,18 @@ public class MenuDTO {
 	public void setIs_del(String is_del) {
 		this.is_del = is_del;
 	}
-	
 	/**
-	 * 생성자 선언
+	 * s_id 접근자
+	 * @return s_id : 
 	 */
+	public String getS_id() {
+		return s_id;
+	}
 	/**
-	 * 접근자, 설정자 선언
+	 * s_id 설정자
+	 * @param s_id : 
 	 */
-
-	
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
+	}
 }

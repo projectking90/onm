@@ -48,12 +48,30 @@ public class StoreServiceImpl implements StoreService {
 		
 		return menu_list;
 	}
+	
+	/**
+	 * 가게에 등록된 메뉴 총 개수를 가져옴
+	 * @param menu_searchDTO : 메뉴 검색을 위해 사용하는 DTO
+	 * @return menu_list_all_cnt : 메뉴 총 개수
+	 */
+	@Override
+	public int getMenuListAllCnt(MenuSearchDTO menu_searchDTO) {
+		int menu_list_all_cnt = this.storeDAO.getMenuListAllCnt(menu_searchDTO);
+
+		return menu_list_all_cnt;
+	}
+
+	/**
+	 * 가게 메뉴 상세보기
+	 * @param m_no : 가게번호
+	 * @return menuDTO : 메뉴에 대한 상세 정보
+	 */
 	@Override
 	public MenuDTO getMenuDTO(int m_no) {
-
 		MenuDTO menuDTO = this.storeDAO.getMenuDTO(m_no);
 		return menuDTO;
 	}
+	
 	/**
 	 * 가게 메뉴 추가
 	 * @param menuDTO : 메뉴 추가를 위해 사용하는 DTO
@@ -61,7 +79,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int insertStoreMenu(MenuDTO menuDTO) {
-		int insert_result = 0;
+		int insert_result = this.storeDAO.insertStoreMenu(menuDTO);
 		
 		return insert_result;
 	}
@@ -73,8 +91,8 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int updateStoreMenu(MenuDTO menuDTO) {
-		int update_result = 0;
-		update_result = this.storeDAO.updateStoreMenu(menuDTO);
+		int update_result = this.storeDAO.updateStoreMenu(menuDTO);
+
 		return update_result;
 	}
 
@@ -85,8 +103,8 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int deleteStoreMenu(MenuDTO menuDTO) {
-		int delete_result = 0;
-		delete_result = this.storeDAO.deleteStoreMenu(menuDTO);
+		int delete_result = this.storeDAO.deleteStoreMenu(menuDTO);
+
 		return delete_result;
 	}
 

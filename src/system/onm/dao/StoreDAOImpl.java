@@ -45,8 +45,24 @@ public class StoreDAOImpl implements StoreDAO {
 		List<MenuDTO> menu_list = this.sqlSession.selectList(
 				"system.onm.dao.StoreDAO.getMenuList"	// 실행할 SQL 구문의 위치 지정
 				,menu_searchDTO				
-	);	
+				);
+		
 		return menu_list;
+	}
+
+	/**
+	 * 가게에 등록된 메뉴 총 개수를 가져옴
+	 * @param menu_searchDTO : 메뉴 검색을 위해 사용하는 DTO
+	 * @return menu_list_all_cnt : 메뉴의 총 개수
+	 */
+	@Override
+	public int getMenuListAllCnt(MenuSearchDTO menu_searchDTO) {
+		int menu_list_all_cnt = this.sqlSession.selectOne(
+				"system.onm.dao.StoreDAO.getMenuListAllCnt"
+				, menu_searchDTO
+				);
+		
+		return menu_list_all_cnt;	
 	}
 
 	@Override
@@ -66,7 +82,10 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public int insertStoreMenu(MenuDTO menuDTO) {
-		int insert_result = 0;
+		int insert_result = sqlSession.insert(
+				"system.onm.dao.StoreDAO.insertStoreMenu",
+				menuDTO
+				);
 		
 		return insert_result;
 	}
@@ -83,6 +102,7 @@ public class StoreDAOImpl implements StoreDAO {
 				"system.onm.dao.StoreDAO.updateStoreMenu"
 				,menuDTO
 		);
+		
 		return update_result;
 	}
 	
@@ -91,6 +111,7 @@ public class StoreDAOImpl implements StoreDAO {
 		List<CodeMenuAlphaDTO> ma_nameList = this.sqlSession.selectList(
 				sqlSessionPath + "getCodeMenuAlpha"		
 		);
+		
 		return ma_nameList;
 	}
 	
@@ -99,6 +120,7 @@ public class StoreDAOImpl implements StoreDAO {
 		List<CodeMenuBetaDTO> mb_nameList = this.sqlSession.selectList(
 				sqlSessionPath + "getCodeMenuBeta"		
 		);
+		
 		return mb_nameList;
 	}
 
@@ -131,6 +153,7 @@ public class StoreDAOImpl implements StoreDAO {
 				"system.onm.dao.StoreDAO.getIngredientList"				// 실행할 SQL 구문의 위치 지정
 				,ingredient_searchDTO												// 실행할 SQL 구문에서 사용할 데이터 지정
 		);
+		
 		return ingredient_list;
 	}
 

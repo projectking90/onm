@@ -37,8 +37,8 @@ function getPagingNumber(
 	, pageNoCntPerPage_str  // 페이지 당 출력번호 개수
 	, jsCodeAfterClick      // 페이지 번호 클릭후 실행할 자스 코드
 ) {
-	if( $('[name=selectPageNo]').length==0 ){ 	// name=nowPage을 가진 hidden 태그없으면 경고하고 중지하는 자바스크립트 소스 생성해 저장
-		alert("name=selectPageNo 을 가진 hidden 태그가 있어야 getPagingNumber(~) 함수 호출이 가능함.');" );
+	if( $('[name=select_page_no]').length==0 ){ 	// name=nowPage을 가진 hidden 태그없으면 경고하고 중지하는 자바스크립트 소스 생성해 저장
+		alert("name=select_page_no 을 가진 hidden 태그가 있어야 getPagingNumber(~) 함수 호출이 가능함.');" );
 		return;
 	}
 	
@@ -98,9 +98,9 @@ function getPagingNumber(
 		//--------------------------------------------------------------
 		//arr.push( "<td align=right width=110> " );
 		if( startPageNo>pageNoCntPerPage ) {
-			arr.push( "<span "+cursor+" onclick=\"$('[name=selectPageNo]').val('1');"
+			arr.push( "<span "+cursor+" onclick=\"$('[name=select_page_no]').val('1');"
 							+jsCodeAfterClick+";\">[처음]</span>" );
-			arr.push( "<span "+cursor+" onclick=\"$('[name=selectPageNo]').val('"
+			arr.push( "<span "+cursor+" onclick=\"$('[name=select_page_no]').val('"
 				+(startPageNo-1)+"');"+jsCodeAfterClick+";\">[이전]</span>   " );
 		}
 		//--------------------------------------------------------------
@@ -112,7 +112,7 @@ function getPagingNumber(
 			if(i==selectPageNo || maxPageNo==1 ) {
 				arr.push( "<b>"+i +"</b> " );
 			}else{
-				arr.push( "<span "+cursor+" onclick=\"$('[name=selectPageNo]').val('"
+				arr.push( "<span "+cursor+" onclick=\"$('[name=select_page_no]').val('"
 							+(i)+"');"+jsCodeAfterClick+";\">["+i+"]</span> " );
 			}
 		}
@@ -121,9 +121,9 @@ function getPagingNumber(
 		//--------------------------------------------------------------
 		//arr.push( "<td align=left width=110>  " );
 		if( endPageNo<maxPageNo ) {
-			arr.push( "   <span "+cursor+" onclick=\"$('[name=selectPageNo]').val('"
+			arr.push( "   <span "+cursor+" onclick=\"$('[name=select_page_no]').val('"
 						+(endPageNo+1)+"');"+jsCodeAfterClick+";\">[다음]</span>" );
-			arr.push( "<span "+cursor+" onclick=\"$('[name=selectPageNo]').val('"
+			arr.push( "<span "+cursor+" onclick=\"$('[name=select_page_no]').val('"
 						+(maxPageNo)+"');"+jsCodeAfterClick+";\">[마지막]</span>" );
 		}
 		//arr.push( "</table>" );
