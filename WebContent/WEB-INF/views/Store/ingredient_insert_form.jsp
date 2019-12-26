@@ -144,7 +144,7 @@
 				<td><input type="text" size="10" maxlength="10" name="price">
 			<tr>
 				<th>설명
-				<td><textarea name="i_comment" rows="13" cols="30" maxlength="500" style="resize:none;"></textarea>
+				<td><textarea name="i_comment" rows="10" cols="30" maxlength="500" style="resize:none;"></textarea>
 <!-- 		<tr>
 				<th>등록일
 				<td><input type="text" size="10" maxlength="10" name="reg_date"> 
