@@ -4,6 +4,13 @@
  */
 package system.onm.service;
 
+import java.util.List;
+
+import system.onm.dto.MenuDTO;
+import system.onm.dto.OrderDTO;
+import system.onm.dto.StoreDTO;
+import system.onm.dto.StoreSearchDTO;
+
 /**
  * OrderService 인터페이스
  * 서비스 클래스를 사용하기 위해 정의한 인터페이스
@@ -13,4 +20,10 @@ public interface OrderService {
 	/**
 	 * 메소드 선언
 	 */
+	List<StoreDTO> getStoreList(StoreSearchDTO store_searchDTO);	// 가게 목록를 가져옴
+	List<MenuDTO> getMenuList(int s_no);	// 가게의 메뉴 목록를 가져옴
+	int insertOrder(OrderDTO orderDTO);	// 고객의 주문을 추가
+	List<OrderDTO> getOrderList(int c_no);	// 고객의 주문 목록를 가져옴
+	OrderDTO getOrderDetail(int o_no);	// 주문정보를 가져옴
+	int deleteOrder(int o_no);	// 고객의 주문을 취소
 }

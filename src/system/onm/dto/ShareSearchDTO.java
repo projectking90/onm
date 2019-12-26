@@ -5,11 +5,11 @@
 package system.onm.dto;
 
 /**
- * DatawarehouseDTO 클래스
- * 발주를 추가, 수정, 삭제할 때 사용할 DTO
+ * ShareSearchDTO 클래스
+ * 발주 검색할 때 사용할 DTO
  * @author Jo
  */
-public class DatawarehouseDTO {
+public class ShareSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */

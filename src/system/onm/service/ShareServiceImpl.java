@@ -8,21 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import system.onm.dao.DatawarehouseDAO;
+import system.onm.dao.ShareDAO;
 
 /**
- * DatawarehouseServiceImpl 클래스
+ * ShareServiceImpl 클래스
  * 서비스 클래스
  * @author Jo
  */
 @Service
 @Transactional
-public class DatawarehouseServiceImpl implements DatawarehouseService {
+public class ShareServiceImpl implements ShareService {
 	/**
 	 * 속성변수 선언
 	 */
 	@Autowired
-	private DatawarehouseDAO datawarehouse_dao;	// DatawarehouseDAO 인터페이스를 구현받은 객체를 생성해서 저장
+	private ShareDAO share_dao;	// ShareDAO 인터페이스를 구현받은 객체를 생성해서 저장
 
 	/**
 	 * 메소드 선언

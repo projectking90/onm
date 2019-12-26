@@ -7,20 +7,20 @@ package system.onm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import system.onm.service.DatawarehouseService;
+import system.onm.service.ShareService;
 
 /**
- * DatawarehouseController 클래스
+ * ShareController 클래스
  * 발주 메뉴 관련 가상 URL 주소로 접속하면 호출되는 메소드를 소유한 컨트롤러 클래스
  * @author Jo
  */
 @Controller
-public class DatawarehouseController {
+public class ShareController {
 	/**
 	 * 속성변수 선언
 	 */
 	@Autowired
-	private DatawarehouseService datawarehouse_service;	// DatawarehouseService 인터페이스를 구현받은 객체를 생성해서 저장
+	private ShareService share_service;	// ShareService 인터페이스를 구현받은 객체를 생성해서 저장
 
 	/**
 	 * 메소드 선언

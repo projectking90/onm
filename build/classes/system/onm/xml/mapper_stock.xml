@@ -3,4 +3,23 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StockDAO">
+	<!-- 가게의 재고 목록을 가져오는 select 태그 -->
+	<select id="getStockList" parameterType="system.onm.dto.StockSearchDTO" resultType="system.onm.dto.StockDTO">
+	</select>
+	
+	<!-- 가게의 재고 정보를 가져오는 select 태그 -->
+	<select id="getStockDetail" parameterType="int" resultType="system.onm.dto.StockDTO">
+	</select>
+	
+	<!-- 가게의 재고를 추가해주는 insert 태그 -->
+	<insert id="insertStock" parameterType="system.onm.dto.StockDTO">
+	</insert>
+	
+	<!-- 가게의 재고를 수정해주는 update 태그 -->
+	<update id="updateStock" parameterType="system.onm.dto.StockDTO">
+	</update>
+	
+	<!-- 가게의 재고를 삭제해주는 update 태그 -->
+	<update id="deleteStock" parameterType="int">
+	</update>
 </mapper>

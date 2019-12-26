@@ -5,11 +5,11 @@
 package system.onm.service;
 
 /**
- * DatawarehouseService 인터페이스
+ * ShareService 인터페이스
  * 서비스 클래스를 사용하기 위해 정의한 인터페이스
  * @author Jo
  */
-public interface DatawarehouseService {
+public interface ShareService {
 	/**
 	 * 메소드 선언
 	 */

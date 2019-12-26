@@ -3,4 +3,31 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.OrderDAO">
+	<!-- 가게의 목록을 가져오는 select 태그 -->
+	<select id="getStoreList" parameterType="system.onm.dto.StoreSearchDTO" resultType="system.onm.dto.StoreDTO">
+	</select>
+	
+	<!-- 가게의 메뉴 목록을 가져오는 select 태그 -->
+	<select id="getMenuList" parameterType="int" resultType="system.onm.dto.MenuDTO">
+	</select>
+	
+	<!-- 고객의 주문을 추가하는 insert 태그 -->
+	<insert id="insertOrder" parameterType="system.onm.dto.OrderDTO">
+	</insert>
+	
+	<!-- 고객의 주문 목록을 가져오는 select 태그 -->
+	<select id="getOrderList" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 고객의 주문 목록을 가져오는 select 태그 -->
+	<select id="getOrderDetail" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	</select>
+	
+	<!-- 고객의 주문을 취소하는 update 태그 -->
+	<update id="deleteOrder" parameterType="int">
+	</update>
+	
+	<!-- 주문의 상태를 확인하는 select 태그 -->
+	<select id="checkOrderState" parameterType="int" resultType="string">
+	</select>
 </mapper>

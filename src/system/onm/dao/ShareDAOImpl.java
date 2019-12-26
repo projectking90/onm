@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- * DatawarehouseDAOImpl 클래스
+ * ShareDAOImpl 클래스
  * DAO 클래스, bean 태그로 자동 등록됨
  * @author Jo
  */
 @Repository
-public class DatawarehouseDAOImpl implements DatawarehouseDAO {
+public class ShareDAOImpl implements ShareDAO {
 	/**
 	 * 속성변수 선언
 	 */

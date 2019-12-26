@@ -5,11 +5,11 @@
 package system.onm.dto;
 
 /**
- * DatawarehouseSearchDTO 클래스
- * 발주 검색할 때 사용할 DTO
+ * OrderRecordDTO 클래스
+ * 주문 기록을 검색할 때 사용할 DTO
  * @author Jo
  */
-public class DatawarehouseSearchDTO {
+public class OrderSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
