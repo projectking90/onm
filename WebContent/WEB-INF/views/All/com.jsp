@@ -28,6 +28,8 @@
 		<input type="button" value="식자재 수정/삭제" onClick="location.replace('${cr}/store_ingredient_updel_form.onm')"><br><br>
 		<input type="button" value="가게 정보" onClick="location.replace('${cr}/store_kind_form.onm')">
 		<input type="button" value="가게 정보 등록" onClick="location.replace('${cr}/store_kind_insert_form.onm')">
-		<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')">
+		<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')"><br>
+		----------------------------------------------------------------<br>
+		<input type="button" value="재고관리" onClick="location.replace('${cr}/stock_form.onm')">
 	</body>
 </html>

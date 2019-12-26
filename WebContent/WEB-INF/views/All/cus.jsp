@@ -18,6 +18,6 @@
 		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
 	</head>
 	<body>
-		
+		<input type="button" value="주문" onClick="location.replace('${cr}/order_cus_form.onm')">
 	</body>
 </html>
