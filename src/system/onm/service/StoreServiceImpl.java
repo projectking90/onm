@@ -120,6 +120,18 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	/**
+	 * 가게 식자재 상세정보
+	 * @param i_no : 식자재 번호
+	 * @return ingredient_detail : 식자재 상세 정보
+	 */
+	@Override
+	public IngredientDTO getIngredientDetail(int i_no) {
+		IngredientDTO ingredient_detail = this.storeDAO.getIngredientDetail(i_no);
+		
+		return ingredient_detail;
+	}
+
+	/**
 	 * 가게 식자재 추가
 	 * @param ingredientDTO : 식자재 추가를 위해 사용하는 DTO
 	 * @return insert_result : 식자재 추가 적용 개수
@@ -137,7 +149,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int updateStoreIngredient(IngredientDTO ingredientDTO) {
-		int update_result = 0;
+		int update_result = this.storeDAO.updateStoreIngredient(ingredientDTO);
 		
 		return update_result;
 	}
@@ -161,7 +173,7 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int deleteStoreIngredient(IngredientDTO ingredientDTO) {
-		int delete_result = 0;
+		int delete_result = this.storeDAO.deleteStoreIngredient(ingredientDTO);
 		
 		return delete_result;
 	}

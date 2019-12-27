@@ -190,8 +190,6 @@ public class StoreController {
 		return mav;
 	}
 	
-	
-	
 	/**
 	 * 가게 메뉴 수정 기능 실행 시 데이터베이스와 연동 처리할 메소드
 	 * 가상주소 /store_menu_update.onm로 접근하면 호출
@@ -219,8 +217,6 @@ public class StoreController {
 		
 		return update_result;
 	}
-	
-	
 	
 	/**
 	 * 가게 메뉴 삭제 기능 실행 시 데이터베이스와 연동 처리할 메소드
@@ -275,16 +271,18 @@ public class StoreController {
 	/**
 	 * 가게 식자재 상세 보기시 보여줄 jsp를 보여주는 메소드
 	 * 가상주소 /store_ingredient_detail_form.onm로 접근하면 호출
-	 * @param ingredientDTO : 식자재 상세 보기를 위해 사용하는 DTO
+	 * @param i_no : 식자재 번호
 	 * @return mav : /store_ingredient_detail_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
 	 */
 	@RequestMapping(value="/store_ingredient_detail_form.onm")
 	public ModelAndView goStoreIngredientDetailForm(
-			IngredientDTO ingredientDTO) {
+			@RequestParam(value="i_no") int i_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "ingredient_detail_form");
 		
 		try {
+			IngredientDTO getIngredientDetail = this.store_service.getIngredientDetail(i_no);
+			mav.addObject("getIngredientDetail", getIngredientDetail);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -340,16 +338,19 @@ public class StoreController {
 	/**
 	 * 가게 식자재 수정/삭제 클릭 시 보여줄 jsp를 보여주는 메소드
 	 * 가상주소 /store_ingredient_updel_form.onm로 접근하면 호출
-	 * @param ingredientDTO : 식자재 수정/삭제를 위해 사용하는 DTO
+	 * @param i_no : 식자재 번호
 	 * @return mav : /store_ingredient_updel_form.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
 	 */
 	@RequestMapping(value="/store_ingredient_updel_form.onm")
 	public ModelAndView goStoreIngredientUpDelForm(
-			IngredientDTO ingredientDTO) {
+			@RequestParam(value="i_no") int i_no) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "ingredient_updel_form");
 		
 		try {
+			IngredientDTO ingredientDTO = this.store_service.getIngredientDetail(i_no);
+		
+			mav.addObject("ingredientDTO",ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreIngredientUpDelForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -371,6 +372,7 @@ public class StoreController {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			update_result = this.store_service.updateStoreIngredient(ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<updateStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());
@@ -392,6 +394,7 @@ public class StoreController {
 		int delete_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			delete_result = this.store_service.deleteStoreIngredient(ingredientDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<deleteStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());

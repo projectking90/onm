@@ -44,7 +44,7 @@
  -->			
  			<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
 
-			<input type="hidden" name="selectPageNo">
+			<input type="hidden" name="select_page_no">
 			
 		</div><br>
 	</form>
@@ -62,11 +62,11 @@
 	
 			<tr style="cursor:pointer"
 					bgcolor="${loopTagStatus.index%2==0?'white':'#F8FFEE'}"
-					 onClick="goBoardContentForm(${ingredient.i_no});">
+					 onClick="goIngDetailForm(${ingredient.i_no});">
 
 					 <!-- b_no를 ccc로 고쳤을 때도 코드가 작동되게 하려면 어디를 고쳐야 하는가 -->
 					 <!-- select id="getBoardList" 쿼리문의 b_no의 alias "b_no"를 "ccc"로 -->
-				<td align=center>${ingredient.i_no}
+				<td align=center>${loopTagStatus.index+1}
 				
 				<!-- ----------------------------------------------- -->
 				<!-- 게시판 검색 목록 중에 각 행의 역순 일련번호 출력-->

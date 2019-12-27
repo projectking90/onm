@@ -38,6 +38,7 @@ public interface StoreDAO {
 	List<CodeMenuBetaDTO> getCodeMenuBeta();	// 메뉴대분류의 목록을 가져오는 메소드
 	int deleteStoreMenu(MenuDTO menuDTO);	// 가게 메뉴 삭제
 	List<IngredientDTO> getIngredientList(IngredientSearchDTO ingredient_searchDTO);	// 가게에 등록된 식자재를 가져옴
+	IngredientDTO getIngredientDetail(int i_no);	// 가게 식자재 상세정보
 	int insertStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 추가
 	int updateStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 수정
 	int deleteStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 삭제

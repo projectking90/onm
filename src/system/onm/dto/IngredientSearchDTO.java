@@ -30,7 +30,7 @@ public class IngredientSearchDTO {
 	
 	private String keyword1;
 	private String[] date;
-	private int selectPageNo=1;
+	private int select_page_no=1;
 	private int rowCntPerPage=10;
 	
 	// ------------------------------
@@ -47,11 +47,11 @@ public class IngredientSearchDTO {
 	public void setDate(String[] date) {
 		this.date = date;
 	}
-	public int getSelectPageNo() {
-		return selectPageNo;
+	public int getSelect_page_no() {
+		return select_page_no;
 	}
-	public void setSelectPageNo(int selectPageNo) {
-		this.selectPageNo = selectPageNo;
+	public void setSelect_page_no(int select_page_no) {
+		this.select_page_no = select_page_no;
 	}
 	public int getRowCntPerPage() {
 		return rowCntPerPage;

@@ -12,21 +12,3 @@ select
 	*
 from
 	account_info;
-	
-create table card_info(	-- 카드정보
-	ci_no	number(8)	-- 카드정보번호
-	, l_flag	varchar2(1)	-- 유저구분
-	, l_id	varchar2(50)	-- 아이디
-	, ci_num	varchar2(256)	not null	-- 카드번호일부
-	, ci_pwd	varchar2(256)	not null	-- 비밀번호일부
-	, ci_date	varchar2(256)	not null	-- 년/월
-	, ci_cvc	varchar2(256)	not null	-- cvc
-	, ci_name	varchar2(50)	not null	-- 카드사명
-	, primary key(ci_no)
-	, foreign key(l_flag, l_id) references login(l_flag, l_id)
-);
-
-select
-	*
-from
-	card_info;

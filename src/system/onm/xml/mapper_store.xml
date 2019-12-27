@@ -168,6 +168,26 @@
 				,to_char(reg_date,'YYYY-MM-DD') "reg_date" 
 				,is_del			as "is_del"
 			from ingredient
+			where is_del = 'F'
+	</select>
+	
+	<!-- 식자재 상세정보를 가져오는 select 태그 -->
+	<select id ="getIngredientDetail" parameterType="int" resultType="system.onm.dto.IngredientDTO">
+		select
+			i_no							as		"i_no"
+			,ia_code						as		"ia_code"
+			,ib_code						as		"ib_code"
+			,io_code						as		"io_code" 
+			,s_no							as		"s_no"
+			,num							as		"num"
+			,i_name							as		"i_name"
+			,i_size							as		"i_size"
+			,price							as		"price"
+			,i_comment						as		"i_comment"
+			,reg_date						as		"reg_date"
+			,is_del							as		"is_del"
+		from ingredient
+		where i_no=#{i_no}
 	</select>
 
 	<!-- 식자재를 추가하는 insert 태그 -->
@@ -200,6 +220,30 @@
 			<!-- ,#{is_del} -->
 		)
 	</insert>
+	
+	<!-- 식자재 정보를 수정하는 update 태그 -->
+	<update id="updateStoreIngredient" parameterType="system.onm.dto.IngredientDTO">
+		update 
+			ingredient set
+			ia_code = #{ia_code}
+			,ib_code	= #{ib_code}
+			,io_code	= #{io_code}
+			,s_no	= #{s_no}
+			,num	= #{num}
+			,i_name	= #{i_name}
+			,i_size	= #{i_size}
+			,price	= #{price}
+			,i_comment	= #{i_comment}
+		where i_no = ${i_no}
+	</update>
+	
+	<!-- 식자재를 삭제하는 update 태그 -->
+	<update id="deleteStoreIngredient" parameterType="system.onm.dto.IngredientDTO">
+		update 
+		ingredient set
+		is_del = 'T'
+		where i_no = ${i_no}
+	</update>
 	
 	<!-- 가게 업종 정보를 가져오는 select 태그 -->
 	<select id="getStoreKindList" parameterType="string" resultType="system.onm.dto.StoreKindDTO">

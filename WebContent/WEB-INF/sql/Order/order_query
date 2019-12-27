@@ -1,3 +1,47 @@
-create table order(
-	o_no	number(8)
-	, c_no
+create table order_info(	-- 주문
+	o_no	number(8)	-- 주문번호
+	, c_no	number(8)	-- 고객번호
+	, s_no	number(8)	-- 가게번호
+	, o_state	varchar2(1)	not null	-- 주문상태
+	, addr_code	number(8)	--	주소코드
+	, location	varchar2(100)	not null	-- 상세주소
+	, o_phone	varchar2(20)	not null	-- 연락처
+	, order_time	date	default sysdate	-- 주문시간
+	, pick_time	date	not null	-- 픽업시간
+	, request	varchar2(1000)	-- 요청사항
+	, is_del	varchar2(1)	default 'F'	-- 삭제여부
+	, primary key(o_no)
+	, foreign key(c_no) references customer(c_no)
+	, foreign key(s_no) references store(s_no)
+	, foreign key(addr_code) references code_addr(addr_code)
+);
+
+select
+	*
+from
+	order_info;
+	
+create table order_menu(	-- 주문_메뉴
+	o_no	number(8)	-- 주문번호
+	, m_no	number(8)	-- 메뉴번호
+	, foreign key(o_no) references order_info(o_no)
+	, foreign key(m_no) references menu(m_no)	
+);
+
+select
+	*
+from
+	order_menu;
+	
+create table order_pay(	-- 주문_결제
+	o_no	number(8)	-- 주문번호
+	, how_pay	varchar2(30)	not null	-- 결제방식
+	, p_state	varchar2(50)	not null	-- 결제상태
+	, o_reg_date	date	default sysdate	-- 등록일
+	, foreign key(o_no) references order_info(o_no)
+);
+
+select
+	*
+from
+	order_pay;
