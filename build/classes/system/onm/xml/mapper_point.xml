@@ -3,4 +3,35 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.PointDAO">
+	<!-- 포인트 기록을 가져올 select 태그 -->
+	<select id="getPointList" parameterType="system.onm.dto.PointSearchDTO" resultType="system.onm.dto.PointDTO">
+	</select>
+	
+	<!-- 포인트 정보를 가져올 select 태그 -->
+	<select id="getPointInfo" parameterType="string" resultType="system.onm.dto.PointDTO">
+	</select>
+	
+	<!-- 사용자간 포인트 선물을 할 insert 태그 -->
+	<insert id="updatePointPresent" parameterType="system.onm.dto.PointPresentDTO">
+	</insert>
+	
+	<!-- 포인트 전환을 할 insert 태그 -->
+	<insert id="updatePointToCash" parameterType="system.onm.dto.PointPresentDTO">
+	</insert>
+	
+	<!-- 사용자의 소지 포인트를 확인할 select 태그 -->
+	<select id="checkPoint" parameterType="string" resultType="int">
+	</select>
+	
+	<!-- 포인트 충전할 insert 태그 -->
+	<insert id="insertPointCharge" parameterType="system.onm.dto.CardDTO">
+	</insert>
+	
+	<!-- 포인트 충전 시 카드번호 일치 여부를 확인할 select 태그 -->
+	<select id="checkCardNum" parameterType="system.onm.dto.CardDTO" resultType="int">
+	</select>
+	
+	<!-- 포인트 충전 시 cvc 일치 여부를 확인할 select 태그 -->
+	<select id="checkCVC" parameterType="system.onm.dto.CardDTO" resultType="int">
+	</select>
 </mapper>

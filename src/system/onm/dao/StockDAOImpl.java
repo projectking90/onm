@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import system.onm.dto.IngredientDTO;
 import system.onm.dto.StockDTO;
 import system.onm.dto.StockSearchDTO;
 
@@ -36,9 +37,9 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public List<StockDTO> getStockList(StockSearchDTO stock_searchDTO) {
-		List<StockDTO> getStockList = null;
+		List<StockDTO> stock_list = null;
 		
-		return getStockList;
+		return stock_list;
 	}
 
 	/**
@@ -48,9 +49,21 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public StockDTO getStockDetail(int st_no) {
-		StockDTO getStockDetail = null;
+		StockDTO stock_detail = null;
 		
-		return getStockDetail;
+		return stock_detail;
+	}
+
+	/**
+	 * 가게 재고 정보를 볼때 출,입고 목록을 보여줌
+	 * @param st_no : 재고번호
+	 * @return getStockDetailList : 재고의 출, 입고 목록
+	 */
+	@Override
+	public List<StockDTO> getStockDetailList(int st_no) {
+		List<StockDTO> stock_detail_list = null;
+		
+		return stock_detail_list;
 	}
 
 	/**
@@ -60,9 +73,21 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public int insertStock(StockDTO stockDTO) {
-		int insertStock = 0;
+		int insert_stock = 0;
 		
-		return insertStock;
+		return insert_stock;
+	}
+
+	/**
+	 * 식자재 목록을 가져옴
+	 * @param s_id : 가게 아이디
+	 * @return
+	 */
+	@Override
+	public List<IngredientDTO> getIngredientList(String s_id) {
+		List<IngredientDTO> ingredient_list = null;
+		
+		return ingredient_list;
 	}
 
 	/**
@@ -72,9 +97,9 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public int updateStock(StockDTO stockDTO) {
-		int updateStock = 0;
+		int update_stock = 0;
 		
-		return updateStock;
+		return update_stock;
 	}
 
 	/**
@@ -84,8 +109,20 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public int deleteStock(int st_no) {
-		int deleteStock = 0;
+		int delete_stock = 0;
 		
-		return deleteStock;
+		return delete_stock;
+	}
+
+	/**
+	 * 재고 출고, 수정, 삭제 시 재고 수량 확인
+	 * @param st_no : 재고번호
+	 * @return check_stock_quantity : 재고의 수량
+	 */
+	@Override
+	public int checkStockQuantity(int st_no) {
+		int check_stock_quantity = 0;
+		
+		return check_stock_quantity;
 	}
 }

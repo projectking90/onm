@@ -16,6 +16,9 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/All/start.js" type="text/javascript"></script>
 		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
+		<%
+			logger.info(this.getClass() + " 시작");
+		%>
 	</head>
 	<body>
 		<input type="button" value="메뉴" onClick="location.replace('${cr}/store_menu_form.onm')">

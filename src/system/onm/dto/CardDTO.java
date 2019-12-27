@@ -5,11 +5,11 @@
 package system.onm.dto;
 
 /**
- * PointDTO 클래스
- * 포인트 정보를 담을 때 사용할 DTO
+ * CardDTO 클래스
+ * 카드정보를 담을 DTO
  * @author Jo
  */
-public class PointDTO {
+public class CardDTO {
 	/**
 	 * 속성변수 선언
 	 */

@@ -49,3 +49,7 @@
 		*/
 	});
 </script>
+<%
+	Logger logger = Logger.getLogger(this.getClass());
+	logger.info("common.jsp 수입");
+%>

@@ -5,13 +5,13 @@
 <!-- UTF-8 인코딩 방식은 한글을 포함 전 세계 모든 문자열을 부호화할 수 있는 방법이다.-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- javascript에 관한 jsp 수입 -->
-<%@ include file="/WEB-INF/resources/Stock/stock_form_js.jsp" %>
+<%@ include file="/WEB-INF/resources/Point/point_present_form_js.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>재고관리 검색 페이지</title>
-		<!-- 가게가 재고관리 검색 기능 선택 시 보여줄 첫 페이지 -->
+		<title>포인트 선물 페이지</title>
+		<!-- 사용자가 포인트 선물 기능 선택 시 보여줄 페이지 -->
 	</head>
 	<body>
 		

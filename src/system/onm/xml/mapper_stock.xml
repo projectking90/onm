@@ -11,15 +11,27 @@
 	<select id="getStockDetail" parameterType="int" resultType="system.onm.dto.StockDTO">
 	</select>
 	
+	<!-- 가게 재고 정보를 볼때 출,입고 목록을 가져오는 select 태그 -->
+	<select id="getStockDetailList" parameterType="int" resultType="system.onm.dto.StockDTO">
+	</select>
+	
 	<!-- 가게의 재고를 추가해주는 insert 태그 -->
 	<insert id="insertStock" parameterType="system.onm.dto.StockDTO">
 	</insert>
 	
-	<!-- 가게의 재고를 수정해주는 update 태그 -->
-	<update id="updateStock" parameterType="system.onm.dto.StockDTO">
-	</update>
+	<!-- 가게에 등록된 식자재 목록을 가져올 select 태그 -->
+	<select id="getIngredientList" parameterType="string" resultType="system.onm.dto.IngredientDTO">
+	</select>
 	
-	<!-- 가게의 재고를 삭제해주는 update 태그 -->
-	<update id="deleteStock" parameterType="int">
-	</update>
+	<!-- 가게의 재고를 수정해주는 insert 태그 -->
+	<insert id="updateStock" parameterType="system.onm.dto.StockDTO">
+	</insert>
+	
+	<!-- 가게의 재고를 삭제해주는 insert 태그 -->
+	<insert id="deleteStock" parameterType="int">
+	</insert>
+	
+	<!-- 재고 출고, 수정, 삭제 시 재고 수량 확인해주는 select 태그 -->
+	<select id="checkStockQuantity" parameterType="int" resultType="int">
+	</select>
 </mapper>

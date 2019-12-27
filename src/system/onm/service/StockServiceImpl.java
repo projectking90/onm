@@ -38,9 +38,9 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public List<StockDTO> getStockList(StockSearchDTO stock_searchDTO) {
-		List<StockDTO> getStockList = null;
+		List<StockDTO> stock_list = null;
 		
-		return getStockList;
+		return stock_list;
 	}
 
 	/**
@@ -50,9 +50,9 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public StockDTO getStockDetail(int st_no) {
-		StockDTO getStockDetail = null;
+		StockDTO stock_detail = null;
 		
-		return getStockDetail;
+		return stock_detail;
 	}
 
 	/**
@@ -62,9 +62,9 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public int insertStock(StockDTO stockDTO) {
-		int insertStock = 0;
+		int insert_stock = 0;
 		
-		return insertStock;
+		return insert_stock;
 	}
 
 	/**
@@ -74,9 +74,9 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public int updateStock(StockDTO stockDTO) {
-		int updateStock = 0;
+		int update_stock = 0;
 		
-		return updateStock;
+		return update_stock;
 	}
 
 	/**
@@ -86,8 +86,8 @@ public class StockServiceImpl implements StockService {
 	 */
 	@Override
 	public int deleteStock(int st_no) {
-		int deleteStock = 0;
+		int delete_stock = 0;
 		
-		return deleteStock;
+		return delete_stock;
 	}
 }
