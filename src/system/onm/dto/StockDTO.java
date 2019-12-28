@@ -13,6 +13,46 @@ public class StockDTO {
 	/**
 	 * 속성변수 선언
 	 */
+	/*private int st_no; // 재고 번호
+	private int i_no; // 식자재 번호
+	private String i_name; // 식자재 상품명
+	private int cnt; // 수량
+	private String st_state; // 재고 상태
+	private String sr_state; // 입출고 상태
+	private int price;	// 가격
+	private String st_reg_date; // 등록일
+	private String is_del; // 삭제 여부
+	*/
+	
+	private int st_no;
+	private String i_name;
+	private int cnt;
+	private String st_state;
+	
+	public String getI_name() {
+		return i_name;
+	}
+	public void setI_name(String i_name) {
+		this.i_name = i_name;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public String getSt_state() {
+		return st_state;
+	}
+	public void setSt_state(String st_state) {
+		this.st_state = st_state;
+	}
+	public int getSt_no() {
+		return st_no;
+	}
+	public void setSt_no(int st_no) {
+		this.st_no = st_no;
+	}
 
 	/**
 	 * 생성자 선언

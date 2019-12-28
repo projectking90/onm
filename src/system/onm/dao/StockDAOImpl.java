@@ -37,9 +37,22 @@ public class StockDAOImpl implements StockDAO {
 	 */
 	@Override
 	public List<StockDTO> getStockList(StockSearchDTO stock_searchDTO) {
-		List<StockDTO> stock_list = null;
+		List<StockDTO> stock_list = this.sqlSession.selectList(
+				"system.onm.dao.StockDAO.getStockList"
+				, stock_searchDTO
+		);
 		
 		return stock_list;
+	}
+	
+	@Override
+	public int getStockListAllCnt(StockSearchDTO stock_searchDTO) {
+		//System.out.println(stock_searchDTO.getS_id());
+		int stock_list_all_cnt=this.sqlSession.selectOne(
+				"system.onm.dao.StockDAO.getStockListAllCnt"
+				,stock_searchDTO
+		);
+		return stock_list_all_cnt;
 	}
 
 	/**

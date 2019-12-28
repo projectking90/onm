@@ -4,36 +4,15 @@
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.All">
 	<!-- 시의 목록을 검색하는 select 태그 -->
-	<select id='getAddrCity' resultType="system.onm.dto.AddrCityDTO">
-		select
-			distinct city_name
-		from
-			code_city_name
-		order by
-			1
+	<!-- <select id='getAddrCity' resultType="system.onm.dto.AddrCityDTO">
 	</select>
-	
+	 -->
+	 
 	<!-- 구의 목록을 검색하는 select 태그 -->
-	<select id='getAddrGu' parameterType="String" resultType="system.onm.dto.AddrGuDTO">
-		select
-			distinct gu_name
-		from
-			code_gu_name
-		where
-			city_name=#{city_name}
-		order by
-			1
-	</select>
+	<!--  <select id='getAddrGu' parameterType="String" resultType="system.onm.dto.AddrGuDTO">
+	</select>-->
 	
 	<!-- 동의 목록을 검색하는 select 태그 -->
-	<select id='getAddrDong' parameterType="String" resultType="system.onm.dto.AddrDongDTO">
-		select
-			distinct dong_name
-		from
-			code_dong_name
-		where
-			gu_name=#{gu_name}
-		order by
-			1
-	</select>
+	<!-- <select id='getAddrDong' parameterType="String" resultType="system.onm.dto.AddrDongDTO">
+	</select> -->
 </mapper>

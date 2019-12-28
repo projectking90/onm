@@ -25,6 +25,7 @@ public interface StockDAO {
 	 * 메소드 선언
 	 */
 	List<StockDTO> getStockList(StockSearchDTO stock_searchDTO);	// 가게의 재고 목록을 보여줌
+	int getStockListAllCnt(StockSearchDTO stock_searchDTO); // 가게의 재고 목록의 총 개수
 	StockDTO getStockDetail(int st_no);	// 가게 재고의 정보를 보여줌
 	List<StockDTO> getStockDetailList(int st_no);	// 가게 재고 정보를 볼때 출,입고 목록을 보여줌
 	int insertStock(StockDTO stockDTO);	// 가게의 재고를 추가

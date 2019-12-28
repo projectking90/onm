@@ -50,10 +50,10 @@ public class AllController {
 		mav.setViewName(path + "start");
 		
 		try {
-			AddrDTO addr = new AddrDTO();
-			addr.setCityList(this.all_service.getAddrCity());
+			//AddrDTO addr = new AddrDTO();
+			//addr.setCityList(this.all_service.getAddrCity());
 			
-			mav.addObject("addr", addr);
+			//mav.addObject("addr", addr);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStartForm 에러발생>");
 			System.out.println(e.getMessage());

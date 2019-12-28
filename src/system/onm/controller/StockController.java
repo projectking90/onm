@@ -4,6 +4,10 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,11 +44,35 @@ public class StockController {
 	 */
 	@RequestMapping(value="/stock_form.onm")
 	public ModelAndView goStockForm(
-			StockSearchDTO stock_searchDTO) {
+			StockSearchDTO stock_searchDTO
+			, HttpSession session
+	) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "stock_form");
-		
+		String s_id = (String)session.getAttribute("s_id");
 		try {
+			stock_searchDTO.setS_id(s_id);
+			int stock_list_all_cnt = this.stock_service.getStockListAllCnt(stock_searchDTO);
+
+			if (stock_list_all_cnt > 0) {
+				// 선택한 페이지 번호 구하기
+				int select_page_no = stock_searchDTO.getSelect_page_no();
+				// 한 화면에 보여지는 행의 개수 구하기
+				int row_cnt_per_page = stock_searchDTO.getRow_cnt_per_page();
+				// 검색할 시작행 번호 구하기
+				int beginRowNo = select_page_no * row_cnt_per_page - row_cnt_per_page + 1;
+				// 만약 검색한 총 개수가 검색할 시작행 번호보다 작으면
+				// 선택한 페이지 번호를 1로 초기화하기
+				if (stock_list_all_cnt < beginRowNo) {
+					stock_searchDTO.setSelect_page_no(1);
+				}
+			}
+			List<StockDTO> stock_list = this.stock_service.getStockList(stock_searchDTO);
+			
+			mav.addObject("stock_list", stock_list);
+			mav.addObject("stock_list_all_cnt", stock_list_all_cnt);
+			mav.addObject("stock_searchDTO", stock_searchDTO); 
+			mav.addObject("s_id", s_id);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStockForm 에러발생>");
 			System.out.println(e.getMessage());

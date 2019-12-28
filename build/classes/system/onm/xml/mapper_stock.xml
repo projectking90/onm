@@ -3,8 +3,175 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.StockDAO">
+	<sql id="stockWhere">
+		and (
+			upper(i_name) like upper('%${keyword}%')
+		)
+	</sql>
+	
 	<!-- 가게의 재고 목록을 가져오는 select 태그 -->
 	<select id="getStockList" parameterType="system.onm.dto.StockSearchDTO" resultType="system.onm.dto.StockDTO">
+select
+distinct(aa.i_name) "I_NAME",
+(
+  nvl((select a.sum_quantity from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}))) xx
+  group by i_name, sr_state
+) a where a.sr_state='o' and a.i_name=aa.i_name),0)
+  -
+  nvl((select b.sum_quantity from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}))) xx
+  group by i_name, sr_state
+) b where b.sr_state='i' and b.i_name=aa.i_name),0)
+) "CNT",
+aa.st_state
+from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}) )
+			<!-- Oracle에서 배운대로 하는 방법도 있음 -->
+			<include refid="stockWhere"/> 		
+			<![CDATA[
+				and RNUM>=${select_page_no*row_cnt_per_page-row_cnt_per_page+1} 
+				and RNUM<=${select_page_no*row_cnt_per_page}
+			]]> ) xx
+  group by i_name, sr_state
+) aa
+	</select>
+	
+	<select id="getStockListAllCnt" parameterType="system.onm.dto.StockSearchDTO" resultType="int">
+		select count(*) from (select
+distinct(aa.i_name) "I_NAME",
+(
+  nvl((select a.sum_quantity from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}))) xx
+  group by i_name, sr_state
+) a where a.sr_state='o' and a.i_name=aa.i_name),0)
+  -
+  nvl((select b.sum_quantity from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}))) xx
+  group by i_name, sr_state
+) b where b.sr_state='i' and b.i_name=aa.i_name),0)
+) "CNT",
+aa.st_state
+from (select
+  xx.i_name "I_NAME",
+  xx.sr_state "SR_STATE",
+  sum(xx.quantity) "SUM_QUANTITY",
+  (select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no)) "RECENT_REG_DATE",
+  (select ss.st_state from stock ss where ss.st_reg_date=(select max(s.st_reg_date) from stock s where xx.i_name=(select i.i_name from ingredient i where i.i_no=s.i_no))) "ST_STATE"
+  from (select * from (select zzz.*, rownum RNUM from(
+        select
+            st.st_no    as "st_no"
+            ,(select i.i_name from ingredient i where i.i_no=st.i_no)    as "I_NAME"
+            ,st.i_no as "I_NO"
+            ,st.quantity     as "QUANTITY"
+            ,st.st_state    as "ST_STATE"
+            ,st.sr_state    as "SR_STATE"
+            ,to_char(st.st_reg_date,'YYYY-MM-DD(dy)') as "ST_REG_DATE"
+            ,st.is_del as "IS_DEL"
+        from stock st
+        where 1=1
+        order by st_no desc
+  ) zzz)
+  where i_no in (select i.i_no from ingredient i where i.s_no in (select s_no from store where s_id=#{s_id}))
+			<include refid="stockWhere"/> 		
+			) xx
+  group by i_name, sr_state
+) aa)
 	</select>
 	
 	<!-- 가게의 재고 정보를 가져오는 select 태그 -->

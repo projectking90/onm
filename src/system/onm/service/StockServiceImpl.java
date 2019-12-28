@@ -36,13 +36,19 @@ public class StockServiceImpl implements StockService {
 	 * @param stock_searchDTO : 재고 검색을 위해 사용하는 DTO
 	 * @return getStockList : 재고 목록
 	 */
+
 	@Override
 	public List<StockDTO> getStockList(StockSearchDTO stock_searchDTO) {
-		List<StockDTO> stock_list = null;
-		
+		List<StockDTO> stock_list = this.stockDAO.getStockList(stock_searchDTO);
 		return stock_list;
 	}
 
+	@Override
+	public int getStockListAllCnt(StockSearchDTO stock_searchDTO) {
+		int stock_list_all_cnt = this.stockDAO.getStockListAllCnt(stock_searchDTO);
+		return stock_list_all_cnt;
+		
+	}
 	/**
 	 * 가게 재고의 정보를 보여줌
 	 * @param st_no : 재고번호
