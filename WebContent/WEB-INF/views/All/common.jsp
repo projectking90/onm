@@ -47,6 +47,11 @@
 		
 		$("body").attr("bgcolor", "${bodyBgColor1}");
 		*/
+		/* var str = new String(document.location);
+		//alert(str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")));
+		
+		$("body").prepend("<div class='navi'></div>");
+		$(".navi").append("<a href=" + str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")) + ">" + str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")) + "</a>"); */
 	});
 </script>
 <%

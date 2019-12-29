@@ -40,8 +40,7 @@ public class PointServiceImpl implements PointService {
 	 */
 	@Override
 	public List<PointDTO> getPointList(PointSearchDTO point_searchDTO) {
-		List<PointDTO> point_list = null;
-		
+		List<PointDTO> point_list = this.pointDAO.getPointList(point_searchDTO);
 		return point_list;
 	}
 
@@ -87,8 +86,8 @@ public class PointServiceImpl implements PointService {
 	 * @return insert_result : 포인트 충전 Query 결과
 	 */
 	@Override
-	public int insertPointCharge(CardDTO cardDTO) {
-		int insert_result = 0;
+	public int insertPointCharge(PointDTO pointDTO) {
+		int insert_result = this.pointDAO.insertPointCharge(pointDTO);
 		
 		return insert_result;
 	}

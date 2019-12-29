@@ -8,12 +8,66 @@
 <%@ include file="/WEB-INF/resources/Point/point_record_form_js.jsp" %>
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<meta charset="UTF-8">
 		<title>포인트 기록 페이지</title>
 		<!-- 사용자가 포인트 기능 선택 시 보여줄 첫 페이지 -->
-	</head>
-	<body>
 		
-	</body>
+		<script>
+			// [충전] 이동함수 
+			function goPointChargeForm(){
+				location.replace("/onm/point_charge_form.onm");
+			}
+		</script>
+		
+</head>
+<body><center><br><br><br>
+
+
+	<form name="point_present_form" method="post" action="/onm/point_record_form.onm">
+		<div style="width:800">
+
+		<a href="javascript:goPointChargeForm();">[포인트 충전]</a>
+		<!-- <input type="button" value=" 충전 " class="Search" onClick="goPointChargeForm();"> -->
+
+		</div><br>
+	</form>
+	
+	<table><tr height=10><td></table>
+	
+	<table class="ipointTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>
+		<tr><th>번호<th>포인트출금여부<th>포인트금액<th>등록일
+
+		<c:forEach items="${point_list}" var="point" varStatus="loopTagStatus">
+	
+			<tr style="cursor:pointer"
+					bgcolor="${loopTagStatus.index%2==0?'white':'#F8FFEE'}"
+					 onClick="goIngDetailForm(${point.p_no});">
+
+				
+				<td align=center>${loopTagStatus.index+1}
+				
+				<!-- ----------------------------------------------- -->
+				<!-- 게시판 검색 목록 중에 각 행의 역순 일련번호 출력-->
+				<!-- ----------------------------------------------- -->
+				
+				<%--
+				정순 번호 출력 시 아래 코드로 대체 할 것
+				${boardSearchDTO.selectPageNo*boardSearchDTO.rowCntPerPage-boardSearchDTO.rowCntPerPage+1+loopTagStatus.index} 
+				--%>
+
+					<%--
+					<td align=center>${point.p_no} 
+					<td align=center>${point.l_flag}
+					<td align=center>${point.l_id} 
+					--%>
+					<td align=center>${point.p_state}
+					<td align=center>${point.amount}
+					<td align=center>${point.reg_date}
+					
+		</c:forEach>
+		
+
+	</table><br>
+</body>
 </html>

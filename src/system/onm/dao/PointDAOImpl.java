@@ -38,7 +38,10 @@ public class PointDAOImpl implements PointDAO {
 	 */
 	@Override
 	public List<PointDTO> getPointList(PointSearchDTO point_searchDTO) {
-		List<PointDTO> point_list = null;
+		List<PointDTO> point_list = this.sqlSession.selectList(
+				"system.onm.dao.PointDAO.getPointList"
+				,point_searchDTO
+		);
 		
 		return point_list;
 	}
@@ -97,8 +100,11 @@ public class PointDAOImpl implements PointDAO {
 	 * @return insert_result : 포인트 충전 Query 결과
 	 */
 	@Override
-	public int insertPointCharge(CardDTO cardDTO) {
-		int insert_result = 0;
+	public int insertPointCharge(PointDTO pointDTO) {
+		int insert_result = this.sqlSession.insert(
+				"system.onm.dao.PointDAO.insertPointCharge"
+				,pointDTO
+		);
 		
 		return insert_result;
 	}

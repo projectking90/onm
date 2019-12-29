@@ -24,5 +24,5 @@ public interface PointService {
 	PointDTO getPointInfo(String s_id);	// 포인트 정보를 가져옴
 	int updatePointPresent(PointPresentDTO point_presentDTO);	// 사용자간 포인트 선물
 	int updatePointToCash(PointPresentDTO point_presentDTO);	// 포인트 전환
-	int insertPointCharge(CardDTO cardDTO);	// 포인트 충전
+	int insertPointCharge(PointDTO pointDTO);	// 포인트 충전
 }

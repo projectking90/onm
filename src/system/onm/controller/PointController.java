@@ -4,6 +4,9 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import system.onm.dto.CardDTO;
 import system.onm.dto.OrderDTO;
+import system.onm.dto.PointDTO;
 import system.onm.dto.PointPresentDTO;
 import system.onm.dto.PointSearchDTO;
 import system.onm.service.PointService;
@@ -47,6 +51,13 @@ public class PointController {
 		mav.setViewName(path + "point_record_form");
 		
 		try {
+			List<PointDTO> point_list = this.point_service.getPointList(point_searchDTO);
+			
+			for(PointDTO temp : point_list) {
+				System.out.println("p_no : " + temp.getP_no());
+			}
+			
+			mav.addObject("point_list", point_list);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goPointRecordForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -167,10 +178,11 @@ public class PointController {
 	@RequestMapping(value="/point_charge.onm")
 	@ResponseBody
 	public int insertPointCharge(
-			CardDTO cardDTO) {
+			PointDTO pointDTO) {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			insert_result = this.point_service.insertPointCharge(pointDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertPointCharge 에러발생>");
 			System.out.println(e.getMessage());

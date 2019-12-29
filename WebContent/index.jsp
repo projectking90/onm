@@ -13,7 +13,9 @@
 	<body>
 		O&M Project
  		<script>
-			location.replace("/onm/start.onm");
+			/* location.replace("/onm/start.onm"); */
+			//location.replace("/onm/point_charge_form.onm");
+			location.replace("/onm/point_record_form.onm");
 		</script>
 	</body>
 </html>
