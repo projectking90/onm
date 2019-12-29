@@ -22,6 +22,9 @@
 			<input type="button" class="company" value="기업"><br><br><br>
 			당신의 brunch를 입력하세요 : <input type="text" name="brunch">
 		</form>
+		
+		
+<%-- 		
 		<form:form name="addr_form" commandName="addr">
 			<form:select path="city">
 				<form:options items="${addr.cityList}" itemLabel="city_name" itemValue="city_name"></form:options>
@@ -33,5 +36,10 @@
 				<form:options items="${addr.dongList}" itemLabel="dong_name" itemValue="dong_name"></form:options>
 			</form:select>
 		</form:form>
+--%>
+		
+		
+		
+		
 	</body>
 </html>
