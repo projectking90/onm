@@ -4,7 +4,9 @@
  */
 package system.onm.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +22,7 @@ import system.onm.dto.AddrDTO;
 import system.onm.dto.AddrDongDTO;
 import system.onm.dto.AddrGuDTO;
 import system.onm.dto.MenuSearchDTO;
+import system.onm.dto.MenuTrackingDTO;
 import system.onm.service.AllService;
 
 /**
@@ -119,6 +122,7 @@ public class AllController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "cus");
 		session.setAttribute("s_id", brunch);
+		session.setAttribute("user_flag", "c");
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goCusForm 에러발생>");
@@ -141,6 +145,8 @@ public class AllController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "com");
 		session.setAttribute("s_id", brunch);
+		session.setAttribute("user_flag", "s");
+		
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goComForm 에러발생>");
@@ -148,5 +154,32 @@ public class AllController {
 		}
 		
 		return mav;
+	}
+	
+	/**
+	 * 메뉴 트래킹 정보를 가져올 메소드
+	 * @param path : 경로
+	 * @param user_flag : 유저 구분
+	 * @return menu_tracking_list : 메뉴 트래킹 정보
+	 */
+	@RequestMapping(value="/get_menu_tracking.onm")
+	@ResponseBody
+	public List<MenuTrackingDTO> getMenuTracking(
+			@RequestParam(value="path") String path
+			, @RequestParam(value="user_flag") String user_flag) {
+		List<MenuTrackingDTO> menu_tracking_list = null;
+		
+		Map<String, String> path_user_flag = new HashMap<String, String>();
+		path_user_flag.put("path", path);
+		path_user_flag.put("user_flag", user_flag);
+		
+		try {
+			menu_tracking_list = this.all_service.getMenuTracking(path_user_flag);
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<getMenuTracking 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return menu_tracking_list;
 	}
 }

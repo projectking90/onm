@@ -46,8 +46,41 @@
 		}
 		
 		$("body").attr("bgcolor", "${bodyBgColor1}");
-		*/
+		*//* 
+		//alert(str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")));
+		
+		$("body").prepend("<div class='navi'></div>");
+		$(".navi").append("<a href=" + str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")) + ">" + str.substr(str.indexOf("onm/")+4, str.indexOf(".onm") - str.indexOf("onm/")) + "</a>"); */
+		if(location.href.indexOf("start.onm")<0){
+			var path = new String(document.location);
+			var user_flag = "${sessionScope.user_flag}";
+			path = path.substr(path.indexOf('onm/')+4, path.indexOf('.onm') - path.indexOf('onm/'));
+			$("body").prepend("<div class='navi'></div>");
+			
+			getMenuTracking(user_flag, path);
+		}
 	});
+	
+	function getMenuTracking(user_flag, path){
+		var data = "path=" + path + "&user_flag=" + user_flag;
+		
+		$.ajax({
+			url : "${cr}/get_menu_tracking.onm"
+			, type : "post"
+			, data : data
+			, success : function(data){
+				for(var i=data.length-1; i>=0; i--){
+					$(".navi").append("<a href=" + data[i].path + "?brunch=${sessionScope.s_id}>" + data[i].label);
+					if(i!=0){
+						$(".navi").append(" - ");
+					}
+				}
+			}
+			, error : function(){
+				alert("서버 통신 실패<br>");
+			}
+		});
+	}
 </script>
 <%
 	Logger logger = Logger.getLogger(this.getClass());

@@ -5,10 +5,12 @@
 package system.onm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import system.onm.dto.AddrCityDTO;
 import system.onm.dto.AddrDongDTO;
 import system.onm.dto.AddrGuDTO;
+import system.onm.dto.MenuTrackingDTO;
 
 /**
  * AllDAO 인터페이스
@@ -27,4 +29,5 @@ public interface AllDAO {
 	List<AddrCityDTO> getAddrCity();	// 시의 목록을 가져오는 메소드
 	List<AddrGuDTO> getAddrGu(String city);	// 구의 목록을 가져오는 메소드
 	List<AddrDongDTO> getAddrDong(String gu);	// 동의 목록을 가져오는 메소드
+	MenuTrackingDTO getMenuTracking(Map<String, String> path_user_flag);	// 메뉴 트래킹 정보를 가져옴
 }
