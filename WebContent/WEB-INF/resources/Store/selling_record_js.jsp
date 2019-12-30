@@ -4,6 +4,8 @@
 <!-- 현재 이 JSP 페이지는 UTF-8 방식으로 인코딩한다. -->
 <!-- UTF-8 인코딩 방식은 한글을 포함 전 세계 모든 문자열을 부호화할 수 있는 방법이다.-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- CSS파일 수입 -->
+<%@ include file="/WEB-INF/resources/Store/selling_record_css.jsp" %>
 <!DOCTYPE html>
 
 <!-- 판매 기록에 관한 javascript -->

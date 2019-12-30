@@ -35,8 +35,8 @@ from
 	
 create table order_pay(	-- 주문_결제
 	o_no	number(8)	-- 주문번호
-	, how_pay	varchar2(30)	not null	-- 결제방식
-	, p_state	varchar2(50)	not null	-- 결제상태
+	, how_pay	varchar2(30)	not null check(how_pay in('c', 'p'))	-- 결제방식
+	, p_state	varchar2(50)	not null check(p_state in('f', 's', 'n'))	-- 결제상태
 	, o_reg_date	date	default sysdate	-- 등록일
 	, foreign key(o_no) references order_info(o_no)
 );

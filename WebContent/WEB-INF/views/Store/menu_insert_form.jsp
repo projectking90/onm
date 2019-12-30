@@ -4,54 +4,14 @@
 <!-- 현재 이 JSP 페이지는 UTF-8 방식으로 인코딩한다. -->
 <!-- UTF-8 인코딩 방식은 한글을 포함 전 세계 모든 문자열을 부호화할 수 있는 방법이다.-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!-- JSP 기술의 한 종류인 Include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입 -->
-<%@ include file="/WEB-INF/views/All/common.jsp" %>
+<!-- javascript에 관한 jsp 수입 -->
+<%@ include file="/WEB-INF/resources/Store/menu_insert_js.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>메뉴 추가 페이지</title>
-		<!-- CSS파일 수입 -->
-		<link href="${cr}/resources/Store/menu_insert_form.css" rel="stylesheet" type="text/css">
-		<!-- JQuery 라이브러리 파일 수입 -->
-		<script src="${cr}/resources/Store/menu_insert_form.js" type="text/javascript"></script>
-		<!-- common.js 수입 -->
-		<script src="/WEB-INF/resources/common.js" type="text/javascript"></script>
 		<!-- 메뉴 추가 기능 선택 시 보여줄 페이지, 메뉴 추가 기능 구현 -->
-		<script>
-			
-			function go_menu_insert_form(){
-				if(is_empty("[name=m_name]")){
-					alert("메뉴명을 입력해주시기 바랍니다.");
-					$("[name=m_name]").focus();
-					return;
-				}
-				if(is_empty("[name=price]")){
-					alert("가격을 입력해주시기 바랍니다.");
-					$("[name=price]").focus();
-					return;
-				}
-
-				alert($("[name=menu_insert_form]").serialize());
-				$.ajax({
-					url : "/onm/store_menu_insert.onm"
-					, type : "post"
-					,data : $("[name=menu_insert_form]").serialize()
-					,success : function(insert_result){
-						if(insert_result==1){
-							alert("메뉴 등록 성공하였습니다.");
-							location.replace("/onm/store_menu_form.onm");
-						}else{
-							alert("메뉴 등록 실패하였습니다. 관리자에게 문의하시기 바랍니다.")
-						}
-					}
-					,error : function(){
-						alert("서버 접속을 실패하였습니다.");
-					}
-
-				});
-			}
-		</script>
 	</head>
 	<body>
 		<form method="post" name="menu_insert_form" action="/onm/store_menu_insert.onm">

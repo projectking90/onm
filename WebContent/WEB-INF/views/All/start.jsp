@@ -11,7 +11,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Example Start</title>
-		<!-- 검색된 식자재 선택 시 보여줄 페이지, 선택한 메뉴 상세보기 구현 -->
+		<!-- 프로젝트 시작 시 보여줄 페이지 -->
 		<%
 			logger.info(this.getClass() + " 시작");
 		%>
@@ -22,8 +22,6 @@
 			<input type="button" class="company" value="기업"><br><br><br>
 			당신의 brunch를 입력하세요 : <input type="text" name="brunch">
 		</form>
-		
-		
 <%-- 		
 		<form:form name="addr_form" commandName="addr">
 			<form:select path="city">
@@ -37,9 +35,5 @@
 			</form:select>
 		</form:form>
 --%>
-		
-		
-		
-		
 	</body>
 </html>
