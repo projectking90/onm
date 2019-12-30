@@ -34,5 +34,6 @@
 		<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')"><br>
 		----------------------------------------------------------------<br>
 		<input type="button" value="재고관리" onClick="location.replace('${cr}/stock_form.onm')">
+		<input type="button" value="판매기록" onClick="location.replace('${cr}/selling_record_form.onm')">
 	</body>
 </html>

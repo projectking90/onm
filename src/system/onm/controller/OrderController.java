@@ -330,4 +330,25 @@ public class OrderController {
 		
 		return updateOrderReject;
 	}
+	
+	/**
+	 * 주문 기록을 보여줄 jsp와 주문 기록 목록을 보여줄 메소드
+	 * 가상주소 /order_record_form.onm로 접근하면 호출
+	 * @param order_record_searchDTO : 주문 기록을 검색하기 위해 사용하는 DTO
+	 * @return mav : /order_record_form.onm에 맵핑되는 jsp 파일과 주문 기록 목록
+	 */
+	@RequestMapping(value="/order_record_form.onm")
+	public ModelAndView goOrderRecordForm(
+			OrderRecommendSearchDTO order_record_searchDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "order_record_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goOrderRecordForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
+	}
 }

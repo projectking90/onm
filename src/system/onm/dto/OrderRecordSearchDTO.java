@@ -6,10 +6,10 @@ package system.onm.dto;
 
 /**
  * OrderRecordDTO 클래스
- * 주문 기록 DTO
+ * 주문 기록을 검색할 때 사용할 DTO
  * @author Jo
  */
-public class OrderRecordDTO {
+public class OrderRecordSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */

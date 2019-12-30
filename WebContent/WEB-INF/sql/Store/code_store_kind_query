@@ -1,0 +1,21 @@
+create table code_store_kind_alpha(	-- 업종 대분류
+	ska_code	number(8)	-- 대분류 코드
+	, ska_name	varchar2(50)	not null unique	-- 대분류 명
+	, primary key(ska_code)
+);
+	
+select
+	*
+from
+	code_store_kind_alpha;
+	
+create table code_store_kind_beta(	-- 업종 소분류
+	skb_code	number(8)	-- 소분류 코드
+	, skb_name	varchar2(50)	not null unique	-- 소분류 명
+	, primary key(skb_code)
+);
+	
+select
+	*
+from
+	code_store_kind_beta;

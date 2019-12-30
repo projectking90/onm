@@ -1,0 +1,21 @@
+create table code_menu_alpha(	-- 메뉴 대분류
+	ma_code	number(8)	-- 대분류 코드
+	, ma_name	varchar2(50)	not null unique	-- 대분류 명
+	, primary key(ma_code)
+);
+	
+select
+	*
+from
+	code_menu_alpha;
+	
+create table code_menu_beta(	-- 메뉴 소분류
+	mb_code	number(8)	-- 소분류 코드
+	, mb_name	varchar2(50)	not null unique	-- 소분류 명
+	, primary key(mb_code)
+);
+	
+select
+	*
+from
+	code_menu_beta;

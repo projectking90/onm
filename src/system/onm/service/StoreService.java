@@ -12,6 +12,8 @@ import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
+import system.onm.dto.SellingRecordDTO;
+import system.onm.dto.SellingRecordSearchDTO;
 import system.onm.dto.StoreKindDTO;
 import system.onm.dto.StoreKindSearchDTO;
 
@@ -40,4 +42,6 @@ public interface StoreService {
 	StoreKindDTO getStoreKindList(String s_id);	// 가게 업종 정보를 가져옴
 	int insertStoreKind(StoreKindDTO store_kindDTO);	// 가게 업종 정보 추가
 	int updateStoreKind(StoreKindDTO store_kindDTO);	// 가게 업종 정보 수정
+	List<SellingRecordDTO> getSellingRecordList(SellingRecordSearchDTO selling_record_searchDTO);	// 판매 기록 목록을 가져옴
+	int getSellingRecordListCnt(SellingRecordSearchDTO selling_record_searchDTO);	// 주문 기록 목록의 개수를 가져옴
 }

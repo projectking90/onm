@@ -256,4 +256,12 @@
 	<!-- 가게 업종 수정 할 update 태그 -->
 	<update id="updateStoreKind" parameterType="system.onm.dto.StoreKindDTO">
 	</update>
+	
+	<!-- 판매 기록 목록을 가져오는 select 태그 -->
+	<select id="getSellingRecordList" parameterType="system.onm.dto.SellingRecordSearchDTO" resultType="system.onm.dto.SellingRecordDTO">
+	</select>
+	
+	<!-- 판매 기록 목록의 개수를 가져오는 select 태그 -->
+	<select id="getSellingRecordListCnt" parameterType="system.onm.dto.SellingRecordSearchDTO" resultType="int">
+	</select>
 </mapper>

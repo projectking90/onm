@@ -2,14 +2,14 @@ create table order_info(	-- 주문
 	o_no	number(8)	-- 주문번호
 	, c_no	number(8)	-- 고객번호
 	, s_no	number(8)	-- 가게번호
-	, o_state	varchar2(1)	not null	-- 주문상태
+	, o_state	varchar2(1)	default 'w' check(o_state in('w', 'p', 'd', 'r', 'c'))	-- 주문상태
 	, addr_code	number(8)	--	주소코드
 	, location	varchar2(100)	not null	-- 상세주소
 	, o_phone	varchar2(20)	not null	-- 연락처
 	, order_time	date	default sysdate	-- 주문시간
 	, pick_time	date	not null	-- 픽업시간
 	, request	varchar2(1000)	-- 요청사항
-	, is_del	varchar2(1)	default 'F'	-- 삭제여부
+	, is_del	varchar2(1)	default 'F' check(is_del in('F', 'T'))	-- 삭제여부
 	, primary key(o_no)
 	, foreign key(c_no) references customer(c_no)
 	, foreign key(s_no) references store(s_no)

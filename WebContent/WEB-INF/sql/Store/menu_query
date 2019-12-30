@@ -7,7 +7,7 @@ create table menu(	-- 메뉴
 	, price	number(10)	not null	-- 가격
 	, m_comment	varchar2(1000)	-- 설명
 	, reg_date	date	default sysdate	-- 등록일
-	, is_del	varchar2(1)	default 'F'	-- 삭제여부
+	, is_del	varchar2(1)	default 'F' check(is_del in('F', 'T'))	-- 삭제여부
 	, primary key(m_no)
 	, foreign key(ma_code) references code_menu_alpha(ma_code)
 	, foreign key(mb_code) references code_menu_beta(mb_code)

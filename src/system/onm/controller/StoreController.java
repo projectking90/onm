@@ -23,6 +23,9 @@ import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
+import system.onm.dto.OrderRecommendSearchDTO;
+import system.onm.dto.SellingRecordDTO;
+import system.onm.dto.SellingRecordSearchDTO;
 import system.onm.dto.StoreKindDTO;
 import system.onm.service.StoreService;
 
@@ -506,5 +509,26 @@ public class StoreController {
 		}
 		
 		return update_result;
+	}
+	
+	/**
+	 * 판매 기록을 보여줄 jsp와 판매 기록 목록을 보여줄 메소드
+	 * 가상주소 /selling_record_form.onm로 접근하면 호출
+	 * @param selling_record_searchDTO : 판개 기록을 검색하기 위해 사용하는 DTO
+	 * @return mav : /selling_record_form.onm에 맵핑되는 jsp 파일과 판매 기록 목록
+	 */
+	@RequestMapping(value="/selling_record_form.onm")
+	public ModelAndView goSellingRecordForm(
+			SellingRecordSearchDTO selling_record_searchDTO) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(path + "selling_record_form");
+		
+		try {
+		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goSellingRecordForm 에러발생>");
+			System.out.println(e.getMessage());
+		}
+		
+		return mav;
 	}
 }

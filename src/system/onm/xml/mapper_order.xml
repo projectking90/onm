@@ -58,4 +58,12 @@
 	<!-- 가게의 완료된 주문 목록를 가져오는 select 태그 -->
 	<update id="updateOrderReject" parameterType="int">
 	</update>
+	
+	<!-- 주문 기록 목록을 가져오는 select 태그 -->
+	<select id="getOrderRecordList" parameterType="system.onm.dto.OrderRecordSearchDTO" resultType="system.onm.dto.OrderRecordDTO">
+	</select>
+	
+	<!-- 주문 기록 목록의 개수를 가져오는 select 태그 -->
+	<select id="getOrderRecordListCnt" parameterType="system.onm.dto.OrderRecordSearchDTO" resultType="int">
+	</select>
 </mapper>

@@ -16,6 +16,8 @@ import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
 import system.onm.dto.MenuSearchDTO;
+import system.onm.dto.SellingRecordDTO;
+import system.onm.dto.SellingRecordSearchDTO;
 import system.onm.dto.StoreKindDTO;
 import system.onm.dto.StoreKindSearchDTO;
 
@@ -251,5 +253,29 @@ public class StoreDAOImpl implements StoreDAO {
 		int update_result = 0;
 		
 		return update_result;
+	}
+	
+	/**
+	 * 판매 기록 목록을 가져옴
+	 * @param selling_record_searchDTO : 판매 기록을 검색하기 위해 사용하는 DTO
+	 * @return selling_record_list : 판매 기록 목록
+	 */
+	@Override
+	public List<SellingRecordDTO> getSellingRecordList(SellingRecordSearchDTO selling_record_searchDTO) {
+		List<SellingRecordDTO> selling_record_list = null;
+		
+		return selling_record_list;
+	}
+
+	/**
+	 * 판매 기록 목록의 개수를 가져옴
+	 * @param selling_record_searchDTO : 판매 기록을 검색하기 위해 사용하는 DTO
+	 * @return selling_record_list_cnt : 판매 기록 목록의 개수
+	 */
+	@Override
+	public int getSellingRecordListCnt(SellingRecordSearchDTO selling_record_searchDTO) {
+		int selling_record_list_cnt = 0;
+		
+		return selling_record_list_cnt;
 	}
 }

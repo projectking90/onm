@@ -6,7 +6,7 @@ package system.onm.dto;
 
 /**
  * SellingRecordDTO 클래스
- * 판매 기록을 검색할 때 사용할 DTO
+ * 판매 기록 DTO
  * @author Jo
  */
 public class SellingRecordDTO {

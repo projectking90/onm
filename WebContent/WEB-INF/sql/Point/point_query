@@ -2,7 +2,7 @@ create table point(
 	p_no	number(8)	-- 포인트번호
 	, l_flag	varchar2(1)	-- 유저구분
 	, l_id	varchar2(50)	-- 아이디
-	, p_state	varchar2(1)	not null	-- 포인트입출금여부
+	, p_state	varchar2(1)	not null check(p_state in('i', 'o'))	-- 포인트입출금여부
 	, amount	number(10)	-- 포인트금액
 	, p_reg_date	date	default sysdate	-- 등록일
 	, primary key(p_no)

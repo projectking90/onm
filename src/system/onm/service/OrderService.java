@@ -11,6 +11,8 @@ import system.onm.dto.MenuDTO;
 import system.onm.dto.OrderDTO;
 import system.onm.dto.OrderRecommendDTO;
 import system.onm.dto.OrderRecommendSearchDTO;
+import system.onm.dto.OrderRecordDTO;
+import system.onm.dto.OrderRecordSearchDTO;
 import system.onm.dto.StoreDTO;
 import system.onm.dto.StoreSearchDTO;
 
@@ -36,4 +38,6 @@ public interface OrderService {
 	List<OrderDTO> getOrderDoneList(int s_id);	// 가게의 완료된 주문 목록을 가져옴
 	int updateOrderProc(Map<String, String> o_no_flag);	// 주문 상태를 변경
 	int updateOrderReject(int o_no);	// 주문 취소 상태로 변경
+	List<OrderRecordDTO> getOrderRecordList(OrderRecordSearchDTO order_record_searchDTO);	// 주문 기록 목록을 가져옴
+	int getOrderRecordListCnt(OrderRecordSearchDTO order_record_searchDTO);	// 주문 기록 목록의 개수를 가져옴
 }

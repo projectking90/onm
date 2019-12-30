@@ -15,6 +15,8 @@ import system.onm.dto.MenuDTO;
 import system.onm.dto.OrderDTO;
 import system.onm.dto.OrderRecommendDTO;
 import system.onm.dto.OrderRecommendSearchDTO;
+import system.onm.dto.OrderRecordDTO;
+import system.onm.dto.OrderRecordSearchDTO;
 import system.onm.dto.StoreDTO;
 import system.onm.dto.StoreSearchDTO;
 
@@ -204,5 +206,29 @@ public class OrderDAOImpl implements OrderDAO {
 		// DAO의 checkOrderState를 통해 주문 취소가 가능한지 확인할 것
 		
 		return updateOrderReject;
+	}
+	
+	/**
+	 * 주문 기록 목록을 가져옴
+	 * @param order_record_searchDTO : 주문 기록을 검색하기 위해 사용하는 DTO
+	 * @return order_record_list : 주문 기록 목록
+	 */
+	@Override
+	public List<OrderRecordDTO> getOrderRecordList(OrderRecordSearchDTO order_record_searchDTO) {
+		List<OrderRecordDTO> order_record_list = null;
+		
+		return order_record_list;
+	}
+
+	/**
+	 * 주문 기록 목록의 개수를 가져옴
+	 * @param order_record_searchDTO : 주문 기록을 검색하기 위해 사용하는 DTO
+	 * @return order_record_list_cnt : 주문 기록 목록의 개수
+	 */
+	@Override
+	public int getOrderRecordListCnt(OrderRecordSearchDTO order_record_searchDTO) {
+		int order_record_list_cnt = 0;
+		
+		return order_record_list_cnt;
 	}
 }
