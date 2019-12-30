@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import system.onm.dto.CodeMenuAlphaDTO;
 import system.onm.dto.CodeMenuBetaDTO;
+import system.onm.dto.CodeStoreKindAlphaDTO;
+import system.onm.dto.CodeStoreKindBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -226,9 +228,11 @@ public class StoreDAOImpl implements StoreDAO {
 	 */
 	@Override
 	public StoreKindDTO getStoreKindList(String s_id) {
-		StoreKindDTO store_kind_list = null;
-		
-		return store_kind_list;
+		StoreKindDTO store_kind = this.sqlSession.selectOne(
+				"system.onm.dao.StoreDAO.getStoreKindList"	
+				,s_id						
+				);
+		return store_kind;
 	}
 
 	/**
@@ -237,10 +241,13 @@ public class StoreDAOImpl implements StoreDAO {
 	 * @return insert_result : 업종 추가 적용 개수
 	 */
 	@Override
+
 	public int insertStoreKind(StoreKindDTO store_kindDTO) {
-		int insert_result = 0;
-		
-		return insert_result;
+		int insertStoreCnt = this.sqlSession.insert(
+				"system.onm.dao.StoreDAO.insertStoreKind"
+				,store_kindDTO
+				);
+		return insertStoreCnt;
 	}
 
 	/**
@@ -251,8 +258,30 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int updateStoreKind(StoreKindDTO store_kindDTO) {
 		int update_result = 0;
+		update_result = this.sqlSession.update(
+				"system.onm.dao.StoreDAO.updateStoreKind"
+				,store_kindDTO
+		);
 		
 		return update_result;
+	}
+	
+	@Override
+	public List<CodeStoreKindAlphaDTO> getCodeStoreKindAlpha(){
+		List<CodeStoreKindAlphaDTO> ska_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeStoreKindAlpha"		
+		);
+		
+		return ska_nameList;
+	}
+	
+	@Override
+	public List<CodeStoreKindBetaDTO> getCodeStoreKindBeta(){
+		List<CodeStoreKindBetaDTO> skb_nameList = this.sqlSession.selectList(
+				sqlSessionPath + "getCodeMenuBeta"		
+		);
+		
+		return skb_nameList;
 	}
 	
 	/**

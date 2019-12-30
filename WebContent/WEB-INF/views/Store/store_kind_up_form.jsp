@@ -16,8 +16,56 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Store/store_kind_up_form.js" type="text/javascript"></script>
 		<!-- 업종 수정 기능 선택 시 보여줄 페이지, 업종 수정 기능 구현 -->
+		<script>
+		</script>
 	</head>
 	<body>
-		
+	<center><br><br><br>	
+	<table><tr height=4><td></table>
+	<form:form method="post" name="store_kind_up_form" commandName="StoreKindDTO" action="/onm/store_kind_update_proc.onm">
+
+      <b>[ 가게수정 ]</b><br>
+      <table class="tbcss1" border=1 bordercolor=gray cellspacing=0 cellpadding=5 align=center>
+			<!----------------------------------------------------------------------->
+			<table class="tbcss1" width="500" boarder=1 bordercolor="#DDDDDD" cellspacing=0 cellpadding="5" align="center">
+				<form:form name="StoreKindCodeForm" commandName="codestorekindDTO">
+				<tr>
+					<th bgcolor="${headerColor}">대분류
+					<td bgcolor="${oddTrColor}"> <form:select path="ska_code">
+													<form:options items="${codestorekindDTO.ska_nameList}" itemLabel="ska_name" itemValue="ska_name"></form:options>
+												</form:select>
+												<%-- <form:input path="ska_code" className="ska_code"/> --%>
+				<tr>
+					<th bgcolor="${headerColor}">소분류
+					<td bgcolor="${oddTrColor}"> <form:select path="skb_code">
+													<form:options items="${codestorekindDTO.skb_nameList}" itemLabel="skb_name" itemValue="skb_name"></form:options>
+												</form:select>
+												<%-- <form:input path="skb_code" className="skb_code"/> --%>
+				</form:form>
+				<tr>
+					<th bgcolor="${headerColor}">가게번호
+					<td bgcolor="${oddTrColor}"><form:input path="s_no" className="s_no"/>
+				<tr>
+					<th bgcolor="${headerColor}">매장명
+					<td bgcolor="${oddTrColor}"><form:input path="sk_name" className="sk_name"/>
+				<tr>
+					<th bgcolor="${headerColor}">주소코드
+					<td bgcolor="${oddTrColor}"><form:input path="addr_code" className="addr_code"/>
+				<tr>
+					<th bgcolor="${headerColor}">상세주소
+					<td bgcolor="${oddTrColor}"><form:input path="location" className="location"/>
+				<tr>
+					<th bgcolor="${headerColor}">매장전화번호
+					<td bgcolor="${oddTrColor}"><form:input path="sk_phone" className="sk_phone"/>
+			</table>
+			<!------------------------------------------------>
+			<table><tr height=4><td></table>
+			<!------------------------------------------------>
+			<input type="hidden" name="sk_no" value="${StoreKindDTO.sk_no}">
+			<!------------------------------------------------>
+			<input type="button" value="수정" onClick="updateStoreKind();">&nbsp;
+			<input type="button" value="목록보기" onClick="location.replace('/onm/store_kind_form.onm')">
+		</form:form>
+	</center>
 	</body>
 </html>

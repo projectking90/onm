@@ -247,14 +247,53 @@
 	
 	<!-- 가게 업종 정보를 가져오는 select 태그 -->
 	<select id="getStoreKindList" parameterType="string" resultType="system.onm.dto.StoreKindDTO">
+		select
+			sk_no			"sk_no"
+			,ska_code		"ska_code"
+			,skb_code 		"skb_code"
+			,s_no			"s_no"
+			,sk_name		"sk_name"
+			,addr_code		"addr_code"
+			,location		"location"
+			,sk_phone		"sk_phone"
+		from store_kind
+		where s_no=(select s_no from store where s_id = #{s_id})
 	</select>
 	
 	<!-- 가게 업종 추가 할 update 태그 -->
-	<update id="insertStoreKind" parameterType="system.onm.dto.StoreKindDTO">
-	</update>
+	<insert id="insertStoreKind" parameterType="system.onm.dto.StoreKindDTO">
+		insert into store_kind(
+			sk_no
+			, ska_code
+			, skb_code
+			, s_no
+			, sk_name
+			, addr_code
+			, location
+			, sk_phone
+		) values(
+			(select nvl(max(sk_no),0)+1 from store_kind)
+			,#{ska_code}
+			,#{skb_code}
+			,#{s_no}
+			,#{sk_name}
+			,#{addr_code}
+			,#{location}
+			,#{sk_phone}
+		)
+	</insert>
 	
 	<!-- 가게 업종 수정 할 update 태그 -->
 	<update id="updateStoreKind" parameterType="system.onm.dto.StoreKindDTO">
+		update store_kind 
+		set 
+			ska_code=(select a.ska_code from code_store_kind_alpha a where a.ska_name=#{ska_code})
+			,skb_code=(select b.skb_code from code_store_kind_beta b where b.skb_name=#{skb_code})
+			,sk_name=#{sk_name}
+			,addr_code=#{addr_code}
+			,location=#{location}
+			,sk_phone=#{sk_phone}
+		where sk_no=#{sk_no}
 	</update>
 	
 	<!-- 판매 기록 목록을 가져오는 select 태그 -->

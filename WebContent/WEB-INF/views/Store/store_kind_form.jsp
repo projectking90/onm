@@ -6,18 +6,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSP 기술의 한 종류인 Include Directive를 이용하여 common.jsp 파일 내의 소스를 삽입 -->
 <%@ include file="/WEB-INF/views/All/common.jsp" %>
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>업종 리스트 페이지</title>
-		<!-- CSS파일 수입 -->
-		<link href="${cr}/resources/Store/store_kind.css" rel="stylesheet" type="text/css">
-		<!-- JQuery 라이브러리 파일 수입 -->
-		<script src="${cr}/resources/Store/store_kind.js" type="text/javascript"></script>
-		<!-- 업종 기능 선택 시 보여줄 첫 페이지 등록된 업종에 대한 상세 정보를 보여줄 페이지 -->
-	</head>
-	<body>
-		
+   <head>
+      <meta charset="UTF-8">
+      <title>업종 리스트 페이지</title>
+      <!-- CSS파일 수입 -->
+      <link href="${cr}/resources/Store/store_kind_form.css" rel="stylesheet" type="text/css">
+      <!-- JQuery 라이브러리 파일 수입 -->
+   </head>
+   
+   <body><center><br><br><br>
+	<body><center><br><br><br>
+	<form class="stock_kind_form" name = "store_kind_form" method="post" action="/onm/stock_insert_form.onm">
+		<b>[가게정보]</b><br>
+   
+   <table><tr height=10><td></table>
+   
+	<table class="StoreKindTable tbcss2" border=1 cellspacing=0 cellpadding=5 width=700>&nbsp;
+				<tr align=center>
+					<th bgcolor="dbdbdb" width=100>대분류
+					<td width=150>${store_kind.ska_code}
+					<th bgcolor="dbdbdb" width=100>가게번호
+					<td width=150>${store_kind.s_no}
+					<th bgcolor="dbdbdb" width=100>매장전화번호
+					<td width=150>${store_kind.sk_phone}
+				<tr align=center>
+					<th bgcolor="dbdbdb" width=100>소분류
+					<td width=150>${store_kind.skb_code}
+					<th bgcolor="dbdbdb" width=100>매장명
+					<td width=150>${store_kind.sk_name}
+					<th bgcolor="dbdbdb" width=100>주소코드
+					<td width=150>${store_kind.addr_code}
+
+				<tr align=center>
+					<th bgcolor="dbdbdb" width=100 >상세주소
+					<td colspan=5>${store_kind.location}
+			</table>
+		<br><br><br><br>
+		<form name="store_kind_form" method="post" action="/onm/store_kind_form.onm">
+	      	<div style="width:800">
+			<input type="button" value="가게 정보 등록" onClick="location.replace('${cr}/store_kind_insert_form.onm')">&nbsp;
+			<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')">
+	        </div>
+		</form>
+	
+	</form>
+
+
+
 	</body>
 </html>

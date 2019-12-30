@@ -8,6 +8,8 @@ import java.util.List;
 
 import system.onm.dto.CodeMenuAlphaDTO;
 import system.onm.dto.CodeMenuBetaDTO;
+import system.onm.dto.CodeStoreKindAlphaDTO;
+import system.onm.dto.CodeStoreKindBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -44,9 +46,13 @@ public interface StoreDAO {
 	int insertStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 추가
 	int updateStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 수정
 	int deleteStoreIngredient(IngredientDTO ingredientDTO);	// 가게 식자재 삭제
+	
 	StoreKindDTO getStoreKindList(String s_id);	// 가게 업종 정보를 가져옴
 	int insertStoreKind(StoreKindDTO store_kindDTO);	// 가게 업종 정보 추가
 	int updateStoreKind(StoreKindDTO store_kindDTO);	// 가게 업종 정보 수정
+	List<CodeStoreKindAlphaDTO> getCodeStoreKindAlpha();	// 메뉴대분류의 목록을 가져오는 메소드
+	List<CodeStoreKindBetaDTO> getCodeStoreKindBeta();	// 메뉴대분류의 목록을 가져오는 메소드
+	
 	List<SellingRecordDTO> getSellingRecordList(SellingRecordSearchDTO selling_record_searchDTO);	// 판매 기록 목록을 가져옴
 	int getSellingRecordListCnt(SellingRecordSearchDTO selling_record_searchDTO);	// 주문 기록 목록의 개수를 가져옴
 }

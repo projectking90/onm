@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import system.onm.dao.StoreDAO;
 import system.onm.dto.CodeMenuAlphaDTO;
 import system.onm.dto.CodeMenuBetaDTO;
+import system.onm.dto.CodeStoreKindAlphaDTO;
+import system.onm.dto.CodeStoreKindBetaDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -187,9 +189,9 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public StoreKindDTO getStoreKindList(String s_id) {
-		StoreKindDTO store_kind_list = null;
+		StoreKindDTO store_kind = this.storeDAO.getStoreKindList(s_id);
 		
-		return store_kind_list;
+		return store_kind;
 	}
 
 	/**
@@ -197,11 +199,12 @@ public class StoreServiceImpl implements StoreService {
 	 * @param store_kindDTO : 업종 추가를 위해 사용하는 DTO
 	 * @return insert_result : 업종 추가 적용 개수
 	 */
-	@Override
 	public int insertStoreKind(StoreKindDTO store_kindDTO) {
-		int insert_result = 0;
 		
-		return insert_result;
+		int insertStoreCnt = this.storeDAO.insertStoreKind(store_kindDTO);
+		
+		return insertStoreCnt;
+
 	}
 
 	/**
@@ -211,9 +214,21 @@ public class StoreServiceImpl implements StoreService {
 	 */
 	@Override
 	public int updateStoreKind(StoreKindDTO store_kindDTO) {
-		int update_result = 0;
+		int update_result = this.storeDAO.updateStoreKind(store_kindDTO);
+		
 		
 		return update_result;
+	}
+	
+	public List<CodeStoreKindAlphaDTO> getCodeStoreKindAlpha(){
+		List<CodeStoreKindAlphaDTO> ska_nameList = this.storeDAO.getCodeStoreKindAlpha();
+		
+		return ska_nameList;
+	}
+	
+	public List<CodeStoreKindBetaDTO> getCodeStoreKindBeta(){
+		List<CodeStoreKindBetaDTO> skb_nameList = this.storeDAO.getCodeStoreKindBeta();
+		return skb_nameList;
 	}
 
 	/**

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import system.onm.dto.CodeMenuDTO;
+import system.onm.dto.CodeStoreKindDTO;
 import system.onm.dto.IngredientDTO;
 import system.onm.dto.IngredientSearchDTO;
 import system.onm.dto.MenuDTO;
@@ -412,20 +413,33 @@ public class StoreController {
 	 * @param store_kindDTO : 업종 정보 보기를 위해 사용하는 DTO
 	 * @return mav : /store_kind_form.onm에 맵핑되는 jsp 파일과 업종 정보
 	 */
-	@RequestMapping(value="/store_kind_form.onm")
-	public ModelAndView goStoreMenuKindForm(
-			StoreKindDTO store_kindDTO) {
+	@RequestMapping(value = "/store_kind_form.onm")
+	public ModelAndView goStoreKindForm(
+			HttpSession session
+			) {
+		/**
+		 * store_kind_form.jsp에 넘겨줄 데이터 store_kind_list : 가게에 등록된 업종 정보 s_no : 가게 번호
+		 */
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "store_kind_form");
+		String s_id = (String)session.getAttribute("s_id");
 		
 		try {
-		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
-			System.out.println("<goStoreMenuKindForm 에러발생>");
+			
+			  StoreKindDTO store_kind = this.store_service.getStoreKindList(s_id);
+			  
+			  // ModelAndView 객체에 검색 개수, 게시판 검색 목록 저장하기
+			  mav.addObject("store_kind", store_kind);
+			  
+			 
+		} catch (Exception e) { // try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println("<goStoreKindForm 에러발생>");
 			System.out.println(e.getMessage());
 		}
-		
+
 		return mav;
 	}
+
 	
 	/**
 	 * 가게 업종 추가 클릭 시 보여줄 jsp를 보여주는 메소드
@@ -454,19 +468,21 @@ public class StoreController {
 	 * @param store_kindDTO : 업종 추가를 위해 사용하는 DTO
 	 * @return insert_result : 업종 추가 Query 실행 결과
 	 */
-	@RequestMapping(value="/store_kind_insert.onm")
+	@RequestMapping(value = "/store_kind_insert.onm")
 	@ResponseBody
-	public int insertStoreKind(
-			StoreKindDTO store_kindDTO) {
-		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
+	public int insertStoreKind(StoreKindDTO store_kindDTO) {
+		int insertStoreCnt = 0; // 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
-		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
+			System.out.println(store_kindDTO.getSk_name());
+			insertStoreCnt = this.store_service.insertStoreKind(store_kindDTO);
+		} catch (Exception e) { // try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStoreKind 에러발생>");
 			System.out.println(e.getMessage());
+			insertStoreCnt=-1;
 		}
-		
-		return insert_result;
+
+		return insertStoreCnt;
 	}
 	
 	/**
@@ -477,11 +493,18 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_kind_up_form.onm")
 	public ModelAndView goStoreKindUpForm(
-			StoreKindDTO store_kindDTO) {
+			/* StoreKindDTO store_kindDTO */
+			@RequestParam(value="s_id") String s_id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "store_kind_up_form");
 		
 		try {
+			StoreKindDTO store_kindDTO = this.store_service.getStoreKindList(s_id);
+			mav.addObject("store_kindDTO", store_kindDTO);
+			CodeStoreKindDTO codestorekindDTO = new CodeStoreKindDTO();
+			codestorekindDTO.setSka_nameList(this.store_service.getCodeStoreKindAlpha());
+			codestorekindDTO.setSkb_nameList(this.store_service.getCodeStoreKindBeta());
+			mav.addObject("codestorekindDTO", codestorekindDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreKindUpForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -496,16 +519,21 @@ public class StoreController {
 	 * @param store_kindDTO : 업종 수정을 위해 사용하는 DTO
 	 * @return update_result : 업종 수정 Query 실행 결과
 	 */
-	@RequestMapping(value="/store_kind_update.onm")
+	@RequestMapping(value="/store_kind_update.onm"
+			, method=RequestMethod.POST	
+			, produces="application/json;charset=UTF-8"
+			)
 	@ResponseBody
 	public int updateStoreKind(
 			StoreKindDTO store_kindDTO) {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
-
+			System.out.print("updatecheck");
 		try {
+			update_result = this.store_service.updateStoreKind(store_kindDTO); 
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<updateStoreIngredient 에러발생>");
 			System.out.println(e.getMessage());
+			update_result=-1;
 		}
 		
 		return update_result;
