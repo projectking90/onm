@@ -18,6 +18,16 @@
 			function goPointChargeForm(){
 				location.replace("/onm/point_charge_form.onm");
 			}
+			
+			// [선물] 이동함수
+			function goPointPresentForm(){
+				location.replace("/onm/point_present_form.onm?s_id=${sessionScope.s_id}");
+			}
+			
+			// [전환] 이동함수
+			function goPointToCashForm(){
+				location.replace("/onm/point_to_cash_form.onm?s_id=${sessionScope.s_id}");
+			}
 		</script>
 		
 </head>
@@ -28,6 +38,8 @@
 		<div style="width:800">
 
 		<a href="javascript:goPointChargeForm();">[포인트 충전]</a>
+		<a href="javascript:goPointPresentForm();">[포인트 선물]</a>
+		<a href="javascript:goPointToCashForm();">[포인트 전환]</a>
 		<!-- <input type="button" value=" 충전 " class="Search" onClick="goPointChargeForm();"> -->
 
 		</div><br>

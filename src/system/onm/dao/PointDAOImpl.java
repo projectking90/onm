@@ -65,7 +65,10 @@ public class PointDAOImpl implements PointDAO {
 	 */
 	@Override
 	public int updatePointPresent(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+		int update_result = this.sqlSession.update(
+				"system.onm.dao.PointDAO.updatePointPresent"
+				,point_presentDTO
+		);
 		
 		return update_result;
 	}
@@ -76,8 +79,11 @@ public class PointDAOImpl implements PointDAO {
 	 * @return update_result : 포인트 전환 Query 결과
 	 */
 	@Override
-	public int updatePointToCash(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+	public int updatePointToCash(PointDTO pointDTO) {
+		int update_result = this.sqlSession.update(
+				"system.onm.dao.PointDAO.updatePointToCash"
+				,pointDTO
+		);
 		
 		return update_result;
 	}

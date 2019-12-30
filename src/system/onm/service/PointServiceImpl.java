@@ -63,7 +63,7 @@ public class PointServiceImpl implements PointService {
 	 */
 	@Override
 	public int updatePointPresent(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+		int update_result = this.pointDAO.updatePointPresent(point_presentDTO);
 		
 		return update_result;
 	}
@@ -74,8 +74,8 @@ public class PointServiceImpl implements PointService {
 	 * @return update_result : 포인트 전환 Query 결과
 	 */
 	@Override
-	public int updatePointToCash(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+	public int updatePointToCash(PointDTO pointDTO) {
+		int update_result = this.pointDAO.updatePointToCash(pointDTO);
 		
 		return update_result;
 	}
