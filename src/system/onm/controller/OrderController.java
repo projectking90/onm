@@ -26,33 +26,5 @@ public class OrderController {
 	/**
 	 * 메소드 선언
 	 */
-	@ReqeustMapping(value="#")
-	public ModelAndView goChartTestForm(
-		OrderRecordDTO order_RecordDTO) {
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(path+"#");
-		
-		
-		
-		
-		try {
-			int 
-			List<map<String,String>> order_list = this.order_service(order_RecordDTO);
-			
-			
-			mav.addObject(#, order_list);
-			
-			
-		}catch(Exception e) {
-			System.out.println("<# 에러발생>");
-			System.out.println(e.getMessage());
-			
-			
-		} // catch
-		
-		
-		} //OrderRecordDTO order_RecordDTO) {
+}
 	
-	
-}		//public ModelAndView goChartTestForm(
