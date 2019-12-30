@@ -13,7 +13,10 @@ public class SellingRecordDTO {
 	/**
 	 * 속성변수 선언
 	 */
-
+	
+	
+	private String[] sellingCnt;			// 판매기록 카운트
+	private String[] sellingDate;			// 날짜별 판매 유형
 	/**
 	 * 생성자 선언
 	 */
@@ -21,4 +24,27 @@ public class SellingRecordDTO {
 	/**
 	 * 접근자, 설정자 선언
 	 */
+
+
+
+	public String[] getSellingCnt() {
+		return sellingCnt;
+	}
+
+	public void setSellingCnt(String[] sellingCnt) {
+		this.sellingCnt = sellingCnt;
+	}
+
+	public String[] getSellingDate() {
+		return sellingDate;
+	}
+
+	public void setSellingDate(String[] sellingDate) {
+		this.sellingDate = sellingDate;
+	}
+
+	
+	
+	
+	
 }

@@ -4,6 +4,8 @@
  */
 package system.onm.dto;
 
+import java.util.Arrays;
+
 /**
  * OrderRecordDTO 클래스
  * 주문 기록을 검색할 때 사용할 DTO
@@ -12,7 +14,11 @@ package system.onm.dto;
 public class OrderRecordDTO {
 	/**
 	 * 속성변수 선언
-	 */
+	 */	
+	private String[] orderCnt;		//주문기록 카운트 
+
+
+
 
 	/**
 	 * 생성자 선언
@@ -21,4 +27,16 @@ public class OrderRecordDTO {
 	/**
 	 * 접근자, 설정자 선언
 	 */
+
+	public String[] getOrderCnt() {
+		return orderCnt;
+	}
+
+	public void setOrderCnt(String[] orderCnt) {
+		this.orderCnt = orderCnt;
+	}
+
+	
+	
 }
+
