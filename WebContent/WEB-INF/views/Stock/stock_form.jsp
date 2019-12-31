@@ -15,7 +15,7 @@
 <!-- 가게가 재고관리 검색 기능 선택 시 보여줄 첫 페이지 -->
 <script>
 	$(document).ready(function(){
-		alert("${s_id}");
+		//alert("${s_id}");
 		$('[name=row_cnt_per_page]').change(function(){
 			goSearch();
 		});
@@ -84,8 +84,8 @@
 		location.replace("/onm/stock_insert_form.onm") // 웹서버에게 괄호 안에 있는 url 주소를 get방식으로 접근
 	}
 	
-	function go_stock_detail_form(st_no){
-		var str = "st_no="+st_no+"&"+$('[name=stock_form]').serialize();
+	function go_stock_detail_form(i_name){
+		var str = "i_name="+i_name+"&"+$('[name=stock_form]').serialize();
 		location.replace("/onm/stock_detail_form.onm?"+str);
 	}
 </script>
@@ -142,10 +142,16 @@
 					<th>재고 상태
 					
 					<c:forEach items="${stock_list}" var="stock" varStatus="loopTagStatus">
-						<tr style="cursor: pointer" onClick="go_stock_detail_form(${stock.st_no});">
+						<tr style="cursor: pointer" onClick="go_stock_detail_form('${stock.i_name}');">
 							<td align=center>${stock_list_all_cnt-(stock_searchDTO.select_page_no*stock_searchDTO.row_cnt_per_page-stock_searchDTO.row_cnt_per_page+1+loopTagStatus.index)+1}
 							<td align=center>${stock.i_name}
-							<td align=center>${stock.cnt}
+							<td align=center>
+								<c:if test="${stock.cnt<0}">
+									minus
+								</c:if>
+								<c:if test="${stock.cnt>=0}">
+									${stock.cnt}
+								</c:if>
 							<td align=center>${stock.st_state}
 					</c:forEach>
 			</table>			

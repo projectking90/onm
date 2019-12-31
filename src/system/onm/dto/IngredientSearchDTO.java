@@ -13,7 +13,6 @@ public class IngredientSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
-
 	/**
 	 * 생성자 선언
 	 */
@@ -32,6 +31,7 @@ public class IngredientSearchDTO {
 	private String[] date;
 	private int select_page_no=1;
 	private int rowCntPerPage=10;
+	private String s_id;
 	
 	// ------------------------------
 	
@@ -58,6 +58,12 @@ public class IngredientSearchDTO {
 	}
 	public void setRowCntPerPage(int rowCntPerPage) {
 		this.rowCntPerPage = rowCntPerPage;
+	}
+	public String getS_id() {
+		return s_id;
+	}
+	public void setS_id(String s_id) {
+		this.s_id = s_id;
 	}
 	
 	

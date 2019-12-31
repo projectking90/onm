@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import system.onm.dto.IngredientDTO;
 import system.onm.dto.StockDTO;
+import system.onm.dto.StockDetailDTO;
 import system.onm.dto.StockSearchDTO;
 import system.onm.service.StockService;
 
@@ -89,11 +91,29 @@ public class StockController {
 	 */
 	@RequestMapping(value="/stock_detail_form.onm")
 	public ModelAndView goStockDetailForm(
-			@RequestParam(value="st_no") int st_no) {
+			@RequestParam(value="i_name") String i_name,
+			StockDetailDTO stock_detailDTO,
+			HttpSession session
+	) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "stock_detail_form");
-		
+		String s_id = (String)session.getAttribute("s_id");
+		stock_detailDTO.setS_id(s_id);
+
 		try {
+			int cnt = this.stock_service.getStockCnt(stock_detailDTO); // 입출고 합
+			String recent_st_state = this.stock_service.getRecentSt_state(i_name); // 최근 재고 상태
+			int stock_detail_list_cnt = this.stock_service.getStockDetailListAllCnt(i_name); // list 개수
+			List<StockDTO> stock_detail_list = this.stock_service.getStockDetailList(i_name); // list 목록
+			
+			
+			mav.addObject("i_name",i_name);
+			mav.addObject("cnt",cnt);
+			mav.addObject("stock_detailDTO",stock_detailDTO);
+			mav.addObject("recent_st_state",recent_st_state);
+			mav.addObject("stock_detail_list_cnt",stock_detail_list_cnt);
+			mav.addObject("stock_detail_list",stock_detail_list);
+			mav.addObject("s_id",s_id);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStockDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -109,11 +129,20 @@ public class StockController {
 	 * @return mav : /stock_insert_form.onm에 맵핑되는 jsp
 	 */
 	@RequestMapping(value="/stock_insert_form.onm")
-	public ModelAndView goStockInsertForm() {
+	public ModelAndView goStockInsertForm(
+			HttpSession session
+	) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "stock_insert_form");
+		String s_id = (String)session.getAttribute("s_id");
+		System.out.println("s_id"+s_id);
 		
 		try {
+			
+			List<IngredientDTO> ingredient_list = this.stock_service.getIngredientList(s_id);
+			mav.addObject("ingredient_list", ingredient_list);
+			mav.addObject("s_id", s_id);
+			
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStockInsertForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -131,13 +160,17 @@ public class StockController {
 	@RequestMapping(value="/stock_insert.onm")
 	@ResponseBody
 	public int insertStock(
-			StockDTO stockDTO) {
+			StockDTO stockDTO
+	) {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
+
 		try {
+			insert_result = this.stock_service.insertStock(stockDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertStock 에러발생>");
 			System.out.println(e.getMessage());
+			return -1;
 		}
 		
 		return insert_result;
@@ -151,11 +184,26 @@ public class StockController {
 	 */
 	@RequestMapping(value="/stock_updel_form.onm")
 	public ModelAndView goStockUpdelForm(
-			@RequestParam(value="st_no") int st_no) {
+			@RequestParam(value="i_name") String i_name,
+			StockDetailDTO stock_detailDTO,
+			HttpSession session
+	) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "stock_updel_form");
-		
+		String s_id = (String)session.getAttribute("s_id");
 		try {
+			int cnt = this.stock_service.getStockCnt(stock_detailDTO); // 입출고 합
+			String recent_st_state = this.stock_service.getRecentSt_state(i_name); // 최근 재고 상태
+			int stock_detail_list_cnt = this.stock_service.getStockDetailListAllCnt(i_name); // list 개수
+			List<StockDTO> stock_detail_list = this.stock_service.getStockDetailList(i_name); // list 목록
+			
+			
+			mav.addObject("i_name",i_name);
+			mav.addObject("cnt",cnt);
+			mav.addObject("recent_st_state",recent_st_state);
+			mav.addObject("stock_detail_list_cnt",stock_detail_list_cnt);
+			mav.addObject("stock_detail_list",stock_detail_list);
+			mav.addObject("s_id",s_id);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStockUpdelForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -194,10 +242,11 @@ public class StockController {
 	@RequestMapping(value="/stock_delete.onm")
 	@ResponseBody
 	public int deleteStock(
-			@RequestParam(value="st_no") int st_no) {
+			@RequestParam(value="i_name") String i_name) {
 		int delete_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 
 		try {
+			delete_result = this.stock_service.deleteStock(i_name);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<deleteStock 에러발생>");
 			System.out.println(e.getMessage());
