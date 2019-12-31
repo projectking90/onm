@@ -59,13 +59,10 @@
 				});
 			}
 			
-			function goStoreList() {
-				location.replace('/onm/order_cus_form.onm');
-			}
-			
 			function goOrderCheck() {
-				var str = "c_id"+c_id
-				location.replace('/onm/order_cus_form.onm?'+str);
+/* 				var str = "c_id="+c_id
+				location.replace('/onm/order_cus_check_form.onm?'+str); */
+				document.orderCheck.submit();
 			}
 		</script>
 	</head>
@@ -73,7 +70,7 @@
 				<form name="orderCheck" method="post" action="/onm/order_cus_check_form.onm">
 				<div>
 					<input type="button" class="orderListBtn" value="주문표" onClick="goOrderCheck();">
-					<input type="text" name="c_id" value="${param.c_id}">
+					<input type="hidden" name="c_id" value="${sessionScope.c_id}">
 				</div>
 				</form>
 		<b>[가게메뉴상세보기]</b>
@@ -106,7 +103,7 @@
 								<option value="20">20분</option>
 							</select>
 							<br><br>
-				<input type="button" name="goStoreList" value="가게목록보기" onClick="goStoreList();">
+				<input type="button" name="goStoreList" value="가게목록보기" onClick="location.replace('/onm/order_cus_form.onm')">
 				<input type="button" name="order" value="주문하기" onClick="goOrder();">
 			</form>
 		</div>

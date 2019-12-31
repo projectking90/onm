@@ -37,12 +37,12 @@
 			alert(str);
 			location.replace("/onm/order_cus_detail_form.onm?"+str);
 		}
-		
-		function goOrderCheck(){
-			alert(2);
-			document.goOrderCheck.submit();
+
+		function goOrderCheck() {
+/* 				var str = "c_id="+c_id
+			location.replace('/onm/order_cus_check_form.onm?'+str); */
+			document.orderCheck.submit();
 		}
-		
 		</script>
 	</head>
 		<!-- 고객이 주문하기 기능 선택 시 보여줄 첫 페이지 -->
@@ -52,15 +52,13 @@
 				<b>[고객 주문]</b>
 
 				<div style="height:6"></div>
-
-				<div style="float:right">
-				<form name="goOrderCheck" method="post" action="/onm/order_cus_check_form.onm">
+				<form name="orderCheck" method="post" action="/onm/order_cus_check_form.onm">
+				<div style="float:right">				
 					<input type="button" class="recommandOrderBtn" value="추천">
 					<input type="button" class="orderListBtn" value="주문표" onClick="goOrderCheck();">
-					<input type="text" name="c_id" value="${param.c_id}">
-				</form>
+					<input type="hidden" name="c_id" value="${sessionScope.c_id}">
 				</div>
-
+				</form>
 			<form name="customerOderForm" method="post" action="/onm/order_cus_form.onm">
 				<div style="height:6"></div><br>
 
