@@ -278,7 +278,7 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public List<CodeStoreKindBetaDTO> getCodeStoreKindBeta(){
 		List<CodeStoreKindBetaDTO> skb_nameList = this.sqlSession.selectList(
-				sqlSessionPath + "getCodeMenuBeta"		
+				sqlSessionPath + "getCodeStoreKindBeta"		
 		);
 		
 		return skb_nameList;

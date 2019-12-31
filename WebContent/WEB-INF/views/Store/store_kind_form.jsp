@@ -47,8 +47,8 @@
 		<br><br><br><br>
 		<form name="store_kind_form" method="post" action="/onm/store_kind_form.onm">
 	      	<div style="width:800">
-			<input type="button" value="가게 정보 등록" onClick="location.replace('${cr}/store_kind_insert_form.onm')">&nbsp;
-			<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')">
+			<input type="button" value="가게 정보 등록" onClick="location.replace('${cr}/store_kind_insert_form.onm?s_id=${sessionScope.s_id}')">&nbsp;
+			<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm?s_id=${sessionScope.s_id}')">
 	        </div>
 		</form>
 	

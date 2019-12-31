@@ -449,11 +449,17 @@ public class StoreController {
 	 */
 	@RequestMapping(value="/store_kind_insert_form.onm")
 	public ModelAndView goStoreKindInsertForm(
-			StoreKindDTO store_kindDTO) {
+			@RequestParam(value="s_id") String s_id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "store_kind_insert_form");
 		
 		try {
+			StoreKindDTO store_kindDTO = this.store_service.getStoreKindList(s_id);
+			mav.addObject("store_kindDTO", store_kindDTO);
+			CodeStoreKindDTO codestorekindDTO = new CodeStoreKindDTO();
+			codestorekindDTO.setSka_nameList(this.store_service.getCodeStoreKindAlpha());
+			codestorekindDTO.setSkb_nameList(this.store_service.getCodeStoreKindBeta());
+			mav.addObject("codestorekindDTO", codestorekindDTO);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goStoreKindInsertForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -529,9 +535,10 @@ public class StoreController {
 		int update_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
 			System.out.print("updatecheck");
 		try {
+			System.out.println("a : " + store_kindDTO.getSk_name());
 			update_result = this.store_service.updateStoreKind(store_kindDTO); 
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
-			System.out.println("<updateStoreIngredient 에러발생>");
+			System.out.println("<updateStoreKind 에러발생>");
 			System.out.println(e.getMessage());
 			update_result=-1;
 		}

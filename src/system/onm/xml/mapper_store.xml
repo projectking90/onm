@@ -260,6 +260,22 @@
 		where s_no=(select s_no from store where s_id = #{s_id})
 	</select>
 	
+	<!-- 메뉴대분류의 목록을 검색하는 select 태그 -->
+	<select id='getCodeStoreKindAlpha' resultType="system.onm.dto.CodeStoreKindAlphaDTO">
+		select
+			ska_name	"ska_name"
+		from
+			code_store_kind_alpha
+	</select>
+	
+	<!-- 메뉴소분류의 목록을 검색하는 select 태그 -->
+	<select id='getCodeStoreKindBeta' resultType="system.onm.dto.CodeStoreKindBetaDTO">
+		select
+			skb_name	"skb_name"
+		from
+			code_store_kind_beta
+	</select>
+	
 	<!-- 가게 업종 추가 할 update 태그 -->
 	<insert id="insertStoreKind" parameterType="system.onm.dto.StoreKindDTO">
 		insert into store_kind(
@@ -293,7 +309,7 @@
 			,addr_code=#{addr_code}
 			,location=#{location}
 			,sk_phone=#{sk_phone}
-		where sk_no=#{sk_no}
+		where s_no=(select s_no from store where s_id = #{s_id})
 	</update>
 	
 	<!-- 판매 기록 목록을 가져오는 select 태그 -->

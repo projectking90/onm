@@ -4,11 +4,16 @@
 $(document).ready(function(){
 });
 
+
+function goStoreKindForm(){
+	location.replace('/onm/store_kind_form.onm');
+}
+
 function goStoreKindUpForm(){
 	$.ajax({
 		url : "/onm/store_kind_update.onm"
 		, type : "post"
-		, data : $("[name=storeKindUpForm]").serialize()
+		, data : $("[name=store_kind_up_form]").serialize()
 		, success : function(updateCnt){
 						if(updateCnt==1){
 							alert("수정성공");

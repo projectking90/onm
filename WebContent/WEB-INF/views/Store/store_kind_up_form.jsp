@@ -22,7 +22,7 @@
 	<body>
 	<center><br><br><br>	
 	<table><tr height=4><td></table>
-	<form:form method="post" name="store_kind_up_form" commandName="StoreKindDTO" action="/onm/store_kind_update_proc.onm">
+	<form:form method="post" name="store_kind_up_form" commandName="store_kindDTO" action="/onm/store_kind_update_proc.onm">
 
       <b>[ 가게수정 ]</b><br>
       <table class="tbcss1" border=1 bordercolor=gray cellspacing=0 cellpadding=5 align=center>
@@ -61,9 +61,9 @@
 			<!------------------------------------------------>
 			<table><tr height=4><td></table>
 			<!------------------------------------------------>
-			<input type="hidden" name="sk_no" value="${StoreKindDTO.sk_no}">
+			<input type="hidden" name="s_id" value="${StoreKindDTO.s_id}">
 			<!------------------------------------------------>
-			<input type="button" value="수정" onClick="updateStoreKind();">&nbsp;
+			<input type="button" value="수정" onClick="goStoreKindUpForm();">&nbsp;
 			<input type="button" value="목록보기" onClick="location.replace('/onm/store_kind_form.onm')">
 		</form:form>
 	</center>
