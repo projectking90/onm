@@ -13,6 +13,24 @@ public class StoreSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
+	private String orderLocation;
+	private String c_id;
+
+	public String getOrderLocation() {
+		return orderLocation;
+	}
+
+	public void setOrderLocation(String orderLocation) {
+		this.orderLocation = orderLocation;
+	}
+
+	public String getC_id() {
+		return c_id;
+	}
+
+	public void setC_id(String c_id) {
+		this.c_id = c_id;
+	}
 
 	/**
 	 * 생성자 선언

@@ -15,9 +15,96 @@
 		<link href="${cr}/resources/Order/order_cus_form.css" rel="stylesheet" type="text/css">
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Order/order_cus_form.js" type="text/javascript"></script>
-		<!-- 고객이 주문하기 기능 선택 시 보여줄 첫 페이지 -->
+		
+		<script>
+
+		$(document).ready(function(){
+			inputData("[name=customerOderForm] .orderLocation","${store_searchDTO.orderLocation}");
+		});
+		
+
+		function goSearch(){
+			if(is_empty("[name=customerOderForm] .orderLocation") ){
+				$("[name=customerOderForm] .orderLocation").val("");
+			}
+			removeSpace("[name=customerOderForm] .orderLocation");
+			
+			document.customerOderForm.submit();
+		}
+		
+		function goStoreDetailForm(s_no){
+			var str = "s_no="+s_no
+			alert(str);
+			location.replace("/onm/order_cus_detail_form.onm?"+str);
+		}
+		
+		function goOrderCheck(){
+			alert(2);
+			document.goOrderCheck.submit();
+		}
+		
+		</script>
 	</head>
-	<body>
+		<!-- 고객이 주문하기 기능 선택 시 보여줄 첫 페이지 -->
+	<body><center><br><br>
+		<div>${sessionScope.c_id} 님 환영합니다</div>
+		<div style="width:500">
+				<b>[고객 주문]</b>
+
+				<div style="height:6"></div>
+
+				<div style="float:right">
+				<form name="goOrderCheck" method="post" action="/onm/order_cus_check_form.onm">
+					<input type="button" class="recommandOrderBtn" value="추천">
+					<input type="button" class="orderListBtn" value="주문표" onClick="goOrderCheck();">
+					<input type="text" name="c_id" value="${param.c_id}">
+				</form>
+				</div>
+
+			<form name="customerOderForm" method="post" action="/onm/order_cus_form.onm">
+				<div style="height:6"></div><br>
+
+				<input type="button" class="currentLoctionBtn" value="⌖">
+				<input type="text" name="orderLocation" class="orderLocation" size="30">
+				<input type="button" class="searchLocationBtn" value="검색" onClick="goSearch();">
+			</form>
+
+				<div style="height:6"></div>
+				
+				
+			<table><tr height=10><td></table>
+			<form name="storeListForm" method="post" action="/onm/order_cus_detail_form.onm">
+				<table class="storeTable" border=0 cellspacing=0 cellpadding=5 width=700 align="center">
+					<tr align="center">
+					
+					<c:forEach items="${getStoreList}" var="store" varStatus="loopTagStatus">
+						<div style="cursor:pointer" onClick="goStoreDetailForm(${store.s_no});">
+							자주가는 매장<br><input type="button" name="s_name" value="${store.s_name}">
+							<input type="hidden" name="s_no" class="s_no" value="${store.s_no}">
+						</div>
+					</c:forEach>
+				</table>
+			</form>
+				
+				<div style="height:6"></div><br>
+
+				<form:form  method="post" name="storeNearListdForm" commandName="getStoreList" action="">
+				<div style="height:6">
+					<input type="button" class="favouriteOrderBtn_1" value="주변매장1" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_2" value="주변매장2" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_3" value="주변매장3" onClick=""><br><br>
+					<input type="button" class="favouriteOrderBtn_4" value="주변매장4" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_5" value="주변매장5" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_6" value="주변매장6" onClick=""><br><br>
+					<input type="button" class="favouriteOrderBtn_7" value="주변매장7" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_8" value="주변매장8" onClick="">&nbsp;
+					<input type="button" class="favouriteOrderBtn_9" value="주변매장9" onClick="">
+				</div>
+				</form:form>
+		</div>
+		<form method="post" name="goDetail" action="/onm/order_cus_detail_form.onm">
+		<input type="hidden" name="s_no" class="s_no" value="${param.s_no}">
+		</form>
 		
 	</body>
 </html>

@@ -118,7 +118,7 @@ public class AllController {
 			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "cus");
-		session.setAttribute("s_id", brunch);
+		session.setAttribute("c_id", brunch);
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goCusForm 에러발생>");

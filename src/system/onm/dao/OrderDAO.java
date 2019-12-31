@@ -31,7 +31,7 @@ public interface OrderDAO {
 	List<StoreDTO> getStoreList(StoreSearchDTO store_searchDTO);	// 가게 목록를 가져옴
 	List<MenuDTO> getMenuList(int s_no);	// 가게의 메뉴 목록를 가져옴
 	int insertOrder(OrderDTO orderDTO);	// 고객의 주문을 추가
-	List<OrderDTO> getOrderList(int c_no);	// 고객의 주문 목록를 가져옴
+	List<OrderDTO> getOrderList(String c_id);	// 고객의 주문 목록를 가져옴
 	OrderDTO getOrderDetail(int o_no);	// 주문정보를 가져옴
 	int deleteOrder(int o_no);	// 고객의 주문을 취소
 	String checkOrderState(int o_no);	// 주문의 상태를 확인함

@@ -16,8 +16,44 @@
 		<!-- JQuery 라이브러리 파일 수입 -->
 		<script src="${cr}/resources/Order/order_cus_check_form.js" type="text/javascript"></script>
 		<!-- 고객이 주문확인 기능 선택 시 보여줄 첫 페이지 -->
+		<script>
+		function goOrderDetail(o_no){
+			var str = "o_no="+o_no;
+			location.replace("/onm/store_menu_detail_form.onm?"+str );
+		}
+		</script>
 	</head>
-	<body>
+	<body><center><br><br><br>
+	<form  method="post" name="orderListForm" action="/onm/order_cus.onm">
+				<table class="orderTable tbcss2" border=0 cellspacing=0 cellpadding=5 width=700>
+					<tr bgcolor="${headerColor}"><th>주문<th>가게명<th>분류<th>메뉴이름<th>가격<th>설명
+						<c:forEach items="${getOrderList}" var="order" varStatus="loopTagStatus">
+							<c:if test ="${order.is_del eq 'F'}">
+							<tr style="cursor:pointer" onClick="goOrderDetail(${order.o_no});">
+									<td align=center><input type="checkbox" name="c_id" class="c_id" value="${sessionScope.c_id}">
+													<input type="hidden" name="m_no" value="${order.m_no}">
+									<td align=center>${order.s_no}
+													<input type="hidden" name="s_no" value="${order.s_no}">
+									<td align=center>${order.mb_code}
+									<td align=center>${order.m_name}
+									<td align=center>${order.price}
+									<td align=center>${order.m_comment}
+							</c:if>
+						</c:forEach>
+				</table><br>
+				상세주소 : <input type="text" name="location">&nbsp;&nbsp;&nbsp;
+				전화번호 : <input type="text" name="o_phone"><br><br>
+				요청사항 : <input type="text" name="request" size="40" maxlength="30">&nbsp;&nbsp;&nbsp;
+				픽업시간 : <select name="pick_time">
+								<option value="5">5분</option>
+								<option value="10">10분</option>
+								<option value="15">15분</option>
+								<option value="20">20분</option>
+							</select>
+							<br><br>
+				<input type="button" name="goStoreList" value="가게목록보기" onClick="location.replace('/onm/order_cus_form.onm')">
+				<input type="button" name="order" value="주문하기" onClick="goOrder();">
+			</form>
 		
-	</body>
+	</center></body>
 </html>

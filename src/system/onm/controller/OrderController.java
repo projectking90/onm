@@ -4,14 +4,23 @@
  */
 package system.onm.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import system.onm.dto.MenuDTO;
 import system.onm.dto.OrderDTO;
+import system.onm.dto.OrderSearchDTO;
+import system.onm.dto.StoreDTO;
 import system.onm.dto.OrderRecommendSearchDTO;
 import system.onm.dto.StoreSearchDTO;
 import system.onm.service.OrderService;
@@ -41,11 +50,22 @@ public class OrderController {
 	 */
 	@RequestMapping(value="/order_cus_form.onm")
 	public ModelAndView goOrderCustomForm(
-			StoreSearchDTO store_searchDTO) {
+			StoreSearchDTO store_searchDTO
+			,HttpSession session
+			,HttpServletRequest request
+			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "order_cus_form");
 		
 		try {
+			String c_id = (String)session.getAttribute("c_id");
+			store_searchDTO.setC_id(c_id);
+			System.out.println( "main=>"+c_id );
+
+			List<StoreDTO> getStoreList = this.order_service.getStoreList(store_searchDTO);
+			mav.addObject("getStoreList", getStoreList);
+			mav.addObject("store_searchDTO", store_searchDTO);
+			System.out.println( getStoreList.size() );
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goOrderCustomForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -62,11 +82,19 @@ public class OrderController {
 	 */
 	@RequestMapping(value="/order_cus_detail_form.onm")
 	public ModelAndView goOrderCustomDetailForm(
-			@RequestParam(value="s_no") int s_no) {
+			@RequestParam(value="s_no") int s_no
+			,HttpSession session
+			,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "order_cus_detail_form");
+		String c_id = (String)session.getAttribute("c_id");
+		System.out.println( "detail=>"+c_id );
+		mav.addObject("c_id", c_id);
+		
 		
 		try {
+			List<MenuDTO> getMenuList = this.order_service.getMenuList(s_no);
+			mav.addObject("getMenuList", getMenuList);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goOrderCustomDetailForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -81,13 +109,22 @@ public class OrderController {
 	 * @param orderDTO : 주문을 하기 위해 사용하는 DTO
 	 * @return insert_result : 주문하기 Query 실행 결과
 	 */
-	@RequestMapping(value="/order_cus.onm")
+	@RequestMapping(value="/order_cus.onm"
+			, method=RequestMethod.POST	
+			, produces="application/json;charset=UTF-8"			
+			)
 	@ResponseBody
 	public int insertOrder(
-			OrderDTO orderDTO) {
+			OrderDTO orderDTO
+			,HttpSession session) {
 		int insert_result = 0;	// 데이터베이스에 Query 실행 후 결과를 저장
+		String c_id = (String)session.getAttribute("c_id");
+		
 
 		try {
+			/* List<OrderDTO> list = */
+			insert_result = this.order_service.insertOrder(orderDTO);
+			System.out.print("insert");
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<insertOrder 에러발생>");
 			System.out.println(e.getMessage());
@@ -104,11 +141,14 @@ public class OrderController {
 	 */
 	@RequestMapping(value="/order_cus_check_form.onm")
 	public ModelAndView goOrderCustomCheckForm(
-			@RequestParam(value="c_no") int c_no) {
+			@RequestParam(value="c_id") String c_id
+			,HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "order_cus_check_form");
 		
 		try {
+			List<OrderDTO> getOrderList = this.order_service.getOrderList(c_id);
+			mav.addObject("getOrderList", getOrderList);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goOrderCustomCheckForm 에러발생>");
 			System.out.println(e.getMessage());
@@ -130,6 +170,7 @@ public class OrderController {
 		mav.setViewName(path + "order_cus_check_detail_form");
 		
 		try {
+			OrderDTO getOrderDetail = this.order_service.getOrderDetail(o_no);
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
 			System.out.println("<goOrderCustomCheckDetailForm 에러발생>");
 			System.out.println(e.getMessage());
