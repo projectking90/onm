@@ -11,5 +11,28 @@
 <!-- 주문하기(고객)에 관한 javascript -->
 <script>
 	$(document).ready(function(){
+		inputData("[name=customerOderForm] .orderLocation","${store_searchDTO.orderLocation}");
 	});
+	
+	
+	function goSearch(){
+		if(is_empty("[name=customerOderForm] .orderLocation") ){
+			$("[name=customerOderForm] .orderLocation").val("");
+		}
+		removeSpace("[name=customerOderForm] .orderLocation");
+		
+		document.customerOderForm.submit();
+	}
+	
+	function goStoreDetailForm(s_no){
+		var str = "s_no="+s_no
+		alert(str);
+		location.replace("/onm/order_cus_detail_form.onm?"+str);
+	}
+	
+	function goOrderCheck(){
+		/* var str = "c_id="+c_id
+		location.replace('/onm/order_cus_check_form.onm?'+str); */
+		document.orderCheck.submit();
+	}
 </script>

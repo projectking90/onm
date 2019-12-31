@@ -12,4 +12,54 @@
 <script>
 	$(document).ready(function(){
 	});
+	
+	function goOrder() {
+		if ( is_empty("[name=storeMenuListForm] [name=c_id]") ) {
+			alert('선택하신 메뉴가 없습니다');
+			return;
+		}
+		if ( is_empty("[name=storeMenuListForm] [name=location]") ) {
+			alert('주소가 입력되지 않았습니다');
+			return;
+		}
+		if ( is_empty("[name=storeMenuListForm] [name=o_phone]") ) {
+			alert('전화번호가 입력되지 않았습니다');
+			return;
+		}
+		$.ajax({
+			// 접속할 서버쪽 URL 주소 설정
+			url : "/onm/order_cus.onm"
+			// 전송 방법 설정
+			,
+			type : "post"
+			// 서버로 보낼 파라미터명과 파라미터값을 설정
+			,
+			data : $("[name=storeMenuListForm]").serialize()
+			,
+			success : function(insert_result) {
+				if (insert_result >= 1) {
+					alert("주문표에 메뉴추가 성공!");
+					/* location.replace("/onm/order_cus_check_form.onm"); */
+				}
+				else {
+					alert("주문추가 실패");
+				}
+			}
+			// 서버의 응답을 못 받았을 경우 실행할 익명함수 설정
+			,
+			error : function() {
+				alert("서버 접속 실패");
+			}
+		});
+	}
+	
+	function goStoreList() {
+		location.replace('/onm/order_cus_form.onm');
+	}
+	
+	function goOrderCheck() {
+		/* var str = "c_id"+c_id
+		location.replace('/onm/order_cus_form.onm?'+str); */
+		document.orderCheck.submit();
+	}
 </script>

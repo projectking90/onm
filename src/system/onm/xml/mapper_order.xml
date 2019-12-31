@@ -3,20 +3,95 @@
 
 <!-- mapper 태그 선언 -->
 <mapper namespace="system.onm.dao.OrderDAO">
+	<!-- 검색조건 -->
+	<sql id="searchkorderLocation">
+		<if test="orderLocation!=null and orderLocation.length()>0">
+			and(
+				upper(s_name) like upper('%${orderLocation}%')
+				or upper(email) like upper('%${orderLocation}%')
+				or upper(s_phone) like upper('%${orderLocation}%')
+			)
+		</if>
+	</sql>
+	
 	<!-- 가게의 목록을 가져오는 select 태그 -->
 	<select id="getStoreList" parameterType="system.onm.dto.StoreSearchDTO" resultType="system.onm.dto.StoreDTO">
+		select
+			s_no	"s_no"
+			, s_id	"s_id"
+			, s_name	"s_name"
+			, s_reg_num	"s_reg_num"
+			, email 	"email"
+			, s_phone	"s_phone"
+			, s_reg_date	"s_reg_date"
+		from
+			store
+		where
+			1=1
+			<include refid="searchkorderLocation"/>
 	</select>
 	
 	<!-- 가게의 메뉴 목록을 가져오는 select 태그 -->
 	<select id="getMenuList" parameterType="int" resultType="system.onm.dto.MenuDTO">
+		select
+			m.m_no	"m_no"
+			,(select s.s_name from store s where #{s_no}=s.s_no)		"s_no"	
+			,(select b.mb_name from code_menu_beta b where b.mb_code=m.mb_code)		"mb_code"
+			,m.m_name	"m_name"
+			,m.price	"price"
+			,m.m_comment		"m_comment"
+			,to_char(m.reg_date,'YYYY-MM-DD') "reg_date"
+			,m.is_del		 "is_del"
+		from menu m
+		where m.s_no=#{s_no}
 	</select>
 	
 	<!-- 고객의 주문을 추가하는 insert 태그 -->
 	<insert id="insertOrder" parameterType="system.onm.dto.OrderDTO">
+		insert into order_info(
+					o_no,
+					c_no,
+					s_no,
+					o_state,
+					addr_code,
+					location,
+					o_phone,
+					order_time,
+					pick_time,
+					request,
+					is_del
+				) values
+					(
+						(select nvl(max(o_no),0)+1 from order_info)
+						,(select c_no from customer where c_id=#{c_id})
+						,(select s_no from store where s_name=#{s_no})
+						,'w'
+						,1<!-- 메인에서 넘어올 addr_code 나중에 처리할것 -->
+						,#{location}
+						,#{o_phone}
+						,sysdate
+						,to_date(to_char(sysdate,'yyyymmddhh')||(to_number(to_char(sysdate, 'mi'))+${pick_time})||'','yyyymmddhhmi')
+						,#{request}
+						,'F'
+					)
 	</insert>
 	
 	<!-- 고객의 주문 목록을 가져오는 select 태그 -->
-	<select id="getOrderList" parameterType="int" resultType="system.onm.dto.OrderDTO">
+	<select id="getOrderList" parameterType="string" resultType="system.onm.dto.OrderDTO">
+		select
+			o_no,
+			c_no,
+			s_no,
+			o_state,
+			addr_code,
+			location,
+			o_phone,
+			order_time,
+			pick_time,
+			request,
+			is_del
+		from order_info
+		where c_no=(select c_no from customer where c_id=#{c_id})
 	</select>
 	
 	<!-- 고객의 주문 목록을 가져오는 select 태그 -->

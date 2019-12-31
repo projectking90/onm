@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public List<StoreDTO> getStoreList(StoreSearchDTO store_searchDTO) {
-		List<StoreDTO> getStoreList = null;
+		List<StoreDTO> getStoreList = this.orderDAO.getStoreList(store_searchDTO);
 		
 		return getStoreList;
 	}
@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(int s_no) {
-		List<MenuDTO> getMenuList = null;
+		List<MenuDTO> getMenuList = this.orderDAO.getMenuList(s_no);
 		
 		return getMenuList;
 	}
@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public int insertOrder(OrderDTO orderDTO) {
-		int insertOrder = 0;
+		int insertOrder = this.orderDAO.insertOrder(orderDTO);
 		
 		return insertOrder;
 	}
@@ -81,8 +81,8 @@ public class OrderServiceImpl implements OrderService {
 	 * @return getOrderList : 고객의 주문 목록
 	 */
 	@Override
-	public List<OrderDTO> getOrderList(int c_no) {
-		List<OrderDTO> getOrderList = null;
+	public List<OrderDTO> getOrderList(String c_id) {
+		List<OrderDTO> getOrderList = this.orderDAO.getOrderList(c_id);
 		
 		return getOrderList;
 	}
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public OrderDTO getOrderDetail(int o_no) {
-		OrderDTO getOrderDetail = null;
+		OrderDTO getOrderDetail = this.orderDAO.getOrderDetail(o_no);
 		
 		return getOrderDetail;
 	}

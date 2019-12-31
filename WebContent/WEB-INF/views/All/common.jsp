@@ -76,9 +76,9 @@
 			, data : data
 			, success : function(data){
 				for(var i=data.length-1; i>=0; i--){
-					if(user_flag='s'){
+					if(user_flag=='s'){
 						$(".navi").append("<a href=" + data[i].path + "?s_id=${sessionScope.s_id}>" + data[i].label);
-					} else if(user_flag='c'){
+					} else if(user_flag=='c'){
 						$(".navi").append("<a href=" + data[i].path + "?c_id=${sessionScope.c_id}>" + data[i].label);
 					}
 					

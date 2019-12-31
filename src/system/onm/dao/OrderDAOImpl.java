@@ -43,7 +43,10 @@ public class OrderDAOImpl implements OrderDAO {
 	 */
 	@Override
 	public List<StoreDTO> getStoreList(StoreSearchDTO store_searchDTO) {
-		List<StoreDTO> getStoreList = null;
+		List<StoreDTO> getStoreList = this.sqlSession.selectList(
+				sqlSessionPath + "getStoreList"
+				,store_searchDTO
+		);;
 		
 		return getStoreList;
 	}
@@ -55,7 +58,9 @@ public class OrderDAOImpl implements OrderDAO {
 	 */
 	@Override
 	public List<MenuDTO> getMenuList(int s_no) {
-		List<MenuDTO> getMenuList = null;
+		List<MenuDTO> getMenuList = this.sqlSession.selectList(
+				"system.onm.dao.OrderDAO.getMenuList"
+				,s_no);
 		
 		return getMenuList;
 	}
@@ -67,7 +72,9 @@ public class OrderDAOImpl implements OrderDAO {
 	 */
 	@Override
 	public int insertOrder(OrderDTO orderDTO) {
-		int insertOrder = 0;
+		int insertOrder = this.sqlSession.insert(
+				"system.onm.dao.OrderDAO.insertOrder"
+				,orderDTO);
 		
 		return insertOrder;
 	}
@@ -78,8 +85,10 @@ public class OrderDAOImpl implements OrderDAO {
 	 * @return getOrderList : 고객의 주문 목록
 	 */
 	@Override
-	public List<OrderDTO> getOrderList(int c_no) {
-		List<OrderDTO> getOrderList = null;
+	public List<OrderDTO> getOrderList(String c_id) {
+		List<OrderDTO> getOrderList = this.sqlSession.selectList(
+				"system.onm.dao.OrderDAO.getOrderList"
+				,c_id);
 		
 		return getOrderList;
 	}
@@ -91,7 +100,10 @@ public class OrderDAOImpl implements OrderDAO {
 	 */
 	@Override
 	public OrderDTO getOrderDetail(int o_no) {
-		OrderDTO getOrderDetail = null;
+		OrderDTO getOrderDetail =  this.sqlSession.selectOne(
+				"system.onm.dao.OrderDAO.getOrderDetail"
+				,o_no
+				);
 		
 		return getOrderDetail;
 	}

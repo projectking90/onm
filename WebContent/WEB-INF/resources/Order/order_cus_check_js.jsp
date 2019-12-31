@@ -12,4 +12,9 @@
 <script>
 	$(document).ready(function(){
 	});
+	
+	function goOrderDetail(o_no){
+		var str = "o_no="+o_no;
+		location.replace("/onm/order_cus_check_detail_form.onm?"+str );
+	}
 </script>

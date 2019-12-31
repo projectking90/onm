@@ -13,6 +13,8 @@ public class StoreSearchDTO {
 	/**
 	 * 속성변수 선언
 	 */
+	private String orderLocation;	// 주문 주소
+	private String c_id;	// 고객아이디
 
 	/**
 	 * 생성자 선언
@@ -21,4 +23,32 @@ public class StoreSearchDTO {
 	/**
 	 * 접근자, 설정자 선언
 	 */
+	/**
+	 * orderLocation 접근자
+	 * @return orderLocation : 주문 주소
+	 */
+	public String getOrderLocation() {
+		return orderLocation;
+	}
+	/**
+	 * orderLocation 설정자
+	 * @param orderLocation : 주문 주소
+	 */
+	public void setOrderLocation(String orderLocation) {
+		this.orderLocation = orderLocation;
+	}
+	/**
+	 * c_id 접근자
+	 * @return c_id : 고객아이디
+	 */
+	public String getC_id() {
+		return c_id;
+	}
+	/**
+	 * c_id 설정자
+	 * @param c_id : 고객아이디
+	 */
+	public void setC_id(String c_id) {
+		this.c_id = c_id;
+	}
 }

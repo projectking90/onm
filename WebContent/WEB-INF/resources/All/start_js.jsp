@@ -31,7 +31,7 @@
 				return;
 			}
 			
-			location.replace("/onm/cus.onm?l_id=" + l_id.val());
+			location.replace("/onm/cus.onm?c_id=" + l_id.val());
 		});
 		
 		/**
@@ -47,7 +47,7 @@
 				return;
 			}
 			
-			location.replace("/onm/com.onm?l_id=" + l_id.val());
+			location.replace("/onm/com.onm?s_id=" + l_id.val());
 		});
 		
 		/**

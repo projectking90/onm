@@ -116,12 +116,12 @@ public class AllController {
 	 */
 	@RequestMapping(value="/cus.onm")
 	public ModelAndView goCusForm(
-			 @RequestParam(value="l_id") String l_id
+			 @RequestParam(value="c_id") String c_id
 			, HttpSession session
 			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "cus");
-		session.setAttribute("c_id", l_id);
+		session.setAttribute("c_id", c_id);
 		session.setAttribute("user_flag", "c");
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
@@ -133,18 +133,18 @@ public class AllController {
 	}
 
 	/**
-	 * 기업 메인을 보여줄 jsp와 가게에 등록된 메뉴를 보여주는 메소드
+	 * 가게 메인을 보여줄 jsp와 가게에 등록된 메뉴를 보여주는 메소드
 	 * 가상주소 /com.onm로 접근하면 호출
 	 * @return mav : /com.onm에 맵핑되는 jsp 파일과 가게 메뉴 리스트
 	 */
 	@RequestMapping(value="/com.onm")
 	public ModelAndView goComForm(
-			 @RequestParam(value="l_id") String l_id
+			 @RequestParam(value="s_id") String s_id
 			, HttpSession session
 			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "com");
-		session.setAttribute("s_id", l_id);
+		session.setAttribute("s_id", s_id);
 		session.setAttribute("user_flag", "s");
 		
 		try {
