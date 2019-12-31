@@ -1,7 +1,7 @@
 create table navi(
 	path	varchar2(100)	not null	-- 경로
 	, label	varchar2(100)	not null	-- 메뉴명
-	, before_path	varchar2(100)	defalut ' '	-- 이전경로
+	, before_path	varchar2(100)	default ' '	-- 이전경로
 	, user_flag	varchar2(1) not null check(user_flag in ('c', 's', 'm'))	-- 유저 구분
 );
 

@@ -12,4 +12,19 @@
 <script>
 	$(document).ready(function(){
 	});
+	
+	// [충전] 이동함수 
+	function goPointChargeForm(){
+		location.replace("/onm/point_charge_form.onm");
+	}
+	
+	// [선물] 이동함수
+	function goPointPresentForm(){
+		location.replace("/onm/point_present_form.onm?s_id=${sessionScope.s_id}");
+	}
+	
+	// [전환] 이동함수
+	function goPointToCashForm(){
+		location.replace("/onm/point_to_cash_form.onm?s_id=${sessionScope.s_id}");
+	}
 </script>

@@ -58,6 +58,12 @@
 			$("body").prepend("<div class='navi'></div>");
 			
 			getMenuTracking(user_flag, path);
+			
+			if(user_flag=='c'){
+				$(".navi").append("&nbsp;&nbsp;&nbsp;고객&nbsp;&nbsp;&nbsp;${sessionScope.c_id}<br>");
+			} else if(user_flag=='s'){
+				$(".navi").append("&nbsp;&nbsp;&nbsp;가게&nbsp;&nbsp;&nbsp;${sessionScope.s_id}<br>");
+			}
 		}
 	});
 	
@@ -70,7 +76,12 @@
 			, data : data
 			, success : function(data){
 				for(var i=data.length-1; i>=0; i--){
-					$(".navi").append("<a href=" + data[i].path + "?brunch=${sessionScope.s_id}>" + data[i].label);
+					if(user_flag='s'){
+						$(".navi").append("<a href=" + data[i].path + "?s_id=${sessionScope.s_id}>" + data[i].label);
+					} else if(user_flag='c'){
+						$(".navi").append("<a href=" + data[i].path + "?c_id=${sessionScope.c_id}>" + data[i].label);
+					}
+					
 					if(i!=0){
 						$(".navi").append(" - ");
 					}

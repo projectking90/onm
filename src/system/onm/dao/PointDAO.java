@@ -28,9 +28,9 @@ public interface PointDAO {
 	List<PointDTO> getPointList(PointSearchDTO point_searchDTO);	// 포인트 기록 목록을 가져옴
 	PointDTO getPointInfo(String s_id);	// 포인트 정보를 가져옴
 	int updatePointPresent(PointPresentDTO point_presentDTO);	// 사용자간 포인트 선물
-	int updatePointToCash(PointPresentDTO point_presentDTO);	// 포인트 전환
+	int updatePointToCash(PointDTO pointDTO);	// 포인트 전환
 	int checkPoint(String from_l_id);	// 포인트 선물, 전환 시 소유 포인트 확인
-	int insertPointCharge(CardDTO cardDTO);	// 포인트 충전
+	int insertPointCharge(PointDTO pointDTO);	// 포인트 충전
 	int checkCardNum(CardDTO cardDTO);	// 포인트 충전 시 카드 번호 확인
 	int checkCVC(CardDTO cardDTO);	// 포인트 충전 시 CVC 번호 확인
 }

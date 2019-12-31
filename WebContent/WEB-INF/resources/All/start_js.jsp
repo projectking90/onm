@@ -25,13 +25,13 @@
 			<%
 				logger.info("고객 버튼 클릭");
 			%>
-			var brunch = $("[name=brunch]");
+			var l_id = $("[name=l_id]");
 	
-			if(!check(brunch)){
+			if(!check(l_id)){
 				return;
 			}
 			
-			location.replace("/onm/cus.onm?brunch=" + brunch.val());
+			location.replace("/onm/cus.onm?l_id=" + l_id.val());
 		});
 		
 		/**
@@ -41,13 +41,13 @@
 			<%
 				logger.info("가게 버튼 클릭");
 			%>
-			var brunch = $("[name=brunch]");
+			var l_id = $("[name=l_id]");
 	
-			if(!check(brunch)){
+			if(!check(l_id)){
 				return;
 			}
 			
-			location.replace("/onm/com.onm?brunch=" + brunch.val());
+			location.replace("/onm/com.onm?l_id=" + l_id.val());
 		});
 		
 		/**
@@ -77,17 +77,17 @@
 	
 	/**
 	 * 입력 양식의 빈칸을 확인
-	 * @param brunch : 로그인 아이디
+	 * @param l_id : 로그인 아이디
 	 * @returns flag : 입력 여부
 	 */
-	function check(brunch){
+	function check(l_id){
 		<%
 			logger.info("check 함수 실행");
 		%>
 		var flag = true;
 		
-		if(is_empty(brunch)){
-			alert("brunch를 입력해주세요.");
+		if(is_empty(l_id)){
+			alert("l_id를 입력해주세요.");
 			flag = false;
 		}
 		

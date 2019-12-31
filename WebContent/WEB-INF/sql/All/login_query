@@ -1,5 +1,5 @@
-create login(	-- 로그인
-	l_flag	varchar2(1)	check(l_flag('c', 's', 'm'))	-- 유저구분
+create table login(	-- 로그인
+	l_flag	varchar2(1)	check(l_flag in('c', 's', 'm'))	-- 유저구분
 	, l_id	varchar2(50)	-- 아이디
 	, pwd	varchar2(256)	not null	-- 암호
 	, is_del	varchar2(1)	default 'F' check(is_del in('F', 'T'))	-- 삭제여부

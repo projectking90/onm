@@ -17,8 +17,8 @@
 		%>
 	</head>
 	<body>
-		<input type="button" value="주문" onClick="location.replace('${cr}/order_cus_form.onm')">
-		<input type="button" value="추천주문" onClick="location.replace('${cr}/order_cus_recommend_form.onm')">
-		<input type="button" value="주문기록" onClick="location.replace('${cr}/order_record_form.onm')">
+		<input type="button" value="주문" onClick="location.replace('${cr}/order_cus_form.onm?c_id=${sessionScope.c_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="주문기록" onClick="location.replace('${cr}/order_record_form.onm?c_id=${sessionScope.c_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="포인트" onClick="location.replace('${cr}/point_record_form.onm?c_id=${sessionScope.c_id}')">&nbsp;&nbsp;&nbsp;
 	</body>
 </html>

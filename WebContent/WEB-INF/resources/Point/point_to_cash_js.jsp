@@ -11,5 +11,46 @@
 <!-- 포인트 전환에 관한 javascript -->
 <script>
 	$(document).ready(function(){
+		
+		$('[name=l_flag]').val("c");
+		$('[name=l_id]').val("b_oyj");
+		$('[name=p_state]').val("o");
+		$('[name=amount]').val("1000");
+		
 	});
+	
+	// [충전 화면] 유효성 체크 함수
+	function checkPointToCashForm(){
+		
+		// -------------------------------- 
+		if(confirm("정말 전환하시겠습니까?")==false){return;}
+	
+			$.ajax({
+			// 접속할 서버쪽 URL 주소
+			url : "/onm/point_to_cash.onm"
+			
+			// 전송 방법
+			, type : "post"
+			
+			// 서버로 보낼 파라미터명과 파라미터값
+			, data : $("[name=point_to_cash]").serialize()
+			
+			// 서버의 응답을 성공적으로 받았을 경우 실행할 익명함수 설정
+			, success : function(pointcashCnt){											
+				
+					if($("[name=point_to_cash] [name=p_no]")){
+						if(pointcashCnt==1){
+							alert("전환 성공!");
+							location.replace("/onm/point_record_form.onm");
+						}
+						
+						// [게시판 새 글 입력 행 적용 개수]가 1개가 아니면 경고하기
+						else{ alert("전환 실패! 관리자에게 문의 바람."); }
+					}
+			}
+					
+			// 서버의 응답을 못 받았을 경우 실행할 익명함수 설정
+			, error : function(){ alert("서버 접속 실패"); }
+		});
+	}
 </script>

@@ -116,12 +116,12 @@ public class AllController {
 	 */
 	@RequestMapping(value="/cus.onm")
 	public ModelAndView goCusForm(
-			 @RequestParam(value="brunch") String brunch
+			 @RequestParam(value="l_id") String l_id
 			, HttpSession session
 			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "cus");
-		session.setAttribute("s_id", brunch);
+		session.setAttribute("c_id", l_id);
 		session.setAttribute("user_flag", "c");
 		try {
 		} catch(Exception e) {	// try 구문에서 예외가 발생하면 실행할 구문 설정
@@ -139,12 +139,12 @@ public class AllController {
 	 */
 	@RequestMapping(value="/com.onm")
 	public ModelAndView goComForm(
-			@RequestParam(value="brunch") String brunch
+			 @RequestParam(value="l_id") String l_id
 			, HttpSession session
 			) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(path + "com");
-		session.setAttribute("s_id", brunch);
+		session.setAttribute("s_id", l_id);
 		session.setAttribute("user_flag", "s");
 		
 		try {

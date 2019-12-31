@@ -38,7 +38,10 @@ public class PointDAOImpl implements PointDAO {
 	 */
 	@Override
 	public List<PointDTO> getPointList(PointSearchDTO point_searchDTO) {
-		List<PointDTO> point_list = null;
+		List<PointDTO> point_list = this.sqlSession.selectList(
+				"system.onm.dao.PointDAO.getPointList"
+				,point_searchDTO
+		);
 		
 		return point_list;
 	}
@@ -62,19 +65,25 @@ public class PointDAOImpl implements PointDAO {
 	 */
 	@Override
 	public int updatePointPresent(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+		int update_result = this.sqlSession.update(
+				"system.onm.dao.PointDAO.updatePointPresent"
+				,point_presentDTO
+		);
 		
 		return update_result;
 	}
 
 	/**
 	 * 포인트 전환
-	 * @param point_presentDTO : 포인트 검색을 위해 사용할 DTO
+	 * @param pointDTO : 포인트 정보를 담은 DTO
 	 * @return update_result : 포인트 전환 Query 결과
 	 */
 	@Override
-	public int updatePointToCash(PointPresentDTO point_presentDTO) {
-		int update_result = 0;
+	public int updatePointToCash(PointDTO pointDTO) {
+		int update_result = this.sqlSession.update(
+				"system.onm.dao.PointDAO.updatePointToCash"
+				,pointDTO
+		);
 		
 		return update_result;
 	}
@@ -93,12 +102,15 @@ public class PointDAOImpl implements PointDAO {
 
 	/**
 	 * 포인트 충전
-	 * @param cardDTO : 카드 정보를 담은 DTO
+	 * @param pointDTO : 포인트 정보를 담은 DTO
 	 * @return insert_result : 포인트 충전 Query 결과
 	 */
 	@Override
-	public int insertPointCharge(CardDTO cardDTO) {
-		int insert_result = 0;
+	public int insertPointCharge(PointDTO pointDTO) {
+		int insert_result = this.sqlSession.insert(
+				"system.onm.dao.PointDAO.insertPointCharge"
+				,pointDTO
+		);
 		
 		return insert_result;
 	}

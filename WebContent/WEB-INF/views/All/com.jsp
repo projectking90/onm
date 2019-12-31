@@ -17,19 +17,17 @@
 		%>
 	</head>
 	<body>
-		<input type="button" value="메뉴" onClick="location.replace('${cr}/store_menu_form.onm')">
-		<input type="button" value="메뉴 상세보기" onClick="location.replace('${cr}/store_menu_detail_form.onm')">
-		<input type="button" value="메뉴 등록" onClick="location.replace('${cr}/store_menu_insert_form.onm')">
-		<input type="button" value="메뉴 수정/삭제" onClick="location.replace('${cr}/store_menu_updel_form.onm')"><br><br>
-		<input type="button" value="식자재" onClick="location.replace('${cr}/store_ingredient_form.onm')">
-		<input type="button" value="식자재 상세보기" onClick="location.replace('${cr}/store_ingredient_detail_form.onm')">
-		<input type="button" value="식자재 등록" onClick="location.replace('${cr}/store_ingredient_insert_form.onm')">
-		<input type="button" value="식자재 수정/삭제" onClick="location.replace('${cr}/store_ingredient_updel_form.onm')"><br><br>
-		<input type="button" value="가게 정보" onClick="location.replace('${cr}/store_kind_form.onm')">
-		<input type="button" value="가게 정보 등록" onClick="location.replace('${cr}/store_kind_insert_form.onm')">
-		<input type="button" value="가게 정보 수정" onClick="location.replace('${cr}/store_kind_up_form.onm')"><br>
-		----------------------------------------------------------------<br>
-		<input type="button" value="재고관리" onClick="location.replace('${cr}/stock_form.onm')">
-		<input type="button" value="판매기록" onClick="location.replace('${cr}/selling_record_form.onm')">
+		<input type="button" value="주문" onClick="location.replace('${cr}/order_store_wait_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="재고" onClick="location.replace('${cr}/stock_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="발주" onClick="">&nbsp;&nbsp;&nbsp;
+		<br>----------------------------------------------------------------<br>
+		<input type="button" value="메뉴" onClick="location.replace('${cr}/store_menu_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="식자재" onClick="location.replace('${cr}/store_ingredient_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="가게 정보" onClick="location.replace('${cr}/store_kind_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<br>----------------------------------------------------------------<br>
+		<input type="button" value="판매기록" onClick="location.replace('${cr}/selling_record_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="재고관리" onClick="location.replace('${cr}/stock_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="판매기록" onClick="location.replace('${cr}/selling_record_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="포인트" onClick="location.replace('${cr}/point_record_form.onm?s_id=${sessionScope.s_id}')">&nbsp;&nbsp;&nbsp;
 	</body>
 </html>

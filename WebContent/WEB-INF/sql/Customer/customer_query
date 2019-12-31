@@ -3,7 +3,7 @@ create table customer(	-- 고객정보_고객
 	, c_id	varchar2(50)	not null unique-- 아이디
 	, c_name	varchar2(50)	not null	-- 이름
 	, birthday	varchar2(10)	not null	-- 생년월일
-	, gender	varchar2(1)	not null check('남', '여')	-- 성별
+	, gender	varchar2(1)	not null check(gender in('1', '2'))	-- 성별
 	, email	varchar2(100)	-- 이메일
 	, c_phone	varchar2(20)	-- 핸드폰
 	, c_reg_date	date	default sysdate	-- 등록일

@@ -20,7 +20,7 @@
 		<form name="user_form">
 			<input type="button" class="cusmoter" value="고객">
 			<input type="button" class="company" value="기업"><br><br><br>
-			당신의 brunch를 입력하세요 : <input type="text" name="brunch">
+			로그인 ID를 입력하세요 : <input type="text" name="l_id">
 		</form>
 <%-- 		
 		<form:form name="addr_form" commandName="addr">
